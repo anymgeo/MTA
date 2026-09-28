@@ -2,7 +2,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.js");
 export default withNextIntl({
   reactCompiler: true,
-  output: "standalone",
+  // Vercel's Next adapter is incompatible with standalone output on Next 16.3.
+  // Keep standalone for Docker deployments, where the generated server is used.
+  output: process.env.VERCEL ? undefined : "standalone",
   // Isolate verification builds from the running dev server / OneDrive file locks.
   distDir: process.env.MTA_BUILD_DIR || ".next",
   async rewrites() {
