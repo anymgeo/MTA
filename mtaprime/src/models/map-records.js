@@ -35,7 +35,10 @@ export function assembleMapRecords({
 }) {
   const records = [];
   for (const [kind, items] of [
-    ["lift", operations?.lifts || resort.page?.liftList || resort.liftList || []],
+    [
+      "lift",
+      operations?.lifts || resort.page?.liftList || resort.liftList || [],
+    ],
     ["trail", operations?.trails || resort.page?.trailList || []],
   ])
     for (const [i, r] of items.entries())
@@ -66,12 +69,14 @@ export function assembleMapRecords({
         position: mapPosition(r, map),
         href: r.demo ? undefined : "/safety/" + source + "/" + r.slug,
       });
-  for (const f of map.verified ? map.features : []) {
+  // Demo maps may carry explicitly supplied reference geometry. It remains
+  // visibly labelled as demo data by the UI and is never accepted in API mode.
+  for (const f of map.verified || map.demo ? map.features : []) {
     const record = records.find(
       (r) => r.kind === f.kind && r.id === f.kind + ":" + f.recordId,
     );
     if (record) {
-      record.position = { x: f.points[0][0], y: f.points[0][1] };
+      record.position ||= { x: f.points[0][0], y: f.points[0][1] };
       record.points = f.points;
     } else
       records.push({

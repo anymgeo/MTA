@@ -20,17 +20,27 @@ export default async function MapsPage({ params }) {
   if (map) {
     const t = await getTranslations({ locale, namespace: "TrailMap" });
     return (
-      <main className="bg-canvas px-6 pb-16 pt-36 md:px-10">
+      <main
+        className="resort-brand-page bg-canvas px-4 pb-16 pt-32 md:px-8"
+        data-resort={resort.slug}
+      >
         <div className="mx-auto max-w-[1600px]">
           <Link href={`/resorts/${slug}`} className="font-semibold underline">
             ← {t("back")}
           </Link>
           <p className="brand-eyebrow mt-8">{t("eyebrow")}</p>
           <h1 className="my-6 flex items-center gap-4 text-4xl font-black md:text-6xl">
-            <ResortIcon slug={resort.slug} className="h-12 w-12 md:h-16 md:w-16" />
+            <ResortIcon
+              slug={resort.slug}
+              className="h-12 w-12 md:h-16 md:w-16"
+            />
             {resort.name}
           </h1>
-          <InteractiveTrailMap map={map} resortName={resort.name} />
+          <InteractiveTrailMap
+            map={map}
+            resortName={resort.name}
+            resortSlug={resort.slug}
+          />
         </div>
       </main>
     );

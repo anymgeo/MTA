@@ -1,0 +1,6 @@
+cocoindex[sqlite,sentence_transformers]==1.0.24
+mcp==1.30.0
+truststore>=0.10
+
+# Install this separately from the official CUDA wheel index on Windows:
+# python -m pip install --upgrade --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128

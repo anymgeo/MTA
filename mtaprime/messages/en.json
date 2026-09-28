@@ -1157,7 +1157,19 @@
     "area": "Map area",
     "baseNote": "Base image labels are part of the image; layer controls hide the interactive demo pins only.",
     "unverifiedBase": "Reference image — live operations are not verified.",
+    "liveTitle": "Live terrain map",
+    "operationalStatus": "Operational status",
+    "liftsOpen": "Lifts open",
+    "trailsOpen": "Trails open",
+    "searchPlaceholder": "Search lifts, trails or alerts…",
+    "filters": "Map filters",
+    "liveAlerts": "Live alerts",
+    "legend": "Legend",
+    "demoShort": "Demo data",
+    "statusPending": "Live feed pending",
+    "mapHint": "Select a marker for details · drag to move · scroll to zoom",
     "open": "Open",
+    "limited": "Open with delays",
     "closed": "Closed"
   },
   "MapDemo": {
@@ -1180,11 +1192,11 @@
     "kobitrail2": "Kobi · Demo piste 2",
     "kobiwarning1": "Kobi · Demo warning 1",
     "kobiwarning2": "Kobi · Demo warning 2",
-    "goderdzilift1": "Goderdzi · Demo lift 1",
-    "goderdzilift2": "Goderdzi · Demo lift 2",
-    "goderdzitrail1": "Goderdzi · Demo piste 1",
-    "goderdzitrail2": "Goderdzi · Demo piste 2",
-    "goderdziwarning1": "Goderdzi · Demo warning 1",
-    "goderdziwarning2": "Goderdzi · Demo warning 2"
+    "goderdzilift1": "Zanka Gondola · Demo",
+    "goderdzilift2": "Chanchakhi Lift · Demo",
+    "goderdzitrail1": "Zanka Trail · Demo",
+    "goderdzitrail2": "Yaila Trail · Demo",
+    "goderdziwarning1": "Dangerous area · Demo",
+    "goderdziwarning2": "Wind alert · Demo"
   }
 }

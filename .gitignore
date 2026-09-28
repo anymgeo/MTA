@@ -1,6 +1,8 @@
 .tools/
 .local/
 **/node_modules/
+**/__pycache__/
+**/*.pyc
 **/.next/
 **/bin/
 **/obj/

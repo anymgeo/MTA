@@ -14,7 +14,11 @@ export default function ResortMap({ resort, trailMap }) {
           <h2 className="mb-7 text-3xl font-black">
             {resort.name} · {t("maps_19e909")}
           </h2>
-          <InteractiveTrailMap map={trailMap} resortName={resort.name} />
+          <InteractiveTrailMap
+            map={trailMap}
+            resortName={resort.name}
+            resortSlug={resort.slug}
+          />
           <Link
             href={`/resorts/${resort.slug}/maps`}
             className="mt-6 inline-block font-semibold underline"

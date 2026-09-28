@@ -24,12 +24,64 @@
   },
   "goderdzi": {
     "id": "goderdzi",
-    "image": "/maps/goderdzi-winter.jpg",
-    "width": 3508,
-    "height": 3663,
+    "image": "/maps/goderdzi-live-reference.jpg",
+    "width": 1961,
+    "height": 1455,
     "verified": false,
     "demo": true,
-    "features": [],
+    "features": [
+      {
+        "id": "goderdzi-zanka-lift-geometry",
+        "recordId": "goderdzi-lift-1",
+        "kind": "lift",
+        "name": "Zanka demo geometry",
+        "points": [
+          [1048, 1120],
+          [1090, 1048],
+          [1188, 875],
+          [1290, 694],
+          [1404, 524]
+        ]
+      },
+      {
+        "id": "goderdzi-chanchakhi-lift-geometry",
+        "recordId": "goderdzi-lift-2",
+        "kind": "lift",
+        "name": "Chanchakhi demo geometry",
+        "points": [
+          [1404, 524],
+          [1412, 450],
+          [1424, 292],
+          [1436, 154]
+        ]
+      },
+      {
+        "id": "goderdzi-zanka-trail-geometry",
+        "recordId": "goderdzi-trail-1",
+        "kind": "trail",
+        "name": "Zanka demo geometry",
+        "difficulty": "blue",
+        "points": [
+          [1404, 524],
+          [1392, 757],
+          [1431, 1040],
+          [1307, 1129],
+          [1087, 1196]
+        ]
+      },
+      {
+        "id": "goderdzi-yaila-trail-geometry",
+        "recordId": "goderdzi-trail-2",
+        "kind": "trail",
+        "name": "Yaila demo geometry",
+        "difficulty": "red",
+        "points": [
+          [1436, 154],
+          [1399, 373],
+          [1404, 524]
+        ]
+      }
+    ],
     "areas": [
       {
         "id": "goderdzi",
