@@ -1,0 +1,871 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "$message": "resortsContent.gudauriKobi_8fade5"
+    },
+    "slug": "gudauri-kobi",
+    "region": {
+      "$message": "resortsContent.kazbegiRegion_177e38"
+    },
+    "image": "/Gudauri.jpg",
+    "status": "OPEN",
+    "lifts": "18 / 22",
+    "trails": "42 / 51",
+    "temp": "-6°",
+    "snow": {
+      "$message": "resortsContent.125Cm_a37961"
+    },
+    "newSnow": {
+      "$message": "resortsContent.12Cm_db78c5"
+    },
+    "wind": {
+      "$message": "resortsContent.18KmH_859b8c"
+    },
+    "hours": "09:00–17:00",
+    "elevation": {
+      "$message": "resortsContent.2200M_2fb4d4"
+    },
+    "highestPoint": {
+      "$message": "resortsContent.3276M_4d8686"
+    },
+    "pistes": {
+      "$message": "resortsContent.75Km_cc6e9e"
+    },
+    "description": {
+      "$message": "resortsContent.georgiaSLargestMountainResortOffering_9ef2d7"
+    },
+    "winterSeason": {
+      "$message": "resortsContent.decApr_443ad6"
+    },
+    "liftList": [
+      {
+        "name": {
+          "$message": "resortsContent.goodaura_ff8d5d"
+        },
+        "type": {
+          "$message": "resortsContent.gondola_793f3f"
+        },
+        "hours": "09:00–17:00"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.kobi_8488ff"
+        },
+        "type": {
+          "$message": "resortsContent.gondola_793f3f"
+        },
+        "hours": "09:00–17:00"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.sadzele_3dd95d"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:00–17:00"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.kudebi_ad4793"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:00–17:00"
+      }
+    ],
+    "transport": {
+      "car": {
+        "$message": "resortsContent.about120KmFromTbilisiVia_93ee81"
+      },
+      "transfer": {
+        "$message": "resortsContent.scheduledAndPrivateTransfersAreAvailable_6fd845"
+      },
+      "routeUrl": "https://maps.google.com/?q=Gudauri"
+    },
+    "heroImages": [
+      "/Gudauri.jpg"
+    ],
+    "gallery": [
+      "/Gudauri.jpg"
+    ],
+    "trailDifficulty": [
+      {
+        "label": {
+          "$message": "resortsContent.beginner_60575a"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.gentleConfidenceBuildingTerrain_34acf6"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.intermediate_b1cfe7"
+        },
+        "value": 35,
+        "description": {
+          "$message": "resortsContent.longerRunsForDevelopingTechnique_94b3c5"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.advanced_4d0647"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.steeperLinesForExperiencedSkiers_560167"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.expert_d7a501"
+        },
+        "value": 15,
+        "description": {
+          "$message": "resortsContent.technicalTerrainRequiringStrongAbility_86153c"
+        }
+      }
+    ],
+    "experience": {
+      "winter": [
+        {
+          "title": {
+            "$message": "resortsContent.skiing_eeb9db"
+          },
+          "text": {
+            "$message": "resortsContent.makeTheMostOfTheResort_ce5ce7"
+          },
+          "iconKey": "skiing"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.snowboarding_91f8b8"
+          },
+          "text": {
+            "$message": "resortsContent.rideWideSlopesAndSeekA_d73869"
+          },
+          "iconKey": "snowboarding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.freeride_9dda2d"
+          },
+          "text": {
+            "$message": "resortsContent.exploreBeyondThePisteWithLocal_5c5c57"
+          },
+          "iconKey": "freeride"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.skiTouring_49952c"
+          },
+          "text": {
+            "$message": "resortsContent.takeASlowerRouteThroughThe_ade3a9"
+          },
+          "iconKey": "ski-touring"
+        }
+      ],
+      "summer": [
+        {
+          "title": {
+            "$message": "resortsContent.hiking_1bb9e8"
+          },
+          "text": {
+            "$message": "resortsContent.followHighlandPathsForestTracksAnd_20c067"
+          },
+          "iconKey": "hiking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.mountainBiking_b7949e"
+          },
+          "text": {
+            "$message": "resortsContent.exploreMountainRoadsAndChangingTerrain_c412e0"
+          },
+          "iconKey": "mountain-biking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.paragliding_bbe43d"
+          },
+          "text": {
+            "$message": "resortsContent.seeTheValleyAndPeaksFrom_389bc2"
+          },
+          "iconKey": "paragliding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.camping_5e8934"
+          },
+          "text": {
+            "$message": "resortsContent.stayCloseToTheQuietThe_27bdf1"
+          },
+          "iconKey": "camping"
+        }
+      ]
+    },
+    "summerImage": "/SliderSummer.webp",
+    "seasons": {
+      "winter": {
+        "image": "/Gudauri.jpg",
+        "heroImages": [
+          "/Gudauri.jpg"
+        ]
+      },
+      "summer": {
+        "image": "/SliderSummer.webp",
+        "heroImages": [
+          "/SliderSummer.webp"
+        ]
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": {
+      "$message": "resortsContent.bakuriani_4c494f"
+    },
+    "slug": "bakuriani",
+    "region": {
+      "$message": "resortsContent.samtskheJavakheti_f9181f"
+    },
+    "image": "/Bakuriani.jpg",
+    "status": "OPEN",
+    "lifts": "12 / 14",
+    "trails": "28 / 32",
+    "temp": "-4°",
+    "snow": {
+      "$message": "resortsContent.86Cm_563c5b"
+    },
+    "newSnow": {
+      "$message": "resortsContent.7Cm_a6cd9a"
+    },
+    "wind": {
+      "$message": "resortsContent.11KmH_a21892"
+    },
+    "hours": "09:00–17:00",
+    "elevation": {
+      "$message": "resortsContent.1700M_92609b"
+    },
+    "highestPoint": {
+      "$message": "resortsContent.2702M_cd6861"
+    },
+    "pistes": {
+      "$message": "resortsContent.29Km_ff79e1"
+    },
+    "description": {
+      "$message": "resortsContent.aHistoricMountainResortOfferingSkiing_fed782"
+    },
+    "winterSeason": {
+      "$message": "resortsContent.decMar_2586d7"
+    },
+    "liftList": [
+      {
+        "name": {
+          "$message": "resortsContent.didveli_98b3da"
+        },
+        "type": {
+          "$message": "resortsContent.gondola_793f3f"
+        },
+        "hours": "09:00–17:00"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.kokhta_0fe531"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:00–17:00"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.mitarbi_954992"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:00–17:00"
+      }
+    ],
+    "transport": {
+      "car": {
+        "$message": "resortsContent.about180KmFromTbilisiVia_f7ac3f"
+      },
+      "transfer": {
+        "$message": "resortsContent.privateAndSharedTransfersCanBe_c5013d"
+      },
+      "routeUrl": "https://maps.google.com/?q=Bakuriani"
+    },
+    "heroImages": [
+      "/Bakuriani.jpg"
+    ],
+    "gallery": [
+      "/Bakuriani.jpg"
+    ],
+    "trailDifficulty": [
+      {
+        "label": {
+          "$message": "resortsContent.beginner_60575a"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.gentleConfidenceBuildingTerrain_34acf6"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.intermediate_b1cfe7"
+        },
+        "value": 35,
+        "description": {
+          "$message": "resortsContent.longerRunsForDevelopingTechnique_94b3c5"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.advanced_4d0647"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.steeperLinesForExperiencedSkiers_560167"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.expert_d7a501"
+        },
+        "value": 15,
+        "description": {
+          "$message": "resortsContent.technicalTerrainRequiringStrongAbility_86153c"
+        }
+      }
+    ],
+    "experience": {
+      "winter": [
+        {
+          "title": {
+            "$message": "resortsContent.skiing_eeb9db"
+          },
+          "text": {
+            "$message": "resortsContent.makeTheMostOfTheResort_ce5ce7"
+          },
+          "iconKey": "skiing"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.snowboarding_91f8b8"
+          },
+          "text": {
+            "$message": "resortsContent.rideWideSlopesAndSeekA_d73869"
+          },
+          "iconKey": "snowboarding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.freeride_9dda2d"
+          },
+          "text": {
+            "$message": "resortsContent.exploreBeyondThePisteWithLocal_5c5c57"
+          },
+          "iconKey": "freeride"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.skiTouring_49952c"
+          },
+          "text": {
+            "$message": "resortsContent.takeASlowerRouteThroughThe_ade3a9"
+          },
+          "iconKey": "ski-touring"
+        }
+      ],
+      "summer": [
+        {
+          "title": {
+            "$message": "resortsContent.hiking_1bb9e8"
+          },
+          "text": {
+            "$message": "resortsContent.followHighlandPathsForestTracksAnd_20c067"
+          },
+          "iconKey": "hiking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.mountainBiking_b7949e"
+          },
+          "text": {
+            "$message": "resortsContent.exploreMountainRoadsAndChangingTerrain_c412e0"
+          },
+          "iconKey": "mountain-biking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.paragliding_bbe43d"
+          },
+          "text": {
+            "$message": "resortsContent.seeTheValleyAndPeaksFrom_389bc2"
+          },
+          "iconKey": "paragliding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.camping_5e8934"
+          },
+          "text": {
+            "$message": "resortsContent.stayCloseToTheQuietThe_27bdf1"
+          },
+          "iconKey": "camping"
+        }
+      ]
+    },
+    "summerImage": "/SliderSummer.webp",
+    "seasons": {
+      "winter": {
+        "image": "/Bakuriani.jpg",
+        "heroImages": [
+          "/Bakuriani.jpg"
+        ]
+      },
+      "summer": {
+        "image": "/SliderSummer.webp",
+        "heroImages": [
+          "/SliderSummer.webp"
+        ]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": {
+      "$message": "resortsContent.mestia_b09816"
+    },
+    "slug": "mestia",
+    "region": {
+      "$message": "resortsContent.svaneti_a31bbd"
+    },
+    "image": "/MESTIA.webp",
+    "status": "OPEN",
+    "lifts": "7 / 8",
+    "trails": "16 / 21",
+    "temp": "-10°",
+    "snow": {
+      "$message": "resortsContent.140Cm_593223"
+    },
+    "newSnow": {
+      "$message": "resortsContent.19Cm_8a6e1e"
+    },
+    "wind": {
+      "$message": "resortsContent.24KmH_e42481"
+    },
+    "hours": "10:00–16:30",
+    "elevation": {
+      "$message": "resortsContent.1500M_675040"
+    },
+    "highestPoint": {
+      "$message": "resortsContent.3200M_269b78"
+    },
+    "pistes": {
+      "$message": "resortsContent.34Km_0f4f5b"
+    },
+    "description": {
+      "$message": "resortsContent.aDramaticMountainDestinationSurroundedBy_407015"
+    },
+    "winterSeason": {
+      "$message": "resortsContent.decApr_443ad6"
+    },
+    "liftList": [
+      {
+        "name": {
+          "$message": "resortsContent.hatsvali_60b2db"
+        },
+        "type": {
+          "$message": "resortsContent.gondola_793f3f"
+        },
+        "hours": "10:00–16:30"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.tetnuldi_0e4470"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "10:00–16:30"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.zuruldi_2a4fe1"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "10:00–16:30"
+      }
+    ],
+    "transport": {
+      "car": {
+        "$message": "resortsContent.around460KmFromTbilisiAllow_fee93c"
+      },
+      "transfer": {
+        "$message": "resortsContent.flightsAndTransfersConnectMestiaWith_428aa9"
+      },
+      "routeUrl": "https://maps.google.com/?q=Mestia"
+    },
+    "heroImages": [
+      "/MESTIA.webp"
+    ],
+    "gallery": [
+      "/MESTIA.webp"
+    ],
+    "trailDifficulty": [
+      {
+        "label": {
+          "$message": "resortsContent.beginner_60575a"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.gentleConfidenceBuildingTerrain_34acf6"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.intermediate_b1cfe7"
+        },
+        "value": 35,
+        "description": {
+          "$message": "resortsContent.longerRunsForDevelopingTechnique_94b3c5"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.advanced_4d0647"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.steeperLinesForExperiencedSkiers_560167"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.expert_d7a501"
+        },
+        "value": 15,
+        "description": {
+          "$message": "resortsContent.technicalTerrainRequiringStrongAbility_86153c"
+        }
+      }
+    ],
+    "experience": {
+      "winter": [
+        {
+          "title": {
+            "$message": "resortsContent.skiing_eeb9db"
+          },
+          "text": {
+            "$message": "resortsContent.makeTheMostOfTheResort_ce5ce7"
+          },
+          "iconKey": "skiing"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.snowboarding_91f8b8"
+          },
+          "text": {
+            "$message": "resortsContent.rideWideSlopesAndSeekA_d73869"
+          },
+          "iconKey": "snowboarding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.freeride_9dda2d"
+          },
+          "text": {
+            "$message": "resortsContent.exploreBeyondThePisteWithLocal_5c5c57"
+          },
+          "iconKey": "freeride"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.skiTouring_49952c"
+          },
+          "text": {
+            "$message": "resortsContent.takeASlowerRouteThroughThe_ade3a9"
+          },
+          "iconKey": "ski-touring"
+        }
+      ],
+      "summer": [
+        {
+          "title": {
+            "$message": "resortsContent.hiking_1bb9e8"
+          },
+          "text": {
+            "$message": "resortsContent.followHighlandPathsForestTracksAnd_20c067"
+          },
+          "iconKey": "hiking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.mountainBiking_b7949e"
+          },
+          "text": {
+            "$message": "resortsContent.exploreMountainRoadsAndChangingTerrain_c412e0"
+          },
+          "iconKey": "mountain-biking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.paragliding_bbe43d"
+          },
+          "text": {
+            "$message": "resortsContent.seeTheValleyAndPeaksFrom_389bc2"
+          },
+          "iconKey": "paragliding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.camping_5e8934"
+          },
+          "text": {
+            "$message": "resortsContent.stayCloseToTheQuietThe_27bdf1"
+          },
+          "iconKey": "camping"
+        }
+      ]
+    },
+    "summerImage": "/SliderSummer.webp",
+    "seasons": {
+      "winter": {
+        "image": "/MESTIA.webp",
+        "heroImages": [
+          "/MESTIA.webp"
+        ]
+      },
+      "summer": {
+        "image": "/SliderSummer.webp",
+        "heroImages": [
+          "/SliderSummer.webp"
+        ]
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": {
+      "$message": "resortsContent.goderdzi_4d15c2"
+    },
+    "slug": "goderdzi",
+    "region": {
+      "$message": "resortsContent.adjara_2c258d"
+    },
+    "image": "/GoderdziTrail.jpg",
+    "status": "LIMITED",
+    "lifts": "4 / 5",
+    "trails": "12 / 15",
+    "temp": "-2°",
+    "snow": {
+      "$message": "resortsContent.102Cm_1482d7"
+    },
+    "newSnow": {
+      "$message": "resortsContent.4Cm_c93bad"
+    },
+    "wind": {
+      "$message": "resortsContent.9KmH_8de03c"
+    },
+    "hours": "09:30–16:30",
+    "elevation": {
+      "$message": "resortsContent.1700M_92609b"
+    },
+    "highestPoint": {
+      "$message": "resortsContent.2364M_d579f3"
+    },
+    "pistes": {
+      "$message": "resortsContent.8Km_920dfd"
+    },
+    "description": {
+      "$message": "resortsContent.aPeacefulMountainResortSurroundedBy_25a75d"
+    },
+    "winterSeason": {
+      "$message": "resortsContent.decMar_2586d7"
+    },
+    "liftList": [
+      {
+        "name": {
+          "$message": "resortsContent.goderdzi_4d15c2"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:30–16:30"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.zanka_753ecc"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:30–16:30"
+      },
+      {
+        "name": {
+          "$message": "resortsContent.chanchakhi_d1d415"
+        },
+        "type": {
+          "$message": "resortsContent.chairlift_9367d1"
+        },
+        "hours": "09:30–16:30"
+      }
+    ],
+    "transport": {
+      "car": {
+        "$message": "resortsContent.aMountainRouteFromBatumiJourney_3f4fb7"
+      },
+      "transfer": {
+        "$message": "resortsContent.privateTransfersAreTheMostFlexible_6a90b4"
+      },
+      "routeUrl": "https://maps.google.com/?q=Goderdzi"
+    },
+    "heroImages": [
+      "/GoderdziTrail.jpg"
+    ],
+    "gallery": [
+      "/GoderdziTrail.jpg"
+    ],
+    "trailDifficulty": [
+      {
+        "label": {
+          "$message": "resortsContent.beginner_60575a"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.gentleConfidenceBuildingTerrain_34acf6"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.intermediate_b1cfe7"
+        },
+        "value": 35,
+        "description": {
+          "$message": "resortsContent.longerRunsForDevelopingTechnique_94b3c5"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.advanced_4d0647"
+        },
+        "value": 25,
+        "description": {
+          "$message": "resortsContent.steeperLinesForExperiencedSkiers_560167"
+        }
+      },
+      {
+        "label": {
+          "$message": "resortsContent.expert_d7a501"
+        },
+        "value": 15,
+        "description": {
+          "$message": "resortsContent.technicalTerrainRequiringStrongAbility_86153c"
+        }
+      }
+    ],
+    "experience": {
+      "winter": [
+        {
+          "title": {
+            "$message": "resortsContent.skiing_eeb9db"
+          },
+          "text": {
+            "$message": "resortsContent.makeTheMostOfTheResort_ce5ce7"
+          },
+          "iconKey": "skiing"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.snowboarding_91f8b8"
+          },
+          "text": {
+            "$message": "resortsContent.rideWideSlopesAndSeekA_d73869"
+          },
+          "iconKey": "snowboarding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.freeride_9dda2d"
+          },
+          "text": {
+            "$message": "resortsContent.exploreBeyondThePisteWithLocal_5c5c57"
+          },
+          "iconKey": "freeride"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.skiTouring_49952c"
+          },
+          "text": {
+            "$message": "resortsContent.takeASlowerRouteThroughThe_ade3a9"
+          },
+          "iconKey": "ski-touring"
+        }
+      ],
+      "summer": [
+        {
+          "title": {
+            "$message": "resortsContent.hiking_1bb9e8"
+          },
+          "text": {
+            "$message": "resortsContent.followHighlandPathsForestTracksAnd_20c067"
+          },
+          "iconKey": "hiking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.mountainBiking_b7949e"
+          },
+          "text": {
+            "$message": "resortsContent.exploreMountainRoadsAndChangingTerrain_c412e0"
+          },
+          "iconKey": "mountain-biking"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.paragliding_bbe43d"
+          },
+          "text": {
+            "$message": "resortsContent.seeTheValleyAndPeaksFrom_389bc2"
+          },
+          "iconKey": "paragliding"
+        },
+        {
+          "title": {
+            "$message": "resortsContent.camping_5e8934"
+          },
+          "text": {
+            "$message": "resortsContent.stayCloseToTheQuietThe_27bdf1"
+          },
+          "iconKey": "camping"
+        }
+      ]
+    },
+    "summerImage": "/SliderSummer.webp",
+    "seasons": {
+      "winter": {
+        "image": "/GoderdziTrail.jpg",
+        "heroImages": [
+          "/GoderdziTrail.jpg"
+        ]
+      },
+      "summer": {
+        "image": "/SliderSummer.webp",
+        "heroImages": [
+          "/SliderSummer.webp"
+        ]
+      }
+    }
+  }
+]

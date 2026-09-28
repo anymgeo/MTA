@@ -1,0 +1,28 @@
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using Mta.Api;
+
+var seed = JsonNode.Parse(File.ReadAllText(args[0]))!.AsArray()[0]!.AsObject();
+seed["ka"] = JsonNode.Parse(seed["kaJson"]!.GetValue<string>());
+seed["en"] = JsonNode.Parse(seed["enJson"]!.GetValue<string>());
+JsonElement Content(string language) => JsonSerializer.SerializeToElement(seed[language]);
+var resort = new Resort { Slug = seed["slug"]!.GetValue<string>(), Status = "CLOSED", KaJson = seed["ka"]!.ToJsonString(), EnJson = seed["en"]!.ToJsonString() };
+var original = JsonNode.Parse(resort.KaJson)!["temp"]!.ToJsonString();
+seed["ka"]!["temp"] = "999";
+seed["ka"]!["liveConditions"] = new JsonObject { ["lastUpdatedAt"] = "2099-01-01T00:00:00Z" };
+seed["ka"]!["liveCard"] = new JsonObject { ["winterImage"] = "/media/test.jpg", ["note"] = "შენიშვნა", ["featured"] = true, ["homepageVisible"] = false, ["displayOrder"] = 2 };
+var input = new ResortInput(resort.Slug, "OPEN", Content("ka"), Content("en"), resort.Version);
+if (input.Validate().Count != 0) throw new Exception("Valid settings rejected");
+input.Apply(resort, liveManaged: true);
+var stored = JsonNode.Parse(resort.KaJson)!;
+if (stored["temp"]!.ToJsonString() != original || resort.Status != "CLOSED" || stored["liveConditions"] != null) throw new Exception("CMS overwrote live-owned data");
+if (stored["liveCard"]!["note"]!.GetValue<string>() != "შენიშვნა") throw new Exception("Presentation was not saved");
+seed["ka"]!["liveCard"]!["displayOrder"] = "invalid";
+if (new ResortInput(resort.Slug, "OPEN", Content("ka"), Content("en"), null).Validate().Count == 0) throw new Exception("Invalid ordering accepted");
+seed["ka"]!["liveCard"]!["displayOrder"] = 1;
+seed["ka"]!["liveCard"]!["winterImage"] = "javascript:alert(1)";
+if (new ResortInput(resort.Slug, "OPEN", Content("ka"), Content("en"), null).Validate().Count == 0) throw new Exception("Invalid media accepted");
+var provider = new UnavailableLiveConditionsProvider();
+var observation = await provider.GetAsync(resort.Id, resort.Slug, default);
+if (observation.LastUpdatedAt != null || observation.Status != "unavailable") throw new Exception("Default provider manufactured data");
+Console.WriteLine("PASS: presentation persistence, live-data write protection, input validation, safe unavailable provider.");

@@ -1,0 +1,42 @@
+{
+  "gudauri-kobi": {
+    "id": "gudauri-kobi",
+    "image": "/maps/gudauri-clean.png",
+    "width": 1183,
+    "height": 1330,
+    "verified": false,
+    "features": [],
+    "demo": true,
+    "areas": [
+      {
+        "id": "gudauri",
+        "name": {
+          "$message": "MapDemo.gudauri"
+        }
+      },
+      {
+        "id": "kobi",
+        "name": {
+          "$message": "MapDemo.kobi"
+        }
+      }
+    ]
+  },
+  "goderdzi": {
+    "id": "goderdzi",
+    "image": "/maps/goderdzi-winter.jpg",
+    "width": 3508,
+    "height": 3663,
+    "verified": false,
+    "demo": true,
+    "features": [],
+    "areas": [
+      {
+        "id": "goderdzi",
+        "name": {
+          "$message": "MapDemo.goderdzi"
+        }
+      }
+    ]
+  }
+}

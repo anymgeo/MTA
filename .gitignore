@@ -1,0 +1,13 @@
+.tools/
+.local/
+**/node_modules/
+**/.next/
+**/bin/
+**/obj/
+**/.env.local
+.env
+**/uploads/
+**/keys/
+**/*.tsbuildinfo
+deploy/tls/
+deploy/tls/

@@ -1,0 +1,87 @@
+name: mta
+services:
+  db:
+    image: postgres:17-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:?Set POSTGRES_ADMIN_PASSWORD}
+      MTA_DB_PASSWORD: ${MTA_DB_PASSWORD:?Set MTA_DB_PASSWORD}
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./deploy/init-db.sh:/docker-entrypoint-initdb.d/01-mta.sh:ro
+    networks: [internal]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  api-init:
+    build: ./mta.api
+    command: [--initialize]
+    environment:
+      ConnectionStrings__Database: Host=db;Database=mta;Username=mta_app;Password=${MTA_DB_PASSWORD}
+      Bootstrap__Email: ${ADMIN_EMAIL:?Set ADMIN_EMAIL}
+      Bootstrap__Password: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD}
+    volumes: [media:/data]
+    networks: [internal]
+    depends_on:
+      db: {condition: service_healthy}
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  api:
+    build: ./mta.api
+    restart: unless-stopped
+    environment:
+      ConnectionStrings__Database: Host=db;Database=mta;Username=mta_app;Password=${MTA_DB_PASSWORD}
+      TrustedProxy: 172.30.8.10
+    volumes: [media:/data]
+    networks: [internal]
+    depends_on:
+      api-init: {condition: service_completed_successfully}
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  site:
+    build: ./mtaprime
+    restart: unless-stopped
+    environment:
+      API_BASE_URL: http://api:8080/api
+      API_ORIGIN: http://api:8080
+      NEWS_DATA_SOURCE: api
+      RESORTS_DATA_SOURCE: api
+      SITE_URL: https://${SITE_HOST:?Set SITE_HOST}
+    networks: [internal]
+    depends_on: [api]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  admin:
+    build: ./mta.admin
+    restart: unless-stopped
+    environment:
+      SITE_PUBLIC_ORIGIN: https://${SITE_HOST}
+      API_ORIGIN: http://api:8080
+      SITE_INTERNAL_ORIGIN: http://site:3000
+    networks: [internal]
+    depends_on: [api]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  nginx:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      SITE_HOST: ${SITE_HOST}
+      ADMIN_HOST: ${ADMIN_HOST:?Set ADMIN_HOST}
+    volumes:
+      - ./deploy/nginx.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./deploy/tls:/etc/nginx/tls:ro
+    networks:
+      internal:
+        ipv4_address: 172.30.8.10
+    depends_on: [site, admin]
+networks:
+  internal:
+    ipam:
+      config: [{subnet: 172.30.8.0/24}]
+volumes:
+  database:
+  media:

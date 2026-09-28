@@ -1,0 +1,518 @@
+{
+  "gudauri": {
+    "lifts": [
+      {
+        "id": "gudauri-lift-1",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudaurilift1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 260,
+          "y": 838,
+          "verified": false
+        },
+        "status": "open",
+        "type": {
+          "$message": "MapDemo.gondola"
+        },
+        "hours": "09:00–16:30",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 260,
+          "y": 838,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 343,
+          "y": 599,
+          "verified": false
+        }
+      },
+      {
+        "id": "gudauri-lift-2",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudaurilift2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 379,
+          "y": 439,
+          "verified": false
+        },
+        "status": "closed",
+        "type": {
+          "$message": "MapDemo.chairlift"
+        },
+        "hours": "09:30–16:00",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 379,
+          "y": 439,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 462,
+          "y": 253,
+          "verified": false
+        }
+      }
+    ],
+    "trails": [
+      {
+        "id": "gudauri-trail-1",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudauritrail1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 237,
+          "y": 572,
+          "verified": false
+        },
+        "status": "open",
+        "difficulty": "blue",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 237,
+          "y": 572,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 142,
+          "y": 333,
+          "verified": false
+        }
+      },
+      {
+        "id": "gudauri-trail-2",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudauritrail2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 473,
+          "y": 732,
+          "verified": false
+        },
+        "status": "closed",
+        "difficulty": "red",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 473,
+          "y": 732,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 378,
+          "y": 546,
+          "verified": false
+        }
+      }
+    ],
+    "closures": [
+      {
+        "id": "gudauri-warning-1",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudauriwarning1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 343,
+          "y": 1037,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.gudauriwarning1"
+        },
+        "slug": "gudauri-demo-closure",
+        "description": {
+          "$message": "MapDemo.closure"
+        }
+      }
+    ],
+    "avalanches": [
+      {
+        "id": "gudauri-warning-2",
+        "areaId": "gudauri",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.gudauriwarning2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 473,
+          "y": 293,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.gudauriwarning2"
+        },
+        "slug": "gudauri-demo-avalanche",
+        "description": {
+          "$message": "MapDemo.avalanche"
+        }
+      }
+    ]
+  },
+  "kobi": {
+    "lifts": [
+      {
+        "id": "kobi-lift-1",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobilift1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 686,
+          "y": 838,
+          "verified": false
+        },
+        "status": "open",
+        "type": {
+          "$message": "MapDemo.gondola"
+        },
+        "hours": "09:00–16:30",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 686,
+          "y": 838,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 769,
+          "y": 599,
+          "verified": false
+        }
+      },
+      {
+        "id": "kobi-lift-2",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobilift2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 804,
+          "y": 439,
+          "verified": false
+        },
+        "status": "closed",
+        "type": {
+          "$message": "MapDemo.chairlift"
+        },
+        "hours": "09:30–16:00",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 804,
+          "y": 439,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 887,
+          "y": 253,
+          "verified": false
+        }
+      }
+    ],
+    "trails": [
+      {
+        "id": "kobi-trail-1",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobitrail1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 662,
+          "y": 572,
+          "verified": false
+        },
+        "status": "open",
+        "difficulty": "blue",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 662,
+          "y": 572,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 567,
+          "y": 333,
+          "verified": false
+        }
+      },
+      {
+        "id": "kobi-trail-2",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobitrail2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 899,
+          "y": 732,
+          "verified": false
+        },
+        "status": "closed",
+        "difficulty": "red",
+        "startPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 899,
+          "y": 732,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "gudauri-kobi",
+          "x": 804,
+          "y": 546,
+          "verified": false
+        }
+      }
+    ],
+    "closures": [
+      {
+        "id": "kobi-warning-1",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobiwarning1"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 769,
+          "y": 1037,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.kobiwarning1"
+        },
+        "slug": "kobi-demo-closure",
+        "description": {
+          "$message": "MapDemo.closure"
+        }
+      }
+    ],
+    "avalanches": [
+      {
+        "id": "kobi-warning-2",
+        "areaId": "kobi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.kobiwarning2"
+        },
+        "mapPosition": {
+          "mapId": "gudauri-kobi",
+          "x": 899,
+          "y": 293,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.kobiwarning2"
+        },
+        "slug": "kobi-demo-avalanche",
+        "description": {
+          "$message": "MapDemo.avalanche"
+        }
+      }
+    ]
+  },
+  "goderdzi": {
+    "lifts": [
+      {
+        "id": "goderdzi-lift-1",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdzilift1"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1193,
+          "y": 1846,
+          "verified": false
+        },
+        "status": "open",
+        "type": {
+          "$message": "MapDemo.gondola"
+        },
+        "hours": "09:00–16:30",
+        "startPoint": {
+          "mapId": "goderdzi",
+          "x": 1193,
+          "y": 1846,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "goderdzi",
+          "x": 1439,
+          "y": 1187,
+          "verified": false
+        }
+      },
+      {
+        "id": "goderdzi-lift-2",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdzilift2"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1544,
+          "y": 967,
+          "verified": false
+        },
+        "status": "closed",
+        "type": {
+          "$message": "MapDemo.chairlift"
+        },
+        "hours": "09:30–16:00",
+        "startPoint": {
+          "mapId": "goderdzi",
+          "x": 1544,
+          "y": 967,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "goderdzi",
+          "x": 1790,
+          "y": 454,
+          "verified": false
+        }
+      }
+    ],
+    "trails": [
+      {
+        "id": "goderdzi-trail-1",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdzitrail1"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1123,
+          "y": 1260,
+          "verified": false
+        },
+        "status": "open",
+        "difficulty": "blue",
+        "startPoint": {
+          "mapId": "goderdzi",
+          "x": 1123,
+          "y": 1260,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "goderdzi",
+          "x": 842,
+          "y": 601,
+          "verified": false
+        }
+      },
+      {
+        "id": "goderdzi-trail-2",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdzitrail2"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1824,
+          "y": 1612,
+          "verified": false
+        },
+        "status": "closed",
+        "difficulty": "red",
+        "startPoint": {
+          "mapId": "goderdzi",
+          "x": 1824,
+          "y": 1612,
+          "verified": false
+        },
+        "endPoint": {
+          "mapId": "goderdzi",
+          "x": 1543,
+          "y": 1099,
+          "verified": false
+        }
+      }
+    ],
+    "closures": [
+      {
+        "id": "goderdzi-warning-1",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdziwarning1"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1438,
+          "y": 2286,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.goderdziwarning1"
+        },
+        "slug": "goderdzi-demo-closure",
+        "description": {
+          "$message": "MapDemo.closure"
+        }
+      }
+    ],
+    "avalanches": [
+      {
+        "id": "goderdzi-warning-2",
+        "areaId": "goderdzi",
+        "demo": true,
+        "name": {
+          "$message": "MapDemo.goderdziwarning2"
+        },
+        "mapPosition": {
+          "mapId": "goderdzi",
+          "x": 1824,
+          "y": 645,
+          "verified": false
+        },
+        "status": "active",
+        "title": {
+          "$message": "MapDemo.goderdziwarning2"
+        },
+        "slug": "goderdzi-demo-avalanche",
+        "description": {
+          "$message": "MapDemo.avalanche"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "9b0f8dbc-3f40-4e78-a966-333df9a4b574",
+    "slug": "gudauri-prepares-for-winter-season",
+    "category": "news",
+    "date": "2026-08-28",
+    "image": "/news/Goderdzi1.jpg",
+    "gallery": [
+      "/news/Gudauri1.webp",
+      "/news/Goderdzi1.jpg"
+    ],
+    "titleKa": "გუდაური ახალი ზამთრის სეზონისთვის ემზადება",
+    "excerptKa": "მთის კურორტი გუდაური ახალი, საინტერესო ზამთრის სეზონისთვის ემზადება.",
+    "contentKa": [
+      "გუდაურში მზადება მიმდინარეობს, რათა მთის კურორტმა სტუმრებს მომავალ ზამთრის სეზონზე უმასპინძლოს.",
+      "ინფრასტრუქტურა, საბაგიროები და მომსახურება მოთხილამურეებისა და სნოუბორდისტებისთვის უსაფრთხო და სასიამოვნო გამოცდილების უზრუნველსაყოფად მზადდება.",
+      "გახსნის თარიღების, საბაგიროების მუშაობისა და თოვლის პირობების შესახებ დამატებითი ინფორმაცია სეზონის განმავლობაში გამოქვეყნდება."
+    ],
+    "titleEn": "Gudauri Prepares for the New Winter Season",
+    "excerptEn": "Preparations are underway across Gudauri as the mountain resort gets ready for another exciting winter season.",
+    "contentEn": [
+      "Preparations are underway across Gudauri as the mountain resort prepares to welcome visitors for the upcoming winter season.",
+      "Mountain infrastructure, lifts and visitor services are being prepared to provide a safe and enjoyable experience for skiers and snowboarders.",
+      "Additional updates about opening dates, lift operations and snow conditions will be announced throughout the season."
+    ],
+    "published": true,
+    "updatedAt": "2026-09-22T08:35:20.611Z",
+    "version": "ee756189-ef03-419c-9660-134b3ef41801"
+  },
+  {
+    "id": "5601970b-d9d3-48c1-ad65-4c6786cc808c",
+    "slug": "new-hiking-routes-in-mestia",
+    "category": "article",
+    "date": "2026-08-25",
+    "image": "/news/Goderdzi1.jpg",
+    "gallery": [
+      "/news/Goderdzi1.jpg",
+      "/news/Goderdzi2.jpg"
+    ],
+    "titleKa": "მესტიაში ახალი სალაშქრო მარშრუტები გაიხსნა",
+    "excerptKa": "აღმოაჩინეთ ახალი მარშრუტები და სვანეთის მთების შთამბეჭდავი ხედები.",
+    "contentKa": [
+      "გოდერძის მთების შთამბეჭდავი პეიზაჟების დასათვალიერებლად სტუმრებს ახალი სალაშქრო შესაძლებლობები აქვთ.",
+      "მარშრუტები მრავალფეროვან გამოცდილებას სთავაზობს როგორც გამოცდილ მოლაშქრეებს, ისე რეგიონის გაცნობის მსურველებს."
+    ],
+    "titleEn": "New Hiking Routes Open in Mestia",
+    "excerptEn": "Discover new routes and spectacular views across the mountains of Svaneti.",
+    "contentEn": [
+      "New hiking opportunities are now available for visitors exploring the spectacular mountain landscapes of Goderdzi.",
+      "The routes offer a variety of experiences for both experienced hikers and visitors looking to explore the region."
+    ],
+    "published": true,
+    "updatedAt": "2026-09-22T08:35:20.613Z",
+    "version": "054e7dc1-c07e-44ef-a51d-506c6166d02a"
+  },
+  {
+    "id": "9eb19510-eb7a-4683-8b69-840b999b4534",
+    "slug": "summer-activities-in-bakuriani",
+    "category": "blog",
+    "date": "2026-08-18",
+    "image": "/news/BakurianiMain.jpg",
+    "gallery": [
+      "/news/Goderdzi1.jpg",
+      "/news/BakurianiMain.jpg"
+    ],
+    "titleKa": "საზაფხულო აქტივობები ბაკურიანში",
+    "excerptKa": "ბაკურიანის მთებში ბუნებაში თავგადასავლების ახალი სეზონი იწყება.",
+    "contentKa": [
+      "ბაკურიანი სტუმრებს ლაშქრობის, ველოსიპედით სეირნობისა და ოჯახური აქტივობების ახალ შესაძლებლობებს სთავაზობს.",
+      "მთის კურორტი ზაფხულის განმავლობაში სტუმრებს მრავალფეროვანი გამოცდილებით მასპინძლობს."
+    ],
+    "titleEn": "Summer Activities in Bakuriani",
+    "excerptEn": "A new season of outdoor adventures begins in the mountains of Bakuriani.",
+    "contentEn": [
+      "Bakuriani continues to offer visitors new opportunities for hiking, cycling and family activities.",
+      "The mountain resort welcomes visitors throughout the summer season with a range of experiences."
+    ],
+    "published": true,
+    "updatedAt": "2026-09-22T08:35:20.613Z",
+    "version": "80837f67-b0f9-49c4-8a2d-8607cbadb9c9"
+  }
+]

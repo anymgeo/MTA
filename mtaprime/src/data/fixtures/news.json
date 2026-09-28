@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "slug": "gudauri-prepares-for-winter-season",
+    "category": "news",
+    "title": {
+      "$message": "newsContent.gudauriPreparesForTheNewWinter_3dacff"
+    },
+    "date": "2026-08-28",
+    "image": "/news/Goderdzi1.jpg",
+    "excerpt": {
+      "$message": "newsContent.preparationsAreUnderwayAcrossGudauriAs_897e4c"
+    },
+    "content": [
+      {
+        "$message": "newsContent.preparationsAreUnderwayAcrossGudauriAs_a44293"
+      },
+      {
+        "$message": "newsContent.mountainInfrastructureLiftsAndVisitorServices_a24605"
+      },
+      {
+        "$message": "newsContent.additionalUpdatesAboutOpeningDatesLift_5b53f9"
+      }
+    ],
+    "gallery": [
+      "/news/gudauri1.webp",
+      "/news/NewsGudauri.webp",
+      "/news/gudauri1.webp",
+      "/news/NewsGudauri.webp"
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "new-hiking-routes-in-mestia",
+    "category": "article",
+    "title": {
+      "$message": "newsContent.newHikingRoutesOpenInMestia_72e91e"
+    },
+    "date": "2026-08-25",
+    "image": "/news/Goderdzi1.jpg",
+    "excerpt": {
+      "$message": "newsContent.discoverNewRoutesAndSpectacularViews_7cc389"
+    },
+    "content": [
+      {
+        "$message": "newsContent.newHikingOpportunitiesAreNowAvailable_d118a5"
+      },
+      {
+        "$message": "newsContent.theRoutesOfferAVarietyOf_9a7f05"
+      }
+    ],
+    "gallery": [
+      "/news/Goderdzi1.jpg",
+      "/news/Goderdzi2.jpg",
+      "/news/Goderdzi.webp"
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "summer-activities-in-bakuriani",
+    "category": "blog",
+    "title": {
+      "$message": "newsContent.summerActivitiesInBakuriani_35e03e"
+    },
+    "date": "2026-08-18",
+    "image": "/news/BakurianiMain.jpg",
+    "excerpt": {
+      "$message": "newsContent.aNewSeasonOfOutdoorAdventures_efe70a"
+    },
+    "content": [
+      {
+        "$message": "newsContent.bakurianiContinuesToOfferVisitorsNew_12ddeb"
+      },
+      {
+        "$message": "newsContent.theMountainResortWelcomesVisitorsThroughout_9e308f"
+      }
+    ],
+    "gallery": ["/news/Bakuriani2.jpg", "/news/BakurianiMain.jpg"]
+  }
+]

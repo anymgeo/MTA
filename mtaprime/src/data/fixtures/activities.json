@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "$message": "activitiesContent.familySkiing_17ad77"
+    },
+    "description": {
+      "$message": "activitiesContent.aGentleStartToALifetime_99cd64"
+    },
+    "image": "/Goderdzi.webp",
+    "seasons": ["winter"]
+  },
+  {
+    "id": 2,
+    "title": {
+      "$message": "activitiesContent.freeride_2c4137"
+    },
+    "description": {
+      "$message": "activitiesContent.untouchedLinesAcrossTheCaucasus_a7b3a7"
+    },
+    "image": "/Gudauri.jpg",
+    "seasons": ["winter"]
+  },
+  {
+    "id": 3,
+    "title": {
+      "$message": "activitiesContent.mountainHiking_c84b5d"
+    },
+    "description": {
+      "$message": "activitiesContent.longSummerDaysAboveTheClouds_5ff206"
+    },
+    "image": "/MESTIA.webp",
+    "seasons": ["summer"]
+  }
+]
