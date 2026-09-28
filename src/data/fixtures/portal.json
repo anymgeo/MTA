@@ -1,0 +1,1227 @@
+{
+  "safety": [
+    {
+      "id": "code-of-conduct",
+      "slug": "code-of-conduct",
+      "title": {
+        "$message": "Portal.titles.code-of-conduct"
+      },
+      "description": {
+        "$message": "PortalContent.c2"
+      },
+      "blocks": [
+        {
+          "title": {
+            "$message": "PortalContent.c3"
+          },
+          "text": {
+            "$message": "PortalContent.c4"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c5"
+          },
+          "text": {
+            "$message": "PortalContent.c6"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c7"
+          },
+          "text": {
+            "$message": "PortalContent.c8"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c9"
+          },
+          "text": {
+            "$message": "PortalContent.c10"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c11"
+          },
+          "text": {
+            "$message": "PortalContent.c12"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c13"
+          },
+          "text": {
+            "$message": "PortalContent.c14"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c15"
+          },
+          "text": {
+            "$message": "PortalContent.c16"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c17"
+          },
+          "text": {
+            "$message": "PortalContent.c18"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c19"
+          },
+          "text": {
+            "$message": "PortalContent.c20"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c21"
+          },
+          "text": {
+            "$message": "PortalContent.c22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "id": "fis-conduct",
+          "name": {
+            "$message": "PortalContent.c1"
+          },
+          "url": "/documents/fis-code-of-conduct.pdf",
+          "mimeType": "application/pdf"
+        }
+      ],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c23"
+          },
+          "url": "https://www.fis-ski.com/inside-fis/document-library/general-regulations"
+        }
+      ]
+    },
+    {
+      "id": "piste-classification",
+      "slug": "piste-classification",
+      "title": {
+        "$message": "Portal.titles.piste-classification"
+      },
+      "description": {
+        "$message": "PortalContent.c24"
+      },
+      "blocks": [],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c33"
+          },
+          "url": "https://mta.ski/en"
+        }
+      ],
+      "levels": [
+        {
+          "color": "green",
+          "title": {
+            "$message": "PortalContent.c25"
+          },
+          "text": {
+            "$message": "PortalContent.c26"
+          }
+        },
+        {
+          "color": "blue",
+          "title": {
+            "$message": "PortalContent.c27"
+          },
+          "text": {
+            "$message": "PortalContent.c28"
+          }
+        },
+        {
+          "color": "red",
+          "title": {
+            "$message": "PortalContent.c29"
+          },
+          "text": {
+            "$message": "PortalContent.c30"
+          }
+        },
+        {
+          "color": "black",
+          "title": {
+            "$message": "PortalContent.c31"
+          },
+          "text": {
+            "$message": "PortalContent.c32"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mountain-patrol",
+      "slug": "mountain-patrol",
+      "title": {
+        "$message": "Portal.titles.mountain-patrol"
+      },
+      "description": {
+        "$message": "PortalContent.c34"
+      },
+      "blocks": [
+        {
+          "title": {
+            "$message": "SafetyPage.patrol_b67ed8"
+          },
+          "text": {
+            "$message": "SafetyPage.respondingToAccidentsAndEmergencies_861d3f"
+          }
+        },
+        {
+          "title": {
+            "$message": "SafetyPage.mountainRules_f958a8"
+          },
+          "text": {
+            "$message": "SafetyPage.monitoringClosedAndRestrictedAreas_1da4c6"
+          }
+        }
+      ],
+      "files": [],
+      "links": []
+    },
+    {
+      "id": "emergency-contacts",
+      "slug": "emergency-contacts",
+      "title": {
+        "$message": "Portal.titles.emergency-contacts"
+      },
+      "description": {
+        "$message": "Portal.unavailable"
+      },
+      "blocks": [],
+      "files": [],
+      "links": []
+    },
+    {
+      "id": "closures",
+      "slug": "closures",
+      "title": {
+        "$message": "Portal.titles.closures"
+      },
+      "description": {
+        "$message": "Portal.unavailable"
+      },
+      "blocks": [],
+      "files": [],
+      "links": []
+    },
+    {
+      "id": "avalanche-danger",
+      "slug": "avalanche-danger",
+      "title": {
+        "$message": "Portal.titles.avalanche-danger"
+      },
+      "description": {
+        "$message": "Portal.unavailable"
+      },
+      "blocks": [],
+      "files": [],
+      "links": []
+    },
+    {
+      "id": "freeride-rules",
+      "slug": "freeride-rules",
+      "title": {
+        "$message": "Portal.titles.freeride-rules"
+      },
+      "description": {
+        "$message": "PortalContent.c35"
+      },
+      "blocks": [
+        {
+          "title": {
+            "$message": "SafetyPage.followSigns_6c1512"
+          },
+          "text": {
+            "$message": "SafetyPage.respectAllSignsMarkingsBarriersAnd_35f3fc"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c36"
+          },
+          "url": "https://status.mta.ski/en"
+        }
+      ]
+    },
+    {
+      "id": "incident",
+      "slug": "incident",
+      "title": {
+        "$message": "Portal.titles.incident"
+      },
+      "description": {
+        "$message": "PortalContent.c37"
+      },
+      "blocks": [
+        {
+          "title": {
+            "$message": "PortalContent.c38"
+          },
+          "text": {
+            "$message": "PortalContent.c39"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c40"
+          },
+          "text": {
+            "$message": "PortalContent.c41"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c42"
+          },
+          "text": {
+            "$message": "PortalContent.c43"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c44"
+          },
+          "url": "https://112.gov.ge/?page_id=274"
+        }
+      ]
+    }
+  ],
+  "closures": [],
+  "avalanches": [],
+  "events": [
+    {
+      "id": "flavors-2026",
+      "slug": "flavors-of-adjara-2026",
+      "title": {
+        "$message": "PortalContent.c1000"
+      },
+      "description": {
+        "$message": "PortalContent.c1001"
+      },
+      "image": "/SliderSummer.webp",
+      "areaId": "goderdzi",
+      "area": {
+        "$message": "PortalContent.c1002"
+      },
+      "category": "festival",
+      "type": "festival",
+      "status": "completed",
+      "startAt": "2026-08-22T15:00:00+04:00",
+      "endAt": "2026-08-22T18:00:00+04:00",
+      "publishedAt": "2026-08-21",
+      "blocks": [
+        {
+          "title": {
+            "$message": "PortalContent.c1003"
+          },
+          "text": {
+            "$message": "PortalContent.c1004"
+          }
+        }
+      ],
+      "schedule": [
+        {
+          "title": "15:00–18:00",
+          "text": {
+            "$message": "PortalContent.c1005"
+          }
+        }
+      ],
+      "participants": [],
+      "changes": [],
+      "results": [],
+      "media": [],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c1006"
+          },
+          "url": "https://mta.ski/en/event/2026/Flavors_Event_Eng"
+        }
+      ]
+    },
+    {
+      "id": "georgia-pro-2024",
+      "slug": "georgia-pro-2024",
+      "title": {
+        "$message": "PortalContent.c2029"
+      },
+      "description": {
+        "$message": "PortalContent.c2030"
+      },
+      "areaId": "mestia",
+      "area": {
+        "$message": "PortalContent.c2031"
+      },
+      "category": "fwt",
+      "type": "fwt",
+      "status": "completed",
+      "startAt": "2024-02-29",
+      "endAt": "2024-02-29",
+      "image": "/MESTIA.webp",
+      "blocks": [],
+      "schedule": [],
+      "participants": [],
+      "changes": [],
+      "results": [
+        {
+          "title": {
+            "$message": "PortalContent.c2032"
+          },
+          "text": {
+            "$message": "PortalContent.c2033"
+          }
+        }
+      ],
+      "media": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2034"
+          },
+          "url": "https://www.freerideworldtour.com/events/2024-georgia-pro/"
+        }
+      ],
+      "files": []
+    }
+  ],
+  "history": [
+    {
+      "id": "history",
+      "slug": "history",
+      "title": {
+        "$message": "Portal.titles.history"
+      },
+      "description": {
+        "$message": "PortalContent.c2001"
+      },
+      "image": "/Gudauri.jpg",
+      "blocks": [
+        {
+          "title": "2013",
+          "text": {
+            "$message": "PortalContent.c2002"
+          }
+        },
+        {
+          "title": "2014–2017",
+          "text": {
+            "$message": "PortalContent.c2003"
+          }
+        },
+        {
+          "title": {
+            "$message": "PortalContent.c2004"
+          },
+          "text": {
+            "$message": "PortalContent.c2005"
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ],
+      "files": []
+    }
+  ],
+  "leadership": [
+    {
+      "id": "levan-darsalia",
+      "slug": "levan-darsalia",
+      "title": {
+        "$message": "PortalContent.c2006"
+      },
+      "position": {
+        "$message": "PortalContent.c2007"
+      },
+      "description": {
+        "$message": "Portal.sourceNote"
+      },
+      "image": "https://assets.tina.io/5b23b5b7-ca0b-4cfb-9b1f-4b0652c6ddcf/Banner%202025/IMG_7850.PNG",
+      "blocks": [
+        {
+          "title": {
+            "$message": "Portal.bio"
+          },
+          "text": {
+            "$message": "Portal.unavailable"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ]
+    },
+    {
+      "id": "ana-chikovani",
+      "slug": "ana-chikovani",
+      "title": {
+        "$message": "PortalContent.c2008"
+      },
+      "position": {
+        "$message": "PortalContent.c2009"
+      },
+      "description": {
+        "$message": "Portal.sourceNote"
+      },
+      "image": "https://assets.tina.io/5b23b5b7-ca0b-4cfb-9b1f-4b0652c6ddcf/emp/387330418_1552239275314767_3153541791426211797_n.jpg",
+      "blocks": [
+        {
+          "title": {
+            "$message": "Portal.bio"
+          },
+          "text": {
+            "$message": "Portal.unavailable"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ]
+    },
+    {
+      "id": "kote-kadagidze",
+      "slug": "kote-kadagidze",
+      "title": {
+        "$message": "PortalContent.c2010"
+      },
+      "position": {
+        "$message": "PortalContent.c2011"
+      },
+      "description": {
+        "$message": "Portal.sourceNote"
+      },
+      "image": "https://assets.tina.io/5b23b5b7-ca0b-4cfb-9b1f-4b0652c6ddcf/emp/kotekadagidze.jpg",
+      "blocks": [
+        {
+          "title": {
+            "$message": "Portal.bio"
+          },
+          "text": {
+            "$message": "Portal.unavailable"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ]
+    },
+    {
+      "id": "iakob-edilashvili",
+      "slug": "iakob-edilashvili",
+      "title": {
+        "$message": "PortalContent.c2012"
+      },
+      "position": {
+        "$message": "PortalContent.c2013"
+      },
+      "description": {
+        "$message": "Portal.sourceNote"
+      },
+      "image": "https://assets.tina.io/5b23b5b7-ca0b-4cfb-9b1f-4b0652c6ddcf/Home/kob.jpeg",
+      "blocks": [
+        {
+          "title": {
+            "$message": "Portal.bio"
+          },
+          "text": {
+            "$message": "Portal.unavailable"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ]
+    },
+    {
+      "id": "giorgi-malashkhia",
+      "slug": "giorgi-malashkhia",
+      "title": {
+        "$message": "PortalContent.c2014"
+      },
+      "position": {
+        "$message": "PortalContent.c2015"
+      },
+      "description": {
+        "$message": "Portal.sourceNote"
+      },
+      "image": "https://assets.tina.io/5b23b5b7-ca0b-4cfb-9b1f-4b0652c6ddcf/malaskhia.jpeg",
+      "blocks": [
+        {
+          "title": {
+            "$message": "Portal.bio"
+          },
+          "text": {
+            "$message": "Portal.unavailable"
+          }
+        }
+      ],
+      "files": [],
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c2000"
+          },
+          "url": "https://mta.ski/en/about"
+        }
+      ]
+    }
+  ],
+  "infrastructure": [
+    {
+      "id": "gudauri-kobi-lift-0",
+      "slug": "gudauri-kobi-lift-0",
+      "title": {
+        "$message": "resortsContent.goodaura_ff8d5d"
+      },
+      "description": {
+        "$message": "PortalContent.c2016"
+      },
+      "areaId": "gudauri-kobi",
+      "area": {
+        "$message": "resortsContent.gudauriKobi_8fade5"
+      },
+      "type": "lift",
+      "image": "/Gudauri.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.gondola_793f3f"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/gudauri-kobi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "gudauri-kobi-lift-1",
+      "slug": "gudauri-kobi-lift-1",
+      "title": {
+        "$message": "resortsContent.kobi_8488ff"
+      },
+      "description": {
+        "$message": "PortalContent.c2017"
+      },
+      "areaId": "gudauri-kobi",
+      "area": {
+        "$message": "resortsContent.gudauriKobi_8fade5"
+      },
+      "type": "lift",
+      "image": "/Gudauri.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.gondola_793f3f"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/gudauri-kobi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "gudauri-kobi-lift-2",
+      "slug": "gudauri-kobi-lift-2",
+      "title": {
+        "$message": "resortsContent.sadzele_3dd95d"
+      },
+      "description": {
+        "$message": "PortalContent.c2018"
+      },
+      "areaId": "gudauri-kobi",
+      "area": {
+        "$message": "resortsContent.gudauriKobi_8fade5"
+      },
+      "type": "lift",
+      "image": "/Gudauri.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/gudauri-kobi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "gudauri-kobi-lift-3",
+      "slug": "gudauri-kobi-lift-3",
+      "title": {
+        "$message": "resortsContent.kudebi_ad4793"
+      },
+      "description": {
+        "$message": "PortalContent.c2019"
+      },
+      "areaId": "gudauri-kobi",
+      "area": {
+        "$message": "resortsContent.gudauriKobi_8fade5"
+      },
+      "type": "lift",
+      "image": "/Gudauri.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/gudauri-kobi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "bakuriani-lift-0",
+      "slug": "bakuriani-lift-0",
+      "title": {
+        "$message": "resortsContent.didveli_98b3da"
+      },
+      "description": {
+        "$message": "PortalContent.c2020"
+      },
+      "areaId": "bakuriani",
+      "area": {
+        "$message": "resortsContent.bakuriani_4c494f"
+      },
+      "type": "lift",
+      "image": "/Bakuriani.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.gondola_793f3f"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/bakuriani/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "bakuriani-lift-1",
+      "slug": "bakuriani-lift-1",
+      "title": {
+        "$message": "resortsContent.kokhta_0fe531"
+      },
+      "description": {
+        "$message": "PortalContent.c2021"
+      },
+      "areaId": "bakuriani",
+      "area": {
+        "$message": "resortsContent.bakuriani_4c494f"
+      },
+      "type": "lift",
+      "image": "/Bakuriani.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/bakuriani/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "bakuriani-lift-2",
+      "slug": "bakuriani-lift-2",
+      "title": {
+        "$message": "resortsContent.mitarbi_954992"
+      },
+      "description": {
+        "$message": "PortalContent.c2022"
+      },
+      "areaId": "bakuriani",
+      "area": {
+        "$message": "resortsContent.bakuriani_4c494f"
+      },
+      "type": "lift",
+      "image": "/Bakuriani.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:00–17:00"
+        }
+      ],
+      "mapUrl": "/resorts/bakuriani/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "mestia-lift-0",
+      "slug": "mestia-lift-0",
+      "title": {
+        "$message": "resortsContent.hatsvali_60b2db"
+      },
+      "description": {
+        "$message": "PortalContent.c2023"
+      },
+      "areaId": "mestia",
+      "area": {
+        "$message": "resortsContent.mestia_b09816"
+      },
+      "type": "lift",
+      "image": "/MESTIA.webp",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.gondola_793f3f"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "10:00–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/mestia/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "mestia-lift-1",
+      "slug": "mestia-lift-1",
+      "title": {
+        "$message": "resortsContent.tetnuldi_0e4470"
+      },
+      "description": {
+        "$message": "PortalContent.c2024"
+      },
+      "areaId": "mestia",
+      "area": {
+        "$message": "resortsContent.mestia_b09816"
+      },
+      "type": "lift",
+      "image": "/MESTIA.webp",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "10:00–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/mestia/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "mestia-lift-2",
+      "slug": "mestia-lift-2",
+      "title": {
+        "$message": "resortsContent.zuruldi_2a4fe1"
+      },
+      "description": {
+        "$message": "PortalContent.c2025"
+      },
+      "areaId": "mestia",
+      "area": {
+        "$message": "resortsContent.mestia_b09816"
+      },
+      "type": "lift",
+      "image": "/MESTIA.webp",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "10:00–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/mestia/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "goderdzi-lift-0",
+      "slug": "goderdzi-lift-0",
+      "title": {
+        "$message": "resortsContent.goderdzi_4d15c2"
+      },
+      "description": {
+        "$message": "PortalContent.c2026"
+      },
+      "areaId": "goderdzi",
+      "area": {
+        "$message": "resortsContent.goderdzi_4d15c2"
+      },
+      "type": "lift",
+      "image": "/GoderdziTrail.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:30–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/goderdzi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "goderdzi-lift-1",
+      "slug": "goderdzi-lift-1",
+      "title": {
+        "$message": "resortsContent.zanka_753ecc"
+      },
+      "description": {
+        "$message": "PortalContent.c2027"
+      },
+      "areaId": "goderdzi",
+      "area": {
+        "$message": "resortsContent.goderdzi_4d15c2"
+      },
+      "type": "lift",
+      "image": "/GoderdziTrail.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:30–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/goderdzi/maps",
+      "links": [],
+      "files": []
+    },
+    {
+      "id": "goderdzi-lift-2",
+      "slug": "goderdzi-lift-2",
+      "title": {
+        "$message": "resortsContent.chanchakhi_d1d415"
+      },
+      "description": {
+        "$message": "PortalContent.c2028"
+      },
+      "areaId": "goderdzi",
+      "area": {
+        "$message": "resortsContent.goderdzi_4d15c2"
+      },
+      "type": "lift",
+      "image": "/GoderdziTrail.jpg",
+      "specs": [
+        {
+          "label": {
+            "$message": "Portal.type"
+          },
+          "value": {
+            "$message": "resortsContent.chairlift_9367d1"
+          }
+        },
+        {
+          "label": {
+            "$message": "Portal.hours"
+          },
+          "value": "09:30–16:30"
+        }
+      ],
+      "mapUrl": "/resorts/goderdzi/maps",
+      "links": [],
+      "files": []
+    }
+  ],
+  "documents": [
+    {
+      "id": "fis-conduct",
+      "slug": "fis-conduct",
+      "title": {
+        "$message": "PortalContent.c48"
+      },
+      "description": {
+        "$message": "PortalContent.c49"
+      },
+      "category": "safetyCategory",
+      "files": [
+        {
+          "id": "fis-conduct",
+          "name": {
+            "$message": "PortalContent.c1"
+          },
+          "url": "/documents/fis-code-of-conduct.pdf",
+          "mimeType": "application/pdf"
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "112",
+      "slug": "national-emergency",
+      "title": {
+        "$message": "PortalContent.c45"
+      },
+      "description": {
+        "$message": "PortalContent.c46"
+      },
+      "areaId": "all",
+      "area": {
+        "$message": "Portal.national"
+      },
+      "phone": "112",
+      "links": [
+        {
+          "label": {
+            "$message": "PortalContent.c47"
+          },
+          "url": "https://112.gov.ge/?lang=en&page_id=1715"
+        }
+      ]
+    }
+  ],
+  "resortOperations": [],
+  "webcams": [
+    {
+      "id": "tetnuldi-replay",
+      "slug": "tetnuldi-replay",
+      "title": {
+        "$message": "Portal.videoSample"
+      },
+      "description": {
+        "$message": "Portal.liveUnavailable"
+      },
+      "areaId": "mestia",
+      "videoUrl": "https://www.youtube-nocookie.com/embed/lOGaFiRnoVI",
+      "isLive": false,
+      "links": [
+        {
+          "label": {
+            "$message": "Portal.officialStatus"
+          },
+          "url": "https://status.mta.ski/en"
+        },
+        {
+          "label": {
+            "$message": "Portal.videoSample"
+          },
+          "url": "https://www.youtube.com/watch?v=lOGaFiRnoVI"
+        }
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "id": "resorts",
+      "slug": "resorts",
+      "title": {
+        "$message": "Portal.resorts"
+      },
+      "description": {
+        "$message": "Portal.terrainText"
+      },
+      "href": "/resorts",
+      "image": "/Gudauri.jpg",
+      "seasons": [
+        "winter",
+        "summer"
+      ]
+    },
+    {
+      "id": "maps",
+      "slug": "maps",
+      "title": {
+        "$message": "Portal.map"
+      },
+      "description": {
+        "$message": "Portal.terrainText"
+      },
+      "href": "/resorts/gudauri-kobi/maps",
+      "image": "/Goderdzi.webp",
+      "seasons": [
+        "winter",
+        "summer"
+      ]
+    },
+    {
+      "id": "webcams",
+      "slug": "webcams",
+      "title": {
+        "$message": "Portal.titles.webcams"
+      },
+      "description": {
+        "$message": "Portal.terrainText"
+      },
+      "href": "/webcams",
+      "image": "/MESTIA.webp",
+      "seasons": [
+        "winter",
+        "summer"
+      ]
+    },
+    {
+      "id": "safety",
+      "slug": "safety",
+      "title": {
+        "$message": "Portal.safety"
+      },
+      "description": {
+        "$message": "Portal.terrainText"
+      },
+      "href": "/safety",
+      "image": "/Bakuriani.jpg",
+      "seasons": [
+        "winter",
+        "summer"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+[
+  {
+    "id": 1,
+    "slug": "gudauri-2-new-lifts",
+    "title": {
+      "$message": "projectsContent.skiLiftSystemsInGudauri_6a665b"
+    },
+    "resort": {
+      "$message": "projectsContent.gudauri_4c7392"
+    },
+    "year": 2024,
+    "category": {
+      "$message": "projectsContent.infrastructure_951d9a"
+    },
+    "image": "/Gudauri.jpg",
+    "date": "2024-12-01",
+    "description": {
+      "$message": "projectsContent.twoNewSkiLiftSystemsWere_4ec480"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.skiInfrastructure_9841b9"
+      },
+      {
+        "$message": "projectsContent.mountainDevelopment_3d54a2"
+      },
+      {
+        "$message": "projectsContent.winterSports_7e391f"
+      }
+    ],
+    "stats": [
+      {
+        "value": "2",
+        "label": {
+          "$message": "projectsContent.newLifts_c10084"
+        }
+      },
+      {
+        "value": "6",
+        "label": {
+          "$message": "projectsContent.seats_692aab"
+        }
+      },
+      {
+        "value": "2,400",
+        "label": {
+          "$message": "projectsContent.passengersHour_23e857"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.duringThe202324WinterSeason_a04fde"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.twoNewSixSeaterOpenChair_92bd24"
+      },
+      {
+        "$message": "projectsContent.capacityOfUpTo2400_2ec997"
+      },
+      {
+        "$message": "projectsContent.modernDoppelmayrGaraventaLiftTechnology_d1266a"
+      },
+      {
+        "$message": "projectsContent.gudauriSkiAreaExpandedFrom70_1b4ff8"
+      }
+    ],
+    "resortId": "gudauri-kobi"
+  },
+  {
+    "id": 2,
+    "slug": "bakuriani-trails",
+    "title": {
+      "$message": "projectsContent.trailsForBakuriani2023_227a5a"
+    },
+    "resort": {
+      "$message": "projectsContent.bakuriani_4c494f"
+    },
+    "year": 2023,
+    "category": {
+      "$message": "projectsContent.trails_abe7e3"
+    },
+    "image": "/SliderSummer.webp",
+    "date": "2023-12-15",
+    "description": {
+      "$message": "projectsContent.sixNewCompetitionTrailsWereConstructed_93faf1"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.trailDevelopment_021332"
+      },
+      {
+        "$message": "projectsContent.winterSports_7e391f"
+      },
+      {
+        "$message": "projectsContent.competitionInfrastructure_71ad8c"
+      }
+    ],
+    "stats": [
+      {
+        "value": "6",
+        "label": {
+          "$message": "projectsContent.newTrails_796d6c"
+        }
+      },
+      {
+        "value": "2",
+        "label": {
+          "$message": "projectsContent.skiAreas_7f5ab2"
+        }
+      },
+      {
+        "value": "7",
+        "label": {
+          "$message": "projectsContent.winterSports_7e391f"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.sixNewCompetitionTrailsWereConstructed_596cbc"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.sixNewCompetitionTrails_d65237"
+      },
+      {
+        "$message": "projectsContent.locatedAtDidveliAndKokhta_9cfaa6"
+      },
+      {
+        "$message": "projectsContent.designedForInternationalCompetitions_40b6da"
+      },
+      {
+        "$message": "projectsContent.infrastructureSupportingSevenWinterSports_0003b7"
+      }
+    ],
+    "resortId": "bakuriani"
+  },
+  {
+    "id": 3,
+    "slug": "bakuriani-snowmaking",
+    "title": {
+      "$message": "projectsContent.newSnowmakingSystemInBakuriani_fd987f"
+    },
+    "resort": {
+      "$message": "projectsContent.bakuriani_4c494f"
+    },
+    "year": 2023,
+    "category": {
+      "$message": "projectsContent.snowmaking_44d1d5"
+    },
+    "image": "/Bakuriani.jpg",
+    "date": "2023-11-20",
+    "description": {
+      "$message": "projectsContent.aModernArtificialSnowmakingSystemWas_236ffc"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.snowmaking_44d1d5"
+      },
+      {
+        "$message": "projectsContent.mountainInfrastructure_50b4c2"
+      },
+      {
+        "$message": "projectsContent.winterOperations_f08337"
+      }
+    ],
+    "stats": [
+      {
+        "value": {
+          "$message": "projectsContent.29Km_ff79e1"
+        },
+        "label": {
+          "$message": "projectsContent.infrastructure_951d9a"
+        }
+      },
+      {
+        "value": "3",
+        "label": {
+          "$message": "projectsContent.skiAreas_7f5ab2"
+        }
+      },
+      {
+        "value": "2022",
+        "label": {
+          "$message": "projectsContent.completed_1798b3"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.aModernArtificialSnowmakingSystemWas_2300cd"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.snowmakingInfrastructureAcrossThreeSkiAreas_f13382"
+      },
+      {
+        "$message": "projectsContent.didveliKokhtaAndMitarbiIncluded_fea755"
+      },
+      {
+        "$message": "projectsContent.developedWithTechnoalpinTechnology_9c44b3"
+      },
+      {
+        "$message": "projectsContent.approximately29KmOfRelatedInfrastructure_9d03fa"
+      }
+    ],
+    "resortId": "bakuriani"
+  },
+  {
+    "id": 4,
+    "slug": "bakuriani-artificial-water-reservoirs",
+    "title": {
+      "$message": "projectsContent.artificialWaterReservoirsInBakuriani_f9763b"
+    },
+    "resort": {
+      "$message": "projectsContent.bakuriani_4c494f"
+    },
+    "year": 2023,
+    "category": {
+      "$message": "projectsContent.infrastructure_951d9a"
+    },
+    "image": "/MESTIA.webp",
+    "date": "2023-10-10",
+    "description": {
+      "$message": "projectsContent.twoArtificialWaterReservoirsWereConstructed_b93bfe"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.waterInfrastructure_7b9cf3"
+      },
+      {
+        "$message": "projectsContent.snowmaking_44d1d5"
+      },
+      {
+        "$message": "projectsContent.mountainDevelopment_3d54a2"
+      }
+    ],
+    "stats": [
+      {
+        "value": "2",
+        "label": {
+          "$message": "projectsContent.reservoirs_b66649"
+        }
+      },
+      {
+        "value": {
+          "$message": "projectsContent.307kM_c92aa2"
+        },
+        "label": {
+          "$message": "projectsContent.totalVolume_7d4a00"
+        }
+      },
+      {
+        "value": "2",
+        "label": {
+          "$message": "projectsContent.areas_14ce09"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.twoArtificialWaterReservoirsWereConstructed_ebf398"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.twoArtificialWaterReservoirs_bc3bba"
+      },
+      {
+        "$message": "projectsContent.locatedInDidveliAndMitarbi_3299bc"
+      },
+      {
+        "$message": "projectsContent.combinedCapacityOfApproximately307000_b13a43"
+      },
+      {
+        "$message": "projectsContent.supportsArtificialSnowmakingInfrastructure_300c04"
+      }
+    ],
+    "resortId": "bakuriani"
+  },
+  {
+    "id": 5,
+    "slug": "bakuriani-3-new-lifts",
+    "title": {
+      "$message": "projectsContent.threeNewSkiLiftsInBakuriani_07d0fe"
+    },
+    "resort": {
+      "$message": "projectsContent.bakuriani_4c494f"
+    },
+    "year": 2023,
+    "category": {
+      "$message": "projectsContent.infrastructure_951d9a"
+    },
+    "image": "/Goderdzi.webp",
+    "date": "2023-12-05",
+    "description": {
+      "$message": "projectsContent.threeNewSkiLiftsWereConstructed_82bfc5"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.skiLifts_eae003"
+      },
+      {
+        "$message": "projectsContent.mountainInfrastructure_50b4c2"
+      },
+      {
+        "$message": "projectsContent.winterSports_7e391f"
+      }
+    ],
+    "stats": [
+      {
+        "value": "3",
+        "label": {
+          "$message": "projectsContent.newLifts_c10084"
+        }
+      },
+      {
+        "value": "5,400",
+        "label": {
+          "$message": "projectsContent.passengersHour_23e857"
+        }
+      },
+      {
+        "value": "7,200",
+        "label": {
+          "$message": "projectsContent.maximumCapacity_207863"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.threeNewSkiLiftSystemsWere_bbe760"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.threeNewModernSkiLifts_0af5ee"
+      },
+      {
+        "$message": "projectsContent.initialCombinedCapacityOf5400_71d2c3"
+      },
+      {
+        "$message": "projectsContent.capacityCanBeIncreasedTo7_235941"
+      },
+      {
+        "$message": "projectsContent.modernDoppelmayrGaraventaTechnology_d9c75b"
+      }
+    ],
+    "resortId": "bakuriani"
+  },
+  {
+    "id": 6,
+    "slug": "zuruldi-ski-lift",
+    "title": {
+      "$message": "projectsContent.zuruldiSkiLift_4aca98"
+    },
+    "resort": {
+      "$message": "projectsContent.mestia_b09816"
+    },
+    "year": 2022,
+    "category": {
+      "$message": "projectsContent.infrastructure_951d9a"
+    },
+    "image": "/Goderdzi.webp",
+    "date": "2022-12-20",
+    "description": {
+      "$message": "projectsContent.theZuruldiGondolaConnectsHatsvaliAnd_afce38"
+    },
+    "activities": [
+      {
+        "$message": "projectsContent.gondolaDevelopment_145194"
+      },
+      {
+        "$message": "projectsContent.mountainTourism_b12f53"
+      },
+      {
+        "$message": "projectsContent.skiInfrastructure_9841b9"
+      }
+    ],
+    "stats": [
+      {
+        "value": {
+          "$message": "projectsContent.1421M_859be9"
+        },
+        "label": {
+          "$message": "projectsContent.length_3bade3"
+        }
+      },
+      {
+        "value": "1,800",
+        "label": {
+          "$message": "projectsContent.passengersHour_23e857"
+        }
+      },
+      {
+        "value": "10",
+        "label": {
+          "$message": "projectsContent.seats_692aab"
+        }
+      }
+    ],
+    "overview": {
+      "$message": "projectsContent.theZuruldiGondolaConnectsTheHatsvali_e2830f"
+    },
+    "highlights": [
+      {
+        "$message": "projectsContent.tenSeaterGondolaLift_977572"
+      },
+      {
+        "$message": "projectsContent.connectsHatsvaliAndZuruldi_759f10"
+      },
+      {
+        "$message": "projectsContent.1421MetreLineLength_10ea9d"
+      },
+      {
+        "$message": "projectsContent.capacityOfApproximately1800Passengers_12be08"
+      }
+    ],
+    "resortId": "mestia"
+  }
+]
