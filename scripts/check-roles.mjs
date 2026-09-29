@@ -53,16 +53,20 @@ try {
   assert.equal(response.status, 200); mod = await response.json();
   assert.equal((await moderator(`/api/admin/users/${mod.id}`, { method: 'PUT', body: { ...mod, password, currentPassword: 'incorrect' } })).status, 400);
   assert.equal((await admin(`/api/admin/users/${mod.id}`, { method: 'PUT', body: { ...mod, version: 'stale-version' } })).status, 409);
-  const article = { slug: `role-test-${stamp}`, date: '2026-09-22', titleKa: 'როლების სატესტო ნიუსი', titleEn: 'Role test', excerptKa: 'შემოწმება', excerptEn: 'Test', contentKa: ['სატესტო ტექსტი'], contentEn: ['Test body'], image: '/news/Goderdzi1.jpg', gallery: [], published: true };
+  const article = { slug: `role-test-${stamp}`, date: '2026-09-22', category: 'news', titleKa: 'როლების სატესტო ნიუსი', titleEn: 'Role test', excerptKa: 'შემოწმება', excerptEn: 'Test', contentKa: ['სატესტო ტექსტი'], contentEn: ['Test body'], image: '/news/Goderdzi1.jpg', gallery: [], published: true };
   response = await moderator('/api/admin/news', { method: 'POST', body: article }); assert.equal(response.status, 201); news = await response.json();
   response = await moderator(`/api/admin/news/${news.id}`, { method: 'PUT', body: { ...news, titleKa: 'მოდერატორის განახლება' } }); assert.equal(response.status, 200); news = await response.json();
   assert.equal((await moderator(`/api/admin/news/${news.id}?version=${news.version}`, { method: 'DELETE' })).status, 204); news = null;
   const resorts = await (await moderator('/api/admin/resorts')).json();
-  response = await moderator('/api/admin/resorts', { method: 'POST', body: { ...resorts[0], slug: `mod-resort-${stamp}`, version: null } });
+  const resortInput = structuredClone(resorts[0]);
+  for (const locale of ['ka', 'en']) {
+    if (resortInput[locale].page?.travelTimes) resortInput[locale].page.travelTimes = resortInput[locale].page.travelTimes.map(row => ({ ...row, time: '60 min' }));
+  }
+  response = await moderator('/api/admin/resorts', { method: 'POST', body: { ...resortInput, slug: `mod-resort-${stamp}`, version: null } });
   assert.equal(response.status, 201); resort = await response.json();
   response = await moderator(`/api/admin/resorts/${resort.id}`, { method: 'PUT', body: { ...resort, status: 'CLOSED' } });
   assert.equal(response.status, 200); resort = await response.json();
-  assert.equal((await moderator(`/api/admin/resorts/${resort.id}?version=${resort.version}`, { method: 'DELETE' })).status, 204); resort = null;
+  assert.equal((await moderator(`/api/admin/resorts/${resort.id}?version=${resort.version}`, { method: 'DELETE' })).status, 403);
   // Super Admin can promote/demote, and old moderator sessions are revoked immediately.
   response = await admin(`/api/admin/users/${mod.id}`, { method: 'PUT', body: { ...await current(mod.id), role: 'WebPortalAdmin' } }); assert.equal(response.status, 200);
   assert.equal((await moderator('/api/admin/users')).status, 401);
@@ -73,7 +77,7 @@ try {
   const existingPeer = await current(peer.id);
   assert.equal((await admin(`/api/admin/users/${peer.id}?version=${existingPeer.version}`, { method: 'DELETE' })).status, 204);
   assert.equal((await admin('/api/admin/users', { method: 'POST', body: { email: 'invalid', displayName: '', password: 'weak', role: 'Admin' } })).status, 400);
-  console.log('PASS: Super Admin login, add/edit/delete users; Moderator view/edit users and full news/resort CRUD; forbidden add/delete users; blocked role escalation and password takeover; conflict handling; immediate session revocation on role changes.');
+  console.log('PASS: Super Admin login, add/edit/delete users; Moderator view/edit users and create/edit news/resorts; forbidden user/resort deletion; blocked role escalation and password takeover; conflict handling; immediate session revocation on role changes.');
 } finally {
   for (const id of created) {
     const user = await current(id);

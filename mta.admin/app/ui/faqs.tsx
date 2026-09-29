@@ -38,7 +38,7 @@ export default function Faqs() {
       setRows(faqs); setResorts(options);
     } catch (e) { fail(e); } finally { setLoading(false); }
   }, []);
-  useEffect(() => { void refresh(); }, [refresh]);
+  useEffect(() => { const task = window.setTimeout(() => { void refresh(); }, 0); return () => window.clearTimeout(task); }, [refresh]);
   function edit(row: Faq) { setOriginal(JSON.stringify(row)); setEditing({ ...row }); setError(''); setNotice(''); }
   function close() {
     if (!busy && (JSON.stringify(editing) === original || window.confirm('ცვლილებების გაუქმება? / Discard changes?'))) setEditing(null);

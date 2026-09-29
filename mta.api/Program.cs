@@ -121,6 +121,7 @@ var admin = app.MapGroup("/api/admin").RequireAuthorization("Admin");
 admin.MapUsers();
 app.MapResorts(admin);
 app.MapFaqs(admin);
+app.MapMapEditor(admin);
 admin.MapGet("/news", async (AppDb db) => await db.News.AsNoTracking().OrderByDescending(n => n.Date).ThenByDescending(n => n.UpdatedAt).ToListAsync());
 admin.MapPost("/news", async (NewsInput input, AppDb db, HttpContext ctx) => {
     var errors = input.Validate(); if (errors.Count > 0) return Results.ValidationProblem(errors);

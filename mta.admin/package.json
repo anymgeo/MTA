@@ -10,11 +10,20 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.3.3", "react": "19.2.8", "react-dom": "19.2.8",
-    "primereact": "10.9.7", "primeicons": "7.0.0"
+    "konva": "^10.7.0",
+    "next": "16.3.3",
+    "primeicons": "7.0.0",
+    "primereact": "10.9.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-konva": "^19.2.0"
   },
   "devDependencies": {
-    "typescript": "^6.0.3", "@types/node": "^24", "@types/react": "^19",
-    "@types/react-dom": "^19", "eslint": "^9", "eslint-config-next": "16.3.3"
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.3",
+    "typescript": "^6.0.3"
   }
 }

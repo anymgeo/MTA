@@ -18,13 +18,18 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import ResortIcon from "@/components/brand/ResortIcon";
+import CmsTrailMap from "./CmsTrailMap";
 import { Link } from "@/i18n/navigation";
 import { clampView, zoomView } from "@/models/map-records";
 import { useSiteSeason } from "@/providers/SeasonProvider";
 
 const icons = { trail: Route, lift: CableCar, warning: TriangleAlert };
 
-export default function InteractiveTrailMap({ map, resortName, resortSlug }) {
+export default function InteractiveTrailMap(props) {
+  return props.map.managed ? <CmsTrailMap {...props} /> : <LegacyInteractiveTrailMap {...props} />;
+}
+
+function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
   const t = useTranslations("TrailMap");
   const common = useTranslations("Portal");
   const { season } = useSiteSeason();

@@ -3,6 +3,8 @@ const api = process.env.API_ORIGIN || 'http://127.0.0.1:5100';
 const site = process.env.SITE_INTERNAL_ORIGIN || 'http://127.0.0.1:3100';
 const config: NextConfig = {
   output: 'standalone',
+  // Keep verification builds isolated from the running local admin server.
+  distDir: process.env.MTA_BUILD_DIR || '.next',
   async rewrites() { return [
     { source: '/backend/:path*', destination: `${api}/api/:path*` },
     { source: '/media/:path*', destination: `${api}/media/:path*` },

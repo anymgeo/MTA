@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { getNewsArticleBySlug, getNewsSlugs } from "@/services/news";
 import { contentMetadata } from "@/lib/metadata";
 import { env } from "@/config/env";
+import MediaGallery from "@/components/media/MediaGallery";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }) {
   const { locale, slug } = await params;
@@ -108,12 +109,7 @@ export default async function NewsDetailsPage({ params }) {
           )}
 
           {article.gallery?.length > 0 && (
-            <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
-              {article.gallery.map((image, index) => (
-                <img key={image + index} src={image} alt={article.title + " — " + (index + 1)}
-                  loading="lazy" className="aspect-[4/3] w-full rounded-2xl object-cover" />
-              ))}
-            </div>
+            <MediaGallery className="news-media-gallery" images={article.gallery} title={article.title} />
           )}
 
           {/* SHARE + PRINT */}

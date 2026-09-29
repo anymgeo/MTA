@@ -13,6 +13,8 @@ Demo banners distinguish sample positions/statuses/hours from operational facts.
 
 Fullscreen uses a fixed viewport overlay (not the browser Fullscreen API), with Escape exit, focus trapping and portal popups. No pan/zoom library is installed; one transform state drives image and pin coordinates.
 
+CMS-managed maps use the same fixed source-image coordinate system. Straight anchors are stored as `[x,y]`; pen-tool curves are stored compatibly as `[x,y,inX,inY,outX,outY]`. The public SVG viewer scales the reference image and every anchor/control point through one responsive `viewBox`, so desktop, tablet and mobile preserve exact alignment. The admin editor uses React Konva; saving a feature makes it live immediately, while optimistic map and feature versions prevent silent concurrent overwrites.
+
 ## Route and popup review (Tasks 1–2)
 Pistes/lifts have startPoint and endPoint using {mapId,x,y,verified}, in source-image pixels. The service normalizes valid endpoints to points; API endpoints require verified coordinates, demo endpoints remain explicitly unverified. Lines use the same camera transform as terrain and render below pins. Difficulty colors reuse existing tokens; lifts are dashed ink. Layer filtering removes both pins and paths.
 

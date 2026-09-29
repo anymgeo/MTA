@@ -56,9 +56,29 @@ public class AppDb(DbContextOptions<AppDb> options) : IdentityDbContext<PortalUs
     public DbSet<Resort> Resorts => Set<Resort>();
     public DbSet<AuditEntry> Audit => Set<AuditEntry>();
     public DbSet<BootstrapState> Bootstrap => Set<BootstrapState>();
+    public DbSet<ResortMap> ResortMaps => Set<ResortMap>();
+    public DbSet<MapArea> MapAreas => Set<MapArea>();
+    public DbSet<MapFeatureType> MapFeatureTypes => Set<MapFeatureType>();
+    public DbSet<MapFeature> MapFeatures => Set<MapFeature>();
+    public DbSet<MapFeatureRevision> MapFeatureRevisions => Set<MapFeatureRevision>();
     protected override void OnModelCreating(ModelBuilder model)
     {
         base.OnModelCreating(model);
+        model.Entity<ResortMap>().HasIndex(m => m.ResortId).IsUnique();
+        model.Entity<ResortMap>().HasOne<Resort>().WithMany().HasForeignKey(m => m.ResortId).OnDelete(DeleteBehavior.Restrict);
+        model.Entity<ResortMap>().Property(m => m.Version).IsConcurrencyToken();
+        model.Entity<MapArea>().HasOne<ResortMap>().WithMany().HasForeignKey(m => m.MapId).OnDelete(DeleteBehavior.Restrict);
+        model.Entity<MapFeatureType>().HasKey(t => t.Key);
+        model.Entity<MapFeatureType>().Property(t => t.Version).IsConcurrencyToken();
+        model.Entity<MapFeature>().Ignore(f => f.Points);
+        model.Entity<MapFeature>().Property(f => f.PointsJson).HasColumnType("jsonb");
+        model.Entity<MapFeature>().Property(f => f.Version).IsConcurrencyToken();
+        model.Entity<MapFeature>().HasIndex(f => new { f.MapId, f.Deleted });
+        model.Entity<MapFeature>().HasOne<ResortMap>().WithMany().HasForeignKey(f => f.MapId).OnDelete(DeleteBehavior.Restrict);
+        model.Entity<MapFeature>().HasOne<MapFeatureType>().WithMany().HasForeignKey(f => f.TypeKey).OnDelete(DeleteBehavior.Restrict);
+        model.Entity<MapFeatureRevision>().Property(r => r.BeforeJson).HasColumnType("jsonb");
+        model.Entity<MapFeatureRevision>().Property(r => r.AfterJson).HasColumnType("jsonb");
+        model.Entity<MapFeatureRevision>().HasIndex(r => new { r.MapId, r.At });
         model.Entity<Faq>().Property(f => f.Version).IsConcurrencyToken();
         model.Entity<Faq>().HasIndex(f => new { f.Scope, f.Published, f.SortOrder });
         model.Entity<News>().HasIndex(n => n.Slug).IsUnique();

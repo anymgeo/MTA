@@ -35,9 +35,10 @@ public static class ResortPageContent
                 !double.TryParse(n.GetString(), System.Globalization.CultureInfo.InvariantCulture, out var number) || !double.IsFinite(number) || number < 0 || number > 100)) return false;
         if (page.TryGetProperty("social", out var social) && (social.ValueKind != JsonValueKind.Object ||
             !new[] { "resortFacebook", "facebook", "instagram", "tiktok" }.All(k => Url(social, k)))) return false;
+        string[] liftTypes = ["Gondola","Chairlift","Drag lift","Surface lift","Magic carpet","გონდოლა","სავარძლიანი საბაგირო","ბუგელი","ზედაპირული საბაგირო","კონვეიერი"];
         return Rows(page, "travelTimes", ["city", "time"]) &&
             Rows(page, "trailList", ["name", "length", "difficulty"], row => row.GetProperty("difficulty").GetString() is "easy" or "medium" or "difficult") &&
-            Rows(page, "liftList", ["name", "type", "duration", "hours"]) &&
+            Rows(page, "liftList", ["name", "type", "duration", "hours"], row => liftTypes.Contains(row.GetProperty("type").GetString())) &&
             Rows(page, "activities", ["title", "text", "iconKey"]);
     }
 }

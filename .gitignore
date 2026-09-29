@@ -1,9 +1,11 @@
 .tools/
 .local/
+.verify/
 **/node_modules/
 **/__pycache__/
 **/*.pyc
 **/.next/
+**/.next-*/
 **/bin/
 **/obj/
 **/.env.local

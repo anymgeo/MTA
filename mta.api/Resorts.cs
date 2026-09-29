@@ -120,7 +120,10 @@ public static class ResortEndpoints
         admin.MapGet("/resorts", async (AppDb db, ILiveConditionsProvider provider) => Results.Ok((await db.Resorts.AsNoTracking().OrderBy(r => r.Slug).ToListAsync()).Select(r => r.View(provider.IsActive))));
         admin.MapPost("/resorts", async (ResortInput input, AppDb db, HttpContext ctx, ILiveConditionsProvider provider) => {
             var errors = input.Validate(); if (errors.Count > 0) return Results.ValidationProblem(errors);
+            if (!CmsTimeValidation.Valid(input.Ka) || !CmsTimeValidation.Valid(input.En)) return Results.BadRequest(new { message = "Choose valid hours, duration and season options. / აირჩიეთ საათები, ხანგრძლივობა და სეზონი სიიდან." });
             var item = new Resort(); input.Apply(item, provider.IsActive); db.Resorts.Add(item);
+            var content = JsonNode.Parse(input.En.GetRawText())?.AsObject() ?? JsonNode.Parse(input.Ka.GetRawText())!.AsObject();
+            db.ResortMaps.Add(new ResortMap { ResortId = item.Id, ImageUrl = content["image"]?.GetValue<string>() ?? "", Width = 1600, Height = 1000, Placeholder = true });
             Log(db, ctx, "resort-create", item.Id);
             return await Save(db) ? Results.Created($"/api/admin/resorts/{item.Id}", item.View()) : Conflict();
         });
@@ -128,6 +131,8 @@ public static class ResortEndpoints
             var errors = input.Validate(); if (errors.Count > 0) return Results.ValidationProblem(errors);
             var item = await db.Resorts.FindAsync(id); if (item == null) return Results.NotFound();
             if (item.Version != input.Version) return Conflict();
+            using var oldKa = JsonDocument.Parse(item.KaJson); using var oldEn = JsonDocument.Parse(item.EnJson);
+            if (!CmsTimeValidation.Valid(input.Ka, oldKa.RootElement) || !CmsTimeValidation.Valid(input.En, oldEn.RootElement)) return Results.BadRequest(new { message = "Choose valid hours, duration and season options. / აირჩიეთ საათები, ხანგრძლივობა და სეზონი სიიდან." });
             if (item.Slug != input.Slug) return Results.BadRequest(new { message = "ბმულის დაბოლოება შენახვის შემდეგ უცვლელია." });
             input.Apply(item, provider.IsActive); Log(db, ctx, "resort-update", id);
             return await Save(db) ? Results.Ok(item.View()) : Conflict();
@@ -135,9 +140,15 @@ public static class ResortEndpoints
         admin.MapDelete("/resorts/{id:guid}", async (Guid id, Guid version, AppDb db, HttpContext ctx) => {
             var item = await db.Resorts.FindAsync(id); if (item == null) return Results.NotFound();
             if (item.Version != version) return Conflict();
+            var map = await db.ResortMaps.SingleOrDefaultAsync(m => m.ResortId == id);
+            if (map != null) {
+                await db.MapFeatures.Where(f => f.MapId == map.Id).ExecuteDeleteAsync();
+                await db.MapAreas.Where(a => a.MapId == map.Id).ExecuteDeleteAsync();
+                db.ResortMaps.Remove(map);
+            }
             db.Resorts.Remove(item); Log(db, ctx, "resort-delete", id);
             return await Save(db) ? Results.NoContent() : Conflict();
-        });
+        }).RequireAuthorization("SuperAdmin");
     }
     static void Log(AppDb db, HttpContext ctx, string action, Guid id) => db.Audit.Add(new AuditEntry { Action = action, NewsId = id, Actor = ctx.User.Identity?.Name ?? "unknown" });
     static IResult Conflict() => Results.Conflict(new { message = "მისამართი უკვე გამოიყენება ან კურორტი სხვა სესიიდან შეიცვალა. განაახლეთ სია." });
