@@ -63,13 +63,13 @@ export default function PdfUpload() {
       )}
       {file && url && (
         <div className="mt-4 flex flex-wrap gap-4">
-          <a href={url} target="_blank" rel="noreferrer" className="underline">
+          <a href={url} target="_blank" rel="noreferrer" className="font-bold transition-opacity hover:opacity-60">
             {t("view")}
           </a>
-          <a href={url} download={file.name} className="underline">
+          <a href={url} download={file.name} className="font-bold transition-opacity hover:opacity-60">
             {t("download")}
           </a>
-          <button type="button" onClick={remove} className="underline">
+          <button type="button" onClick={remove} className="font-bold transition-opacity hover:opacity-60">
             {t("remove")}
           </button>
         </div>

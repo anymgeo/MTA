@@ -23,7 +23,7 @@ export default function NewsSection({ news }) {
 
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 border-b border-ink pb-2 text-xs font-bold tracking-wider"
+            className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-xs font-bold tracking-wider text-canvas transition-opacity hover:opacity-80"
           >
             {t("viewAllNews_29b7f8")}
             <ArrowUpRight size={16} />

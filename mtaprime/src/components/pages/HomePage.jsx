@@ -11,6 +11,7 @@ import Webcams from "@/components/Webcams";
 import SafetySection from "@/components/SafetySection";
 import Activities from "@/components/Activities";
 import NewsSection from "@/components/NewsSection";
+import HomeMotion from "@/components/HomeMotion";
 
 export default function HomePage({ resorts, activities, news, cameras }) {
   const { season } = useSiteSeason();
@@ -22,11 +23,13 @@ export default function HomePage({ resorts, activities, news, cameras }) {
 
   return (
     <main
+      data-home-scroll
       className="
                 min-h-screen
                 bg-canvas
             "
     >
+      <HomeMotion />
       <Hero
         season={season}
         current={current}

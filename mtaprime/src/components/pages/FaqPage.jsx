@@ -259,7 +259,7 @@ export default function FaqPage({ items }) {
                       {link.description}{" "}
                       <Link
                         href={link.href}
-                        className="ml-1 font-bold text-ink hover:underline"
+                        className="ml-1 font-bold text-ink transition-opacity hover:opacity-60"
                       >
                         {t("openPage_c3c790")}
                       </Link>

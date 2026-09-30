@@ -21,7 +21,7 @@ export default async function Page({ params }) {
   items = items.filter((item) => ["fis", "fwt", "other"].includes(item.type));
   return (
     <ContentFrame title={t("titles.competitions")} back="/events">
-      <Link href="/events/competitions" className="mb-8 inline-block underline">
+      <Link href="/events/competitions" className="mb-8 inline-block font-bold transition-opacity hover:opacity-60">
         {t("titles.competitions")}
       </Link>
       <RecordList

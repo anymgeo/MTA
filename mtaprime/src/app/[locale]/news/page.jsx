@@ -15,7 +15,7 @@ export default async function NewsPage({ params }) {
   return (
     <main className="min-h-screen bg-canvas px-6 pt-32 pb-24 md:px-10">
       <div className="mx-auto max-w-[1200px]">
-        <div className="mb-12 border-b border-border pb-8">
+        <div className="mb-12 pb-8">
           <div className="brand-stripe mb-8 h-1 w-24" aria-hidden="true" />
           <h1 className="text-5xl font-black md:text-6xl">{t("news_34c808")}</h1>
         </div>

@@ -66,7 +66,7 @@ export default function CameraPlayer({ camera }) {
         </p>
         {camera.sourceUrl && (
           <a
-            className="font-semibold underline underline-offset-4"
+            className="font-semibold transition-opacity hover:opacity-60"
             href={camera.sourceUrl}
             target="_blank"
             rel="noreferrer"

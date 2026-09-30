@@ -141,7 +141,7 @@ export default function RecordList({
                 {basePath && (
                   <Link
                     href={`${basePath}/${item.slug}`}
-                    className="mt-5 inline-block font-bold underline"
+                    className="mt-5 inline-block font-bold transition-opacity hover:opacity-60"
                   >
                     {t("read")}
                   </Link>

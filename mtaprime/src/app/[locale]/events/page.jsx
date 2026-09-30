@@ -20,7 +20,7 @@ export default async function Page({ params }) {
   let items = await getEvents({ locale });
   return (
     <ContentFrame title={t("titles.events")} back="/events">
-      <Link href="/events/competitions" className="mb-8 inline-block underline">
+      <Link href="/events/competitions" className="mb-8 inline-block font-bold transition-opacity hover:opacity-60">
         {t("titles.competitions")}
       </Link>
       <RecordList

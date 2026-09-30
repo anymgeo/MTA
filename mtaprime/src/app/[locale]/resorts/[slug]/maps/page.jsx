@@ -25,7 +25,7 @@ export default async function MapsPage({ params }) {
         data-resort={resort.slug}
       >
         <div className="mx-auto max-w-[1600px]">
-          <Link href={`/resorts/${slug}`} className="font-semibold underline">
+          <Link href={`/resorts/${slug}`} className="font-semibold transition-opacity hover:opacity-60">
             ← {t("back")}
           </Link>
           <p className="brand-eyebrow mt-8">{t("eyebrow")}</p>

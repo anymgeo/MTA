@@ -9,7 +9,7 @@ export default function View() {
     >
       <h1 className="text-3xl font-bold">{t("loading")}</h1>
       <p className="mt-4">{t("loadingDescription")}</p>
-      <Link href="/" className="mt-6 inline-block underline">
+      <Link href="/" className="mt-6 inline-block font-bold transition-opacity hover:opacity-60">
         {t("home")}
       </Link>
     </main>

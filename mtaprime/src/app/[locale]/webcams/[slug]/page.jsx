@@ -32,7 +32,7 @@ export default async function Page({ params }) {
       <div className="mx-auto max-w-7xl">
         <Link
           href="/webcams"
-          className="text-sm font-semibold underline underline-offset-4"
+          className="text-sm font-semibold transition-opacity hover:opacity-60"
         >
           ← {t("back")}
         </Link>
@@ -81,7 +81,7 @@ export default async function Page({ params }) {
             href="https://status.mta.ski/en"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold underline"
+            className="font-semibold transition-opacity hover:opacity-60"
           >
             {t("official")} ↗
           </a>

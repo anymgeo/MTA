@@ -12,7 +12,7 @@ export function ContentFrame({
     <main className="min-h-screen bg-surface text-ink">
       <section className="bg-ink px-6 pb-16 pt-36 text-canvas md:px-10">
         <div className="mx-auto max-w-7xl">
-          <Link href={back} className="text-sm underline underline-offset-4">
+          <Link href={back} className="text-sm font-bold transition-opacity hover:opacity-60">
             {t("back")}
           </Link>
           <h1 className="mt-8 max-w-5xl text-4xl font-black leading-tight md:text-6xl">
@@ -69,13 +69,13 @@ export function PdfFiles({ files = [] }) {
                   href={file.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="underline"
+                  className="font-bold transition-opacity hover:opacity-60"
                 >
                   {t("view")}
                 </a>
                 <a
                   href={`/api/documents/download?url=${encodeURIComponent(file.url)}`}
-                  className="underline"
+                  className="font-bold transition-opacity hover:opacity-60"
                 >
                   {t("download")}
                 </a>
@@ -214,7 +214,7 @@ export function RecordBody({ record }) {
       ))}
       {record.mapUrl && (
         <a
-          className="mt-8 inline-block underline"
+          className="mt-8 inline-block font-bold transition-opacity hover:opacity-60"
           href={record.mapUrl}
           target="_blank"
           rel="noreferrer"
@@ -240,7 +240,7 @@ export function RecordBody({ record }) {
             {record.links.map((link) => (
               <li key={link.url}>
                 <a
-                  className="underline underline-offset-4"
+                  className="font-bold transition-opacity hover:opacity-60"
                   href={link.url}
                   target="_blank"
                   rel="noreferrer"

@@ -52,7 +52,7 @@ export default async function Page({ params, searchParams }) {
             href="https://status.mta.ski/en"
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-block font-bold underline"
+            className="mt-5 inline-block font-bold transition-opacity hover:opacity-60"
           >
             {t("official")} ↗
           </a>

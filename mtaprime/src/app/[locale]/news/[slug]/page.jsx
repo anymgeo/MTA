@@ -57,7 +57,7 @@ export default async function NewsDetailsPage({ params }) {
           </div>
 
           {/* ARTICLE HEADER */}
-          <header className="mb-12 border-b border-border pb-10">
+          <header className="mb-12 pb-10">
             <div className="brand-stripe mb-8 h-1 w-24" aria-hidden="true" />
             <div className="flex flex-col gap-5">
               <div className="flex flex-wrap items-center gap-3">

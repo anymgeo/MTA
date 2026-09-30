@@ -29,11 +29,14 @@ export default function Hero({
   return (
     <section
       id="top"
-      className="season-hero relative min-h-screen overflow-hidden bg-cover bg-center text-canvas"
-      style={{
-        backgroundImage: `url("${background}")`,
-      }}
+      className="season-hero relative min-h-screen overflow-hidden text-canvas"
     >
+      <div
+        data-home-hero-media
+        className="home-hero-media"
+        style={{ backgroundImage: `url("${background}")` }}
+        aria-hidden="true"
+      />
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-ink/45" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-ink/30" />

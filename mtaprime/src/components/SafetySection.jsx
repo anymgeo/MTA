@@ -30,12 +30,12 @@ export default function SafetySection() {
       </div>
 
       {/* LINKS */}
-      <div className="flex flex-col border-t border-border">
+      <div className="flex flex-col gap-2">
         {SAFETY_LINKS.map((link) => (
           <Link
             key={link.label}
             href={link.href}
-            className="group flex items-center justify-between rounded-xl border-b border-border px-4 py-5 text-sm transition-colors hover:bg-canvas hover:shadow-sm"
+            className="group flex items-center justify-between rounded-xl bg-canvas/65 px-5 py-5 text-sm transition-all hover:-translate-y-0.5 hover:bg-canvas hover:shadow-sm"
           >
             <span>{link.label}</span>
             <ArrowUpRight

@@ -22,11 +22,11 @@ export default function NewsCard({ item }) {
             {<LocalizedDate value={item.date} />}
           </p>
 
-          <h3 className="mt-3 text-2xl font-black leading-tight group-hover:underline decoration-brand-red underline-offset-4">{item.title}</h3>
+          <h3 className="mt-3 text-2xl font-black leading-tight">{item.title}</h3>
 
           <p className="mt-3 mb-6 line-clamp-2 text-base leading-7 text-muted">{item.excerpt}</p>
 
-          <span className="mt-auto flex items-center justify-between gap-2 border-t border-border pt-5 text-xs font-bold">
+          <span className="mt-auto flex items-center justify-between gap-2 pt-5 text-xs font-bold">
             {t("readArticle_47faf7")}
             <ArrowUpRight size={16} />
           </span>
