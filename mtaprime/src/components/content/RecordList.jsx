@@ -1,4 +1,5 @@
 "use client";
+import RichText from './RichText';
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -137,7 +138,7 @@ export default function RecordList({
                     {t("updated")}: <DateTime value={item.updatedAt} />
                   </p>
                 )}
-                <p className="mt-4 leading-7 text-muted">{item.description}</p>
+                <p className="mt-4 leading-7 text-muted"><RichText text={item.description}/></p>
                 {basePath && (
                   <Link
                     href={`${basePath}/${item.slug}`}

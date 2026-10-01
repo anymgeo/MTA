@@ -30,8 +30,8 @@ export default async function Page({ params, searchParams }) {
           {[{ slug: "", name: t("all") }, ...all].map((c) => (
             <Link
               key={c.slug}
-              href={c.slug ? "/webcams?area=" + c.slug : "/webcams"}
-              aria-current={(area || "") === c.slug ? "page" : undefined}
+              href={c.slug ? "/webcams?area=" + c.resortSlug : "/webcams"}
+              aria-current={(area || "") === c.resortSlug ? "page" : undefined}
               className="camera-filter"
             >
               {c.name}

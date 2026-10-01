@@ -53,6 +53,16 @@ html[lang="ka"] h1, html[lang="ka"] h2, html[lang="ka"] h3 { line-height: 1.2; l
  html { scroll-behavior: auto; }
  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+/* PrimeReact portals must remain opaque above photos and dark sections. */
+.p-dropdown-panel, .p-multiselect-panel, .p-datepicker, .p-menu {
+  background: #fff !important;
+  color: #171717 !important;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 12px 32px #0002;
+}
+.p-dropdown-panel .p-dropdown-item { color: #171717; padding: .75rem 1rem; }
+.p-dropdown-panel .p-dropdown-item.p-highlight { background: #eee !important; color: #111 !important; }
+.p-dropdown-panel .p-dropdown-item:hover { background: #f3f3f3; }
 .segmented-toggle { position: relative; display: inline-grid; grid-template-columns: repeat(2,minmax(0,1fr)); flex-shrink: 0; border: 1px solid color-mix(in srgb,currentColor 25%,transparent); border-radius: 999px; padding: 3px; isolation: isolate; }
 .segmented-toggle__thumb { position: absolute; inset: 3px auto 3px 3px; width: calc((100% - 6px)/2); border-radius: 999px; background: var(--color-brand-white); transition: transform 240ms cubic-bezier(.2,.8,.2,1); z-index: -1; }
 .segmented-toggle__option { display:flex; align-items:center; justify-content:center; gap:.3rem; min-width:30px; min-height:32px; padding: .35rem .45rem; border-radius:999px; font-size:.6875rem; font-weight:600; transition:color 180ms; }
@@ -1086,4 +1096,7 @@ html[lang="ka"] .hero-title { font-size:clamp(1.8rem,7.5vw,4.75rem); }
   .unified-map-layer-list i::after {
     transition: none;
   }
+}
+@media(max-width:640px) {
+  html[lang] h1.editorial-page-title { font-size:clamp(24px,6.5vw,30px); overflow-wrap:anywhere; }
 }

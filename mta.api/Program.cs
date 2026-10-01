@@ -51,13 +51,14 @@ Directory.CreateDirectory(Path.Combine(storage, "keys"));
 builder.Services.AddDataProtection().SetApplicationName("Mta.Api").PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(storage, "keys")));
 builder.Services.AddRateLimiter(o => {
     o.RejectionStatusCode = 429;
+    o.AddPolicy("contact", c => RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString() ?? "unknown", _ => new FixedWindowRateLimiterOptions { PermitLimit = 20, Window = TimeSpan.FromHours(1), QueueLimit = 0 }));
     o.AddPolicy("login", c => RateLimitPartition.GetFixedWindowLimiter(c.Connection.RemoteIpAddress?.ToString() ?? "unknown", _ => new FixedWindowRateLimiterOptions { PermitLimit = 10, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
 });
 builder.Services.Configure<ForwardedHeadersOptions>(o => {
     o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     if (builder.Configuration["TrustedProxy"] is { Length: > 0 } ip) o.KnownProxies.Add(IPAddress.Parse(ip));
 });
-builder.WebHost.ConfigureKestrel(o => o.Limits.MaxRequestBodySize = 8 * 1024 * 1024);
+builder.WebHost.ConfigureKestrel(o => o.Limits.MaxRequestBodySize = 48 * 1024 * 1024);
 builder.Services.AddProblemDetails();
 var app = builder.Build();
 app.UseForwardedHeaders();
@@ -122,6 +123,7 @@ admin.MapUsers();
 app.MapResorts(admin);
 app.MapFaqs(admin);
 app.MapMapEditor(admin);
+app.MapContentCms(admin);
 admin.MapGet("/news", async (AppDb db) => await db.News.AsNoTracking().OrderByDescending(n => n.Date).ThenByDescending(n => n.UpdatedAt).ToListAsync());
 admin.MapPost("/news", async (NewsInput input, AppDb db, HttpContext ctx) => {
     var errors = input.Validate(); if (errors.Count > 0) return Results.ValidationProblem(errors);
@@ -196,6 +198,7 @@ if (args.Contains("--initialize")) {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<AppDb>();
     await db.Database.MigrateAsync();
+    await ContentCms.SeedAsync(db, app.Environment.ContentRootPath);
     var users = scope.ServiceProvider.GetRequiredService<UserManager<PortalUser>>();
     var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     foreach (var role in PortalRoles.All) {

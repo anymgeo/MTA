@@ -1,6 +1,7 @@
 import View from "@/components/pages/AboutPage";
 import { pageMetadata } from "@/lib/metadata";
 import { getResorts } from "@/services/resorts";
+import { getCmsSettings } from '@/services/cms';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,5 +14,5 @@ export default async function Page({ params }) {
     number: String(index + 1).padStart(2, "0"),
     href: `/resorts/${resort.slug}`,
   }));
-  return <View resorts={resorts} />;
+  return <View resorts={resorts} content={await getCmsSettings('about',locale)} />;
 }

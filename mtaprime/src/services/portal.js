@@ -4,12 +4,15 @@ import { env } from "@/config/env";
 import { request } from "./client";
 import { localizeFixture } from "./fixtures";
 import { validatePortal, matchesArea, activeAt } from "@/models/portal";
+import { getCmsRecords } from './cms';
 /** @returns {Promise<import('@/models/portal').PortalRecord[]>} */
 export async function getPortalRecords(kind, { locale, area } = {}) {
   if (!Object.hasOwn(fixtures, kind))
     throw new Error("Unknown content collection");
   const records =
-    env.dataSource === "api"
+    ['leadership','events','history','infrastructure','documents','safety','contacts','webcams','navigation'].includes(kind)
+      ? await getCmsRecords(kind === 'navigation' ? 'home-navigation' : kind, locale)
+      : env.dataSource === "api"
       ? await request(kind, {
           locale,
           revalidate: ["closures", "avalanches", "resortOperations"].includes(
@@ -22,13 +25,7 @@ export async function getPortalRecords(kind, { locale, area } = {}) {
   const result = validatePortal(records).filter((item) =>
     matchesArea(item, area),
   );
-  return kind === "documents"
-    ? result.sort(
-        (a, b) =>
-          (a.category || "").localeCompare(b.category || "") ||
-          (b.publishedAt || "").localeCompare(a.publishedAt || ""),
-      )
-    : result;
+  return result;
 }
 export async function getPortalRecord(kind, slug, options) {
   return (

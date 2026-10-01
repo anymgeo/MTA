@@ -18,7 +18,7 @@ async function request(path, { method = 'GET', body, csrf = true, auth = true } 
 }
 const slug = `verification-${Date.now()}`;
 let record;
-const draft = { slug, date: '2026-09-22', image: '', gallery: [], titleKa: 'ავტომატური შემოწმება', excerptKa: '', contentKa: [], titleEn: '', excerptEn: '', contentEn: [], published: false, version: null };
+const draft = { slug, category:'news', date: '2026-09-22', image: '', gallery: [], titleKa: 'ავტომატური შემოწმება', excerptKa: '', contentKa: [], titleEn: '', excerptEn: '', contentEn: [], published: false, version: null };
 try {
   assert.equal((await request('/api/admin/news', { auth: false })).status, 401);
   assert.equal((await request('/api/admin/login', { method: 'POST', body: { email: credentials.AdminEmail, password: credentials.AdminPassword }, csrf: false })).status, 400);

@@ -13,7 +13,7 @@ export function useSiteUI() {
   return useContext(SiteUIContext);
 }
 
-export default function SiteShell({ children }) {
+export default function SiteShell({ children, footer, navigation }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const pathname = usePathname();
@@ -22,13 +22,14 @@ export default function SiteShell({ children }) {
   return (
     <SiteUIContext.Provider value={{ setModal }}>
       <Header
+        navigation={navigation}
         resortPage={!!resortSlug}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         setModal={setModal}
       />
       {children}
-      <Footer setModal={setModal} />
+      <Footer setModal={setModal} settings={footer} />
       {modal === "search" && <SearchModal onClose={() => setModal(null)} />}
       {modal === "pass" && <SkiPassModal onClose={() => setModal(null)} />}
     </SiteUIContext.Provider>

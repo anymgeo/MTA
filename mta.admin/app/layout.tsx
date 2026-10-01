@@ -5,6 +5,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import './globals.css';
 import './brand.css';
+import './cms.css';
 import Providers from './providers';
 const fira = localFont({ src: '../public/fonts/FiraGO-400.ttf', variable: '--font-georgian', display: 'swap' });
 export const metadata: Metadata = {

@@ -1,0 +1,51 @@
+.cms-module { max-width: 1100px; margin: 0 auto; }
+.cms-fields { display: grid; gap: 20px; padding: 24px; background: #fff; border-radius: 18px; }
+.cms-fields label, .cms-settings label { display: grid; gap: 8px; font-size: 14px; color: #292929; }
+.cms-fields input, .cms-fields textarea, .cms-fields .p-dropdown { width: 100%; }
+.cms-fields small { color: #737373; }
+.cms-accordion { margin: 12px 0; padding: 18px 22px; border: 1px solid #e7e7e7; background: #fff; border-radius: 14px; }
+.cms-accordion summary { cursor: pointer; font-weight: 600; line-height: 1.6; }
+.cms-accordion summary span { float: right; font-size: 12px; color: #747474; }
+.cms-array { display: grid; gap: 16px; padding-top: 18px; }
+.cms-array-item { border: 1px solid #eee; border-radius: 12px; padding: 14px; }
+.cms-array-actions { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+.cms-savebar { position: sticky; top: 80px; z-index: 20; display: flex; gap: 16px; align-items: center; padding: 16px; background: #fff; border: 1px solid #eee; border-radius: 14px; box-shadow: 0 4px 18px #00000009; }
+.cms-savebar span { flex: 1; color: #737373; font-size: 12px; }
+.cms-settings { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; padding: 24px 0; }
+.cms-language { display: flex; gap: 8px; margin: 12px 0; }
+.cms-language button { border: 1px solid #ddd; border-radius: 9px; padding: 10px 20px; background: #fff; cursor: pointer; }
+.cms-language button[aria-pressed=true] { background: #171717; color: #fff; border-color: #171717; }
+.cms-row { display: flex; align-items: center; gap: 8px; padding: 22px; background: #fff; border: 1px solid #eee; border-radius: 14px; margin-bottom: 10px; }
+.cms-row>div { flex: 1; min-width: 0; }
+.cms-row small { display: block; color: #777; margin-top: 8px; }
+.cms-date { display: flex; flex-wrap: wrap; gap: 8px; }
+.cms-date .p-dropdown { width: auto; min-width: 90px; }
+.cms-feedback { padding: 16px; border-radius: 12px; background: #f1f5f1; margin: 12px 0; }
+.cms-feedback.error { color: #922; background: #fff2f0; }
+.cms-upload { padding: 10px 0; }
+.cms-upload label { font-size: 12px; color: #666; }
+.cms-module .p-button:not(.p-button-text):not(.p-button-outlined) { color: #fff !important; background: #171717; border-color: #171717; }
+.cms-module .p-button.p-button-outlined, .cms-module .p-button.p-button-text { color: #292929 !important; background: #fff !important; border-color: #ddd; }
+.cms-module .row-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.cms-module .row-actions .p-button { width:auto; height:auto; min-height:40px; padding:10px 16px; }
+.cms-module .p-button.p-button-danger { color:#a52b1b !important; }
+.cms-rich-tools { display: flex; gap: 4px; padding: 4px; border: 1px solid #eee; border-radius: 8px 8px 0 0; }
+.cms-rich textarea { border-radius: 0 0 8px 8px; }
+.cms-photo { display: block; width: 120px; height: 100px; object-fit: cover; border-radius: 10px; }
+.p-dropdown-panel, .p-multiselect-panel, .p-datepicker, .p-menu { background: #fff !important; color: #171717 !important; box-shadow: 0 12px 36px #0002; }
+.p-dropdown-item { color: #171717; }
+.p-dropdown-item.p-highlight { background: #eee !important; color: #111 !important; }
+.sidebar { overflow-y: auto; }
+@media(max-width:760px) { .cms-settings { grid-template-columns:1fr; } .cms-row { flex-wrap:wrap; } .cms-row>div { flex-basis:100%; } .cms-fields { padding:16px; } }
+@media(max-width:760px) {
+ .workspace>.sidebar { position:relative; width:100%; height:auto; max-height:none; display:flex; flex-flow:row nowrap; align-items:center; overflow-x:auto; padding:10px 12px; border:0; border-bottom:1px solid #eee; }
+ .workspace>.sidebar>.brand, .workspace>.sidebar>.nav-label { display:none; }
+ .workspace>.sidebar>.nav-item { flex:0 0 auto; white-space:nowrap; padding:12px; }
+ .workspace>.sidebar>.sidebar-bottom { display:flex; flex:0 0 auto; align-items:center; margin:0; }
+ .workspace>.sidebar .account { border:0; padding:0; margin:0; }
+ .workspace>.sidebar .account>.avatar, .workspace>.sidebar .account>div { display:none; }
+ .cms-savebar { top:0; gap:8px; padding:10px; }
+ .cms-module .page-heading { flex-wrap:wrap; }
+ .cms-module .page-heading h1 { font-size:25px; }
+}
+@media(prefers-reduced-motion:no-preference) { .cms-accordion[open] > :not(summary) { animation: cms-expand .16s ease-out; } @keyframes cms-expand { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } } }

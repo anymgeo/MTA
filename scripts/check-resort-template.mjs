@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {canonicalTestTimes} from './canonical-test-times.mjs';
 import { readFile, unlink } from 'node:fs/promises';
 const origin = process.env.TEST_API_ORIGIN || 'http://127.0.0.1:5100';
 const credentials = JSON.parse(await readFile(new URL('../.local/credentials.json', import.meta.url), 'utf8'));
@@ -26,7 +27,7 @@ try {
     }
   }
   const source=rows.find(r=>r.slug==='bakuriani');
-  const input=structuredClone(source); input.id=undefined;input.version=null;input.slug='verify-template-'+Date.now();
+  const input=canonicalTestTimes(structuredClone(source)); input.id=undefined;input.version=null;input.slug='verify-template-'+Date.now();
   for(const lang of ['ka','en']) {
     input[lang].page.about='Verification copy '+lang;
     input[lang].page.liftList=[{name:'Test lift',type:'Gondola',duration:'5 min',hours:'09:00–17:00'}];

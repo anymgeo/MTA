@@ -9,24 +9,25 @@ export async function getWebcamViews({ locale, area } = {}) {
     getResorts({ locale }),
     getPortalRecords("webcams", { locale }),
   ]);
-  return resorts
-    .filter((r) => !area || matchesArea({ areaId: r.slug }, area))
-    .map((resort) => {
-      const feed = feeds.find((f) => f.areaId === resort.slug);
+  return feeds
+    .filter(feed => feed.status !== 'inactive' && (!area || matchesArea(feed, area)))
+    .map((feed) => {
+      const resort = resorts.find(r => r.slug === feed.areaId);
       return {
-        id: resort.slug,
-        slug: resort.slug,
-        name: resort.name,
-        location: resort.region || resort.name,
-        image: resort.image,
-        seasonImages: resort.seasons,
-        resortSlug: resort.slug,
+        id: feed.id,
+        slug: feed.slug,
+        name: feed.title,
+        location: feed.area || resort?.region || feed.title,
+        image: feed.image || resort?.image || '/Gudauri.jpg',
+        seasonImages: feed.image ? null : resort?.seasons,
+        resortSlug: feed.areaId,
+        sourceType: feed.sourceType || 'embed',
         videoUrl: feed?.videoUrl || null,
         sourceUrl:
           feed?.links?.find((l) => l.url.includes("youtube.com/watch"))?.url ||
           null,
         status: feed?.videoUrl
-          ? feed.status === "live"
+          ? feed.status === "live" || feed.isLive
             ? "live"
             : "recorded"
           : "unavailable",
@@ -35,5 +36,5 @@ export async function getWebcamViews({ locale, area } = {}) {
     });
 }
 export async function getWebcamView(slug, options) {
-  return (await getWebcamViews(options)).find((c) => c.slug === slug) || null;
+  return (await getWebcamViews(options)).find((c) => c.slug === slug || c.resortSlug === slug) || null;
 }

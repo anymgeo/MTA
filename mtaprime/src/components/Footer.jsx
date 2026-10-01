@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, Camera, Send, Ticket } from "lucide-react";
-export default function Footer({ setModal }) {
+import { ArrowUpRight, Ticket } from "lucide-react";
+import SocialIcon from './content/SocialIcon';
+export default function Footer({ setModal, settings }) {
   const t = useTranslations("Footer");
   return (
     <footer className="bg-ink px-6 py-14 text-canvas md:px-10 lg:px-16 lg:py-18">
@@ -31,10 +32,7 @@ export default function Footer({ setModal }) {
               {t("explore_b965ae")}
             </p>
             <nav className="mt-5 flex flex-col gap-3 text-sm text-canvas/75">
-              <Link href="/#resorts">{t("resorts_c5a813")}</Link>
-              <Link href="/#live">{t("mountainStatus_b7d976")}</Link>
-              <Link href="/#map">{t("maps_80071c")}</Link>
-              <Link href="/news">{t("news_34c808")}</Link>
+              {(settings?.links ?? []).map(link => <Link key={link.url} href={link.url}>{link.label}</Link>)}
             </nav>
           </div>
           <div>
@@ -42,7 +40,7 @@ export default function Footer({ setModal }) {
               {t("stayConnected_925338")}
             </p>
             <a
-              href="https://status.mta.ski/en"
+              href={settings?.statusUrl}
               target="_blank"
               rel="noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-sm text-canvas/75 transition hover:text-canvas"
@@ -51,20 +49,7 @@ export default function Footer({ setModal }) {
               <ArrowUpRight size={15} />
             </a>
             <div className="mt-6 flex gap-3">
-              <a
-                href="https://www.instagram.com/"
-                aria-label={t("instagram_5721bb")}
-                className="grid h-9 w-9 place-items-center rounded-full border border-canvas/20 transition hover:bg-canvas hover:text-ink"
-              >
-                <Camera size={16} />
-              </a>
-              <a
-                href="https://t.me/"
-                aria-label={t("telegram_edbea9")}
-                className="grid h-9 w-9 place-items-center rounded-full border border-canvas/20 transition hover:bg-canvas hover:text-ink"
-              >
-                <Send size={16} />
-              </a>
+              {(settings?.socials ?? []).map(link => <a key={link.url} href={link.url} aria-label={link.label} target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-canvas/20 transition hover:bg-canvas hover:text-ink"><SocialIcon label={link.label}/></a>)}
             </div>
           </div>
         </div>

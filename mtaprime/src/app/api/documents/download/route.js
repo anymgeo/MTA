@@ -1,6 +1,8 @@
 import { getPortalRecords } from "@/services/portal";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { env } from '@/config/env';
+import { getProjects } from '@/services/projects';
 export const runtime = "nodejs";
 export async function GET(request) {
   const url = new URL(request.url).searchParams.get("url");
@@ -17,6 +19,7 @@ export async function GET(request) {
       "resortOperations",
     ].map((kind) => getPortalRecords(kind, { locale: "en" })),
   );
+  collections.push(await getProjects({locale:'en'}));
   const file = collections
     .flat()
     .flatMap((item) => item.files || [])
@@ -32,7 +35,8 @@ export async function GET(request) {
       bytes = await readFile(target);
     } else {
       // The URL must be an exact match in the validated, trusted content registry.
-      const response = await fetch(url, {
+      const source = /^\/media\/[a-f0-9]+\.pdf$/.test(url) ? new URL(url, env.apiBaseUrl).href : url;
+      const response = await fetch(source, {
         signal: AbortSignal.timeout(10000),
         redirect: "error",
       });

@@ -15,14 +15,12 @@ import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import HeaderSnow from "./HeaderSnow";
 import { useSiteSeason } from "@/providers/SeasonProvider";
-import NavSection from "./content/NavSection";
+import CmsNavigation from "./content/CmsNavigation";
 import SeasonToggle from "./SeasonToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
-export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = false }) {
+export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = false, navigation }) {
   const t = useTranslations("Header");
   const { season } = useSiteSeason();
-  const portal = useTranslations("Portal");
-  const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     if (!resortPage) return;
@@ -32,7 +30,6 @@ export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = f
   }, [resortPage]);
   const closeMenu = () => {
     setMenuOpen(false);
-    setAboutOpen(false);
   };
   return (
     <header data-resort-header={resortPage || undefined} data-scrolled={scrolled || menuOpen || undefined} className="fixed left-0 top-0 z-50 w-full border-b border-canvas/10 bg-ink/95 px-4 py-4 text-canvas backdrop-blur-xl sm:px-6 min-[1440px]:px-10">
@@ -73,146 +70,7 @@ export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = f
           `}
         >
           <div className="flex flex-col gap-6 min-[1440px]:flex-row min-[1440px]:items-center min-[1440px]:justify-center min-[1440px]:gap-7">
-            {/* ABOUT MTA */}
-            <div
-              className="relative"
-              onKeyDown={(e) => {
-                if (e.key === "Escape") setAboutOpen(false);
-              }}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget))
-                  setAboutOpen(false);
-              }}
-            >
-              <button
-                type="button"
-                aria-expanded={aboutOpen}
-                onClick={() => setAboutOpen(!aboutOpen)}
-                className="flex items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-              >
-                {t("aboutMta_7850e0")}
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${aboutOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {/* ABOUT MTA DROPDOWN */}
-              {aboutOpen && (
-                <div className="min-[1440px]:absolute min-[1440px]:left-0 min-[1440px]:top-full min-[1440px]:z-50 min-[1440px]:pt-4">
-                  <div className="mt-3 max-h-[65vh] min-w-[190px] overflow-y-auto rounded-xl border border-canvas/10 bg-ink/95 p-2 shadow-2xl backdrop-blur-xl min-[1440px]:mt-0">
-                    <Link
-                      href="/about"
-                      onClick={closeMenu}
-                      className="block rounded-lg px-4 py-3 text-sm transition hover:bg-canvas/10"
-                    >
-                      {t("about_6b21fb")}
-                    </Link>
-
-                    {[
-                      "history",
-                      "leadership",
-                      "infrastructure",
-                      "documents",
-                    ].map((slug) => (
-                      <Link
-                        key={slug}
-                        href={"/about/" + slug}
-                        onClick={closeMenu}
-                        className="block rounded-lg px-4 py-3 text-sm transition hover:bg-canvas/10"
-                      >
-                        {portal("titles." + slug)}
-                      </Link>
-                    ))}
-                    <Link
-                      href="/structure"
-                      onClick={closeMenu}
-                      className="block rounded-lg px-4 py-3 text-sm transition hover:bg-canvas/10"
-                    >
-                      {t("structure_9482c5")}
-                    </Link>
-
-                    <Link
-                      href="/contact"
-                      onClick={closeMenu}
-                      className="block rounded-lg px-4 py-3 text-sm transition hover:bg-canvas/10"
-                    >
-                      {t("contact_b37456")}
-                    </Link>
-                    <Link
-                      href="/projects"
-                      onClick={closeMenu}
-                      className="block rounded-lg px-4 py-3 text-sm transition hover:bg-canvas/10"
-                    >
-                      {t("projects_53e890")}
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* RESORTS */}
-            <Link
-              href="/resorts"
-              onClick={closeMenu}
-              className="whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-            >
-              {t("resorts_c5a813")}
-            </Link>
-
-            {/* MAPS */}
-            <Link
-              href="/#map"
-              onClick={closeMenu}
-              className="whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-            >
-              {t("maps_80071c")}
-            </Link>
-
-            <NavSection
-              title={t("safety_db6e7e")}
-              onNavigate={closeMenu}
-              items={[
-                { href: "/safety", key: "overview" },
-                ...[
-                  "code-of-conduct",
-                  "piste-classification",
-                  "mountain-patrol",
-                  "emergency-contacts",
-                  "closures",
-                  "avalanche-danger",
-                  "freeride-rules",
-                  "incident",
-                ].map((slug) => ({
-                  href: "/safety/" + slug,
-                  key: "titles." + slug,
-                })),
-              ]}
-            />
-            {/* EVENTS */}
-            <Link
-              href="/events"
-              onClick={closeMenu}
-              className="whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-            >
-              {t("events_c5497b")}
-            </Link>
-
-            <Link
-              href="/faq"
-              onClick={closeMenu}
-              className="whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-            >
-              {t("faq")}
-            </Link>
-            {/* NEWS */}
-            <Link
-              href="/news"
-              onClick={closeMenu}
-              className="whitespace-nowrap text-sm font-medium transition-opacity hover:opacity-70"
-            >
-              {t("news_34c808")}
-            </Link>
+            <CmsNavigation items={navigation ?? []} onNavigate={closeMenu} />
           </div>
         </nav>
 

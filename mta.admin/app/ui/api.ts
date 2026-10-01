@@ -8,7 +8,7 @@ export type PortalRole = 'WebPortalAdmin' | 'WebPortalModerator';
 export type PortalUser = { id: string; email: string; displayName: string; role: PortalRole; version: string };
 export type Session = { authenticated: boolean; email: string | null; id: string | null; role: PortalRole | null; csrfToken: string };
 export class ApiError extends Error {
-  constructor(message: string, public status: number) { super(message); }
+  constructor(message: string, public status: number, public fields: Record<string,string[]> = {}) { super(message); }
 }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
@@ -23,7 +23,7 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
     const message = data.message || (data.errors ? Object.values(data.errors).flat().join(' ') : null);
-    throw new ApiError(message || (response.status === 401 ? 'სესია დასრულებულია ან ელფოსტა/პაროლი არასწორია.' : response.status === 403 ? 'ამ მოქმედებისთვის საჭირო უფლება არ გაქვთ.' : response.status === 429 ? 'ძალიან ბევრი მცდელობაა. სცადეთ მოგვიანებით.' : 'მოთხოვნა ვერ შესრულდა. სცადეთ ხელახლა.'), response.status);
+    throw new ApiError(message || (response.status === 401 ? 'სესია დასრულებულია ან ელფოსტა/პაროლი არასწორია.' : response.status === 403 ? 'ამ მოქმედებისთვის საჭირო უფლება არ გაქვთ.' : response.status === 429 ? 'ძალიან ბევრი მცდელობაა. სცადეთ მოგვიანებით.' : 'მოთხოვნა ვერ შესრულდა. სცადეთ ხელახლა.'), response.status, data.errors || {});
   }
   return response.status === 204 ? undefined as T : response.json();
 }

@@ -8,7 +8,8 @@ import {
   Mountain,
   ShieldCheck,
 } from "lucide-react";
-export default function AboutPage({ resorts }) {
+import RichText from '@/components/content/RichText';
+export default function AboutPage({ resorts, content }) {
   const t = useTranslations("AboutPage");
   const { values } = getLocalizedContent(t);
   const visible = true;
@@ -114,9 +115,9 @@ export default function AboutPage({ resorts }) {
             </p>
 
             <div className="mt-10 grid gap-8 text-base leading-7 text-muted md:grid-cols-2">
-              <p>{t("mountainTrailsAgencyIsResponsibleFor_e3fbd5")}</p>
+              <p><RichText text={content?.mainText ?? t("mountainTrailsAgencyIsResponsibleFor_e3fbd5")} /></p>
 
-              <p>{t("ourWorkCoversMountainInfrastructureOperations_b9e9e8")}</p>
+              <p><RichText text={content?.historyText ?? t("ourWorkCoversMountainInfrastructureOperations_b9e9e8")} /></p>
             </div>
           </div>
         </div>

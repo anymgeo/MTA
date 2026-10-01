@@ -13,4 +13,5 @@
   </ItemGroup>
   <ItemGroup><Content Update="seed-news.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
   <ItemGroup><Content Update="seed-resorts.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+  <ItemGroup><Content Update="seed-content.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
 </Project>

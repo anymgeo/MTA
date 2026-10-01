@@ -8,7 +8,8 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-export default function ContactPage() {
+import SocialIcon from '../content/SocialIcon';
+export default function ContactPage({ settings }) {
   const t = useTranslations("ContactPage");
   const p = useTranslations("Portal");
   const [formData, setFormData] = useState({
@@ -134,10 +135,10 @@ export default function ContactPage() {
                   </p>
 
                   <a
-                    href="tel:+995322053050"
+                    href={`tel:${settings?.phone ?? ''}`}
                     className="mt-1 block text-lg font-medium transition-colors hover:text-ink"
                   >
-                    +995 32 205 30 50
+                    {settings?.phone}
                   </a>
                 </div>
               </div>
@@ -154,10 +155,10 @@ export default function ContactPage() {
                   </p>
 
                   <a
-                    href="mailto:info@mta.ski"
+                    href={`mailto:${settings?.email ?? ''}`}
                     className="mt-1 block text-lg font-medium transition-colors hover:text-ink"
                   >
-                    {t("infoMtaSki_399cf5")}
+                    {settings?.email}
                   </a>
                 </div>
               </div>
@@ -174,7 +175,7 @@ export default function ContactPage() {
                   </p>
 
                   <p className="mt-1 max-w-sm text-lg font-medium leading-7">
-                    {t("2SanapiroStreet_00a581")}
+                    {settings?.address}
                     <br />
                     {t("tbilisiGeorgia_55690c")}
                   </p>
@@ -196,7 +197,7 @@ export default function ContactPage() {
                     {t("mondayFriday_e83e6c")}
                   </p>
 
-                  <p className="text-ink/50">09:00 – 18:00</p>
+                  <p className="text-ink/50">{settings?.openTime} – {settings?.closeTime}</p>
                 </div>
               </div>
             </div>
@@ -208,26 +209,7 @@ export default function ContactPage() {
               </p>
 
               <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 transition-all hover:border-neutral-700 hover:bg-neutral-700 hover:text-white"
-                >
-                  <i className="pi pi-facebook" />
-                </a>
-
-                <a
-                  href="#"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 transition-all hover:border-neutral-700 hover:bg-neutral-700 hover:text-white"
-                >
-                  <i className="pi pi-instagram" />
-                </a>
-
-                <a
-                  href="#"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 transition-all hover:border-neutral-700 hover:bg-neutral-700 hover:text-white"
-                >
-                  <i className="pi pi-youtube" />
-                </a>
+                {(settings?.links ?? []).map(link => <a key={link.url} href={link.url} aria-label={link.label} target="_blank" rel="noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 text-sm transition hover:bg-ink hover:text-white"><SocialIcon label={link.label}/></a>)}
               </div>
             </div>
           </div>
@@ -402,7 +384,7 @@ export default function ContactPage() {
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <iframe
           title={p("contactMap")}
-          src="https://maps.google.com/maps?q=70%20Merab%20Kostava%20Street%20Tbilisi&output=embed"
+          src={settings?.latitude && settings?.longitude ? `https://maps.google.com/maps?q=${settings.latitude},${settings.longitude}&output=embed` : settings?.mapUrl}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           className="h-96 w-full rounded-3xl border-0"
@@ -441,7 +423,7 @@ export default function ContactPage() {
                 <i className="pi pi-map-marker mt-1 text-ink" />
 
                 <div>
-                  <p className="font-medium">{t("2SanapiroStreet_9c5081")}</p>
+                  <p className="font-medium">{settings?.address}</p>
 
                   <p className="mt-1 text-canvas/50">
                     {t("tbilisiGeorgia_55690c")}

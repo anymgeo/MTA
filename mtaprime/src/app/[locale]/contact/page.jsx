@@ -1,5 +1,6 @@
 import View from "@/components/pages/ContactPage";
 import { pageMetadata } from "@/lib/metadata";
+import { getCmsSettings } from '@/services/cms';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -7,5 +8,5 @@ export async function generateMetadata({ params }) {
 }
 export default async function Page({ params }) {
   const { locale } = await params;
-  return <View />;
+  return <View settings={await getCmsSettings('contact', locale)} />;
 }

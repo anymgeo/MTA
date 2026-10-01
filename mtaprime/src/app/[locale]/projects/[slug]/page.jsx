@@ -464,6 +464,7 @@ export default async function ProjectPage({ params }) {
             endAt: project.endAt,
             files: project.files,
             links: project.links,
+            images: project.gallery || [],
           }}
         />
         <PdfUpload />

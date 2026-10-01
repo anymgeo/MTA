@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { portalDateParts } from "@/lib/portal-date";
+import RichText from './RichText';
 export function ContentFrame({
   title,
   description,
@@ -15,12 +16,12 @@ export function ContentFrame({
           <Link href={back} className="text-sm font-bold transition-opacity hover:opacity-60">
             {t("back")}
           </Link>
-          <h1 className="mt-8 max-w-5xl text-4xl font-black leading-tight md:text-6xl">
+          <h1 className="editorial-page-title mt-8 max-w-5xl text-3xl font-black leading-tight sm:text-4xl md:text-6xl">
             {title}
           </h1>
           {description && (
             <p className="mt-6 max-w-3xl text-lg leading-8 text-canvas/80">
-              {description}
+              <RichText text={description}/>
             </p>
           )}
         </div>
@@ -168,7 +169,7 @@ export function RecordBody({ record }) {
           <section key={i} className="rounded-2xl bg-canvas p-6">
             <h2 className="text-2xl font-black">{block.title}</h2>
             <p className="mt-3 whitespace-pre-line text-lg leading-8 text-muted">
-              {block.text}
+              <RichText text={block.text} />
             </p>
           </section>
         ))}
@@ -182,7 +183,7 @@ export function RecordBody({ record }) {
               record[k].map((b, i) => (
                 <div key={i} className="mt-4">
                   <h3 className="text-lg font-bold">{b.title}</h3>
-                  <p className="mt-2 leading-7 text-muted">{b.text}</p>
+                  <p className="mt-2 leading-7 text-muted"><RichText text={b.text}/></p>
                 </div>
               ))
             ) : (
@@ -233,6 +234,8 @@ export function RecordBody({ record }) {
         />
       )}
       <PdfFiles files={record.files} />
+      {record.email && <a className="mt-4 block font-semibold" href={`mailto:${record.email}`}>{record.email}</a>}
+      {record.linkedinUrl && <a className="mt-4 block font-semibold" href={record.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>}
       {record.links?.length > 0 && (
         <section className="mt-10">
           <h2 className="text-xl font-black">{t("links")}</h2>

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {canonicalTestTimes} from './canonical-test-times.mjs';
 import { readFile } from 'node:fs/promises';
 const origin = process.env.TEST_API_ORIGIN || 'http://127.0.0.1:5100';
 const site = process.env.TEST_SITE_ORIGIN || 'http://localhost:3100';
@@ -19,7 +20,7 @@ try {
   assert.equal((await request('/api/admin/login', { method: 'POST', body: { email: credentials.AdminEmail, password: credentials.AdminPassword } })).status, 200);
   const list = await (await request('/api/admin/resorts')).json();
   assert.ok(list.length >= 1);
-  const template = list[0];
+  const template = canonicalTestTimes(list[0]);
   const slug = `resort-check-${Date.now()}`;
   const content = { ...template, id: undefined, version: null, slug, status: 'CLOSED', ka: { ...template.ka, name: 'სატესტო კურორტი' }, en: { ...template.en, name: 'Verification resort' } };
   let response = await request('/api/admin/resorts', { method: 'POST', body: content });

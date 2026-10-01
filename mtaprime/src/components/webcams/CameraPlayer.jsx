@@ -11,7 +11,7 @@ export default function CameraPlayer({ camera }) {
     <div>
       <div className="camera-player">
         {playing && camera.videoUrl ? (
-          <iframe
+          camera.sourceType === 'video' ? <video src={camera.videoUrl} controls playsInline className="absolute inset-0 h-full w-full object-contain" /> : <iframe
             src={camera.videoUrl}
             title={camera.name}
             allow="autoplay; fullscreen; picture-in-picture"

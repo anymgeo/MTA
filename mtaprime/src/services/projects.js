@@ -1,16 +1,10 @@
 import "server-only";
-import fixtures from "@/data/fixtures/projects.json";
-import { env } from "@/config/env";
-import { request } from "./client";
-import { localizeFixture } from "./fixtures";
 import { validateCollection } from "@/models/validate";
+import { getCmsRecords } from './cms';
 
 /** @param {{locale: 'ka'|'en'}} options @returns {Promise<import('@/models/content').Project[]>} */
 export async function getProjects({ locale }) {
-  const items =
-    env.dataSource === "api"
-      ? await request("projects", { locale })
-      : await localizeFixture(fixtures, locale);
+  const items = await getCmsRecords('projects', locale);
   validateCollection("projects", items);
   return items.map((item) => ({
     ...item,

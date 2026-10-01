@@ -56,6 +56,9 @@ public class AppDb(DbContextOptions<AppDb> options) : IdentityDbContext<PortalUs
     public DbSet<Resort> Resorts => Set<Resort>();
     public DbSet<AuditEntry> Audit => Set<AuditEntry>();
     public DbSet<BootstrapState> Bootstrap => Set<BootstrapState>();
+    public DbSet<ContentRecord> ContentRecords => Set<ContentRecord>();
+    public DbSet<ContentRevision> ContentRevisions => Set<ContentRevision>();
+    public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
     public DbSet<ResortMap> ResortMaps => Set<ResortMap>();
     public DbSet<MapArea> MapAreas => Set<MapArea>();
     public DbSet<MapFeatureType> MapFeatureTypes => Set<MapFeatureType>();
@@ -64,6 +67,13 @@ public class AppDb(DbContextOptions<AppDb> options) : IdentityDbContext<PortalUs
     protected override void OnModelCreating(ModelBuilder model)
     {
         base.OnModelCreating(model);
+        model.Entity<ContentRecord>().HasIndex(x => new { x.Module, x.Slug }).IsUnique();
+        model.Entity<ContentRecord>().Property(x => x.Version).IsConcurrencyToken();
+        model.Entity<ContentRecord>().Property(x => x.KaJson).HasColumnType("jsonb");
+        model.Entity<ContentRecord>().Property(x => x.EnJson).HasColumnType("jsonb");
+        model.Entity<ContentRevision>().Property(x => x.BeforeJson).HasColumnType("jsonb");
+        model.Entity<ContentRevision>().Property(x => x.AfterJson).HasColumnType("jsonb");
+        model.Entity<ContentRevision>().HasIndex(x => new { x.RecordId, x.At });
         model.Entity<ResortMap>().HasIndex(m => m.ResortId).IsUnique();
         model.Entity<ResortMap>().HasOne<Resort>().WithMany().HasForeignKey(m => m.ResortId).OnDelete(DeleteBehavior.Restrict);
         model.Entity<ResortMap>().Property(m => m.Version).IsConcurrencyToken();

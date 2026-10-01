@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import Providers from "../providers";
 import SiteShell from "../SiteShell";
 import { SeasonProvider } from "@/providers/SeasonProvider";
+import { getCmsSettings, getCmsRecords } from '@/services/cms';
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -14,6 +15,7 @@ export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   const messages = await getMessages({ locale });
+  const [footer, navigation] = await Promise.all([getCmsSettings('footer', locale), getCmsRecords('navigation', locale)]);
   return (
     <html lang={locale} className={`${firago.variable} ${mta.variable}`}>
       <body>
@@ -24,7 +26,7 @@ export default async function LocaleLayout({ children, params }) {
         >
           <Providers>
             <SeasonProvider>
-              <SiteShell>{children}</SiteShell>
+              <SiteShell footer={footer} navigation={navigation}>{children}</SiteShell>
             </SeasonProvider>
           </Providers>
         </NextIntlClientProvider>
