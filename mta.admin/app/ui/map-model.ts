@@ -2,7 +2,7 @@
 // Curved paths add optional incoming and outgoing control points.
 export type Point = [number, number, number?, number?, number?, number?];
 export type FeatureType = { key: string; nameKa: string; nameEn: string; geometryKind: 'point' | 'line' | 'polygon'; icon: string; color: string; statuses: string[]; active: boolean };
-export type MapLabel = { x:number; y:number; textKa:string; textEn:string };
+export type MapLabel = { x:number; y:number; textKa:string; textEn:string;cutLine?:boolean;pathPosition?:number|null;gap?:number };
 export type MapFeature = {
   id?: string; typeKey: string; geometryKind: 'point' | 'line' | 'polygon'; points: Point[];
   nameKa: string; nameEn: string; descriptionKa: string; descriptionEn: string; status: string;

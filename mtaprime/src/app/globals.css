@@ -181,7 +181,7 @@ html[lang="ka"] .hero-title { font-size:clamp(1.8rem,7.5vw,4.75rem); }
 .unified-map-route.difficulty-green { --trail-color:var(--color-brand-green); }
 .unified-map-route.difficulty-blue { --trail-color:var(--color-brand-cyan); }
 .unified-map-route.difficulty-red { --trail-color:var(--color-brand-red); }
-.unified-map-route.route-lift { --trail-color:var(--color-ink); stroke-dasharray:9 6; }
+.unified-map-route.route-lift { --trail-color:var(--color-ink); stroke-dasharray:none; }
 /* Measured portal placement; no fixed bottom/right docking. */
 .unified-map-popup { position:fixed; inset:auto; left:0; top:0; visibility:hidden; overscroll-behavior:contain; }
 
@@ -735,7 +735,7 @@ html[lang="ka"] .hero-title { font-size:clamp(1.8rem,7.5vw,4.75rem); }
 }
 .unified-map-route.route-lift {
   --trail-color: var(--map-navy);
-  stroke-dasharray: 10 7;
+  stroke-dasharray: none;
 }
 .unified-map-feature-card {
   position: absolute;

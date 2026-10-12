@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 namespace Mta.Api;
 
-public record MapLabelInput(double X,double Y,string TextKa,string TextEn);
+public record MapLabelInput(double X,double Y,string TextKa,string TextEn,bool CutLine=false,double? PathPosition=null,double Gap=24);
 public record MapFeatureInput(Guid MapVersion, Guid? Version, string TypeKey, double[][] Points,
     string NameKa, string NameEn, string DescriptionKa, string DescriptionEn, string Status,
     string Difficulty = "", string LiftType = "", string Opens = "", string Closes = "", int? DurationMinutes = null,string[]? AnchorModes=null,MapLabelInput? Label=null);
@@ -25,7 +25,7 @@ public static class MapEditorEndpoints
         f.NameKa, f.NameEn, f.DescriptionKa, f.DescriptionEn, f.Status, f.Difficulty, f.LiftType, f.Opens, f.Closes,
         f.DurationMinutes, f.CreatedByName, f.CreatedAt, f.UpdatedByName, f.UpdatedAt, f.Version, f.Deleted };
     static async Task<object> View(ResortMap map, AppDb db) => new { map.Id, map.ResortId, map.ImageUrl, map.Width, map.Height,
-        tiles=JsonSerializer.Deserialize<JsonElement>(map.TilesJson),
+        tiles=MapImageStorage.ResolveTiles(map.TilesJson),
         map.CoordinateSystem, map.Placeholder, map.Version, types = await db.MapFeatureTypes.AsNoTracking().OrderBy(t => t.Key).ToListAsync(),
         features = (await db.MapFeatures.AsNoTracking().Where(f => f.MapId == map.Id && !f.Deleted).OrderBy(f => f.CreatedAt).ToListAsync()).Select(Feature) };
     static async Task<(string Id, string Name)> Actor(HttpContext ctx, UserManager<PortalUser> users)
@@ -51,17 +51,11 @@ public static class MapEditorEndpoints
             var storage = Path.GetFullPath(config["StoragePath"] ?? Path.Combine(environment.ContentRootPath, "storage"));
             var path = Path.Combine(storage, "media", Path.GetFileName(input.ImageUrl!));
             if (!File.Exists(path)) return Results.BadRequest();
-            using var imageStream = File.OpenRead(path);
-            var info = MapImageInfo.Read(imageStream);
+            using var imageInfo=JsonDocument.Parse(await MapImageStorage.Worker(path,"info",config,environment,ctx.RequestAborted));
+            var data=imageInfo.RootElement;var info=new MapImageInfo(data.GetProperty("width").GetInt32(),data.GetProperty("height").GetInt32(),Path.GetExtension(path));
             if (info.Width != input.Width || info.Height != input.Height) return Results.BadRequest();
-            // A different reference size cannot silently invalidate existing coordinates.
-            if (await db.MapFeatures.AnyAsync(f => f.MapId == mapId) && (map.Width != info.Width || map.Height != info.Height))
-                return Results.BadRequest(new { message = "Use an image with the same reference dimensions while map features exist. / შეინარჩუნეთ რუკის არსებული ზომები." });
-            var before = new { map.ImageUrl, map.Width, map.Height };
-            map.ImageUrl = input.ImageUrl!; map.Width = info.Width; map.Height = info.Height; map.Placeholder = false; map.Version = Guid.NewGuid();
-            map.TilesJson=await MapImageStorage.Worker(path,"build",config,environment,ctx.RequestAborted);
-            Revision(db, mapId, null, "image", await Actor(ctx, users), before, new { map.ImageUrl, map.Width, map.Height });
-            try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); } catch (DbUpdateConcurrencyException) { return Conflict(); }
+            var pending=await MapImageReplacement.Prepare(map,path,info,ctx.User.FindFirstValue(ClaimTypes.NameIdentifier)!,config,environment,ctx.RequestAborted);
+            return Results.Ok(new{pendingImage=pending});
         }).RequireAuthorization("SuperAdmin");
         admin.MapPost("/maps/{mapId:guid}/image-upload", async (Guid mapId, HttpRequest request, AppDb db, HttpContext ctx, UserManager<PortalUser> users, IConfiguration config, IWebHostEnvironment environment) => {
             if (!Guid.TryParse(request.Headers["X-Map-Version"], out var version)) return Results.BadRequest(new { message = "Invalid map version. Reload the editor and try again." });
@@ -69,21 +63,41 @@ public static class MapEditorEndpoints
             if (map.Version != version) return Conflict();
             try {
                 var stored=await MapImageStorage.Store(request,config,environment);var info=stored.Info;var path=stored.Path;
-                if (await db.MapFeatures.AnyAsync(f => f.MapId == mapId && !f.Deleted) && (map.Width != info.Width || map.Height != info.Height)) {
-                    File.Delete(path);
-                    return Results.BadRequest(new { message = $"Use the existing {map.Width} × {map.Height}px reference size while map features exist. / არსებული ობიექტების გამო გამოიყენეთ {map.Width} × {map.Height}px ზომა." });
-                }
-                var tiles=await MapImageStorage.Worker(path,"build",config,environment,ctx.RequestAborted);
-                var before = new { map.ImageUrl, map.Width, map.Height };
-                map.ImageUrl = "/media/" + Path.GetFileName(path); map.Width = info.Width; map.Height = info.Height; map.Placeholder = false; map.Version = Guid.NewGuid();map.TilesJson=tiles;
-                Revision(db, mapId, null, "image", await Actor(ctx, users), before, new { map.ImageUrl, map.Width, map.Height });
-                try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); }
-                catch (DbUpdateConcurrencyException) { File.Delete(path); return Conflict(); }
-                catch { File.Delete(path); throw; }
+                var pending=await MapImageReplacement.Prepare(map,path,info,ctx.User.FindFirstValue(ClaimTypes.NameIdentifier)!,config,environment,ctx.RequestAborted);
+                return Results.Ok(new{pendingImage=pending});
             } catch (InvalidDataException error) {
                 return Results.BadRequest(new { message = error.Message });
             }
         }).RequireAuthorization("SuperAdmin").WithMetadata(new DisableRequestSizeLimitAttribute());
+        admin.MapPost("/maps/{mapId:guid}/image-replacement", async (Guid mapId,MapReplacementInput input,AppDb db,HttpContext ctx,UserManager<PortalUser> users,IConfiguration config,IWebHostEnvironment environment)=>{
+            var map=await db.ResortMaps.FindAsync(mapId);if(map==null)return Results.NotFound();
+            if(map.Version!=input.Version)return Conflict();
+            if(!input.AlignmentConfirmed||input.Alignment==null||!input.Alignment.Valid)return Results.BadRequest(new{message="Confirm geographic alignment and provide finite, positive scales. / დაადასტურეთ გასწორება და მიუთითეთ ვალიდური მასშტაბი."});
+            var pending=await MapImageReplacement.Read(input.Token,mapId,ctx.User.FindFirstValue(ClaimTypes.NameIdentifier)!,config,environment,ctx.RequestAborted);
+            if(pending==null)return Results.BadRequest(new{message="The pending image expired or belongs to another map/session. Upload again."});
+            if(pending.MapVersion!=map.Version)return Conflict();
+            if(!File.Exists(Path.Combine(MapImageStorage.Root(config,environment),"media",Path.GetFileName(pending.ImageUrl))))return Results.BadRequest(new{message="Pending image is missing. The existing map is unchanged."});
+            var features=await db.MapFeatures.Where(f=>f.MapId==mapId).ToListAsync(); // Includes recoverable deleted features.
+            var transformed=features.Select(f=>input.Alignment.Apply(f.Points)).ToArray();
+            if(transformed.Any(points=>points.SelectMany(p=>p).Any(v=>!double.IsFinite(v))))return Results.BadRequest(new{message="Alignment overflow. The existing map is unchanged."});
+            var labels=features.Select(f=>f.Label is {} label?input.Alignment.Apply(label.X,label.Y):null).ToArray();
+            if(labels.Any(p=>p!=null&&p.Any(v=>!double.IsFinite(v))))return Results.BadRequest(new{message="Label alignment overflow. The existing map is unchanged."});
+            var actor=await Actor(ctx,users);var before=new{map.ImageUrl,map.Width,map.Height,map.TilesJson};
+            // EF's transaction + version concurrency tokens commit ALL coordinates and the image together.
+            await using var transaction=await db.Database.BeginTransactionAsync(ctx.RequestAborted);
+            try{
+                for(var i=0;i<features.Count;i++){
+                    var f=features[i];var old=Feature(f);f.PointsJson=JsonSerializer.Serialize(transformed[i],Json);
+                    if(f.Label is {} label&&labels[i] is {} position)f.LabelJson=JsonSerializer.Serialize(label with{X=position[0],Y=position[1],PathPosition=label.CutLine?null:label.PathPosition},Json);
+                    f.Version=Guid.NewGuid();f.UpdatedAt=DateTimeOffset.UtcNow;f.UpdatedBy=actor.Id;f.UpdatedByName=actor.Name;
+                    Revision(db,mapId,f.Id,"image-alignment",actor,old,Feature(f));
+                }
+                map.ImageUrl=pending.ImageUrl;map.Width=pending.Width;map.Height=pending.Height;map.TilesJson=pending.Tiles.GetRawText();map.Placeholder=false;map.Version=Guid.NewGuid();
+                Revision(db,mapId,null,"image-replacement",actor,before,new{map.ImageUrl,map.Width,map.Height,map.TilesJson,input.Alignment,FeatureCount=features.Count});
+                await db.SaveChangesAsync(ctx.RequestAborted);var result=await View(map,db);
+                await transaction.CommitAsync(ctx.RequestAborted);return Results.Ok(result);
+            }catch(DbUpdateConcurrencyException){await transaction.RollbackAsync(CancellationToken.None);return Conflict();}
+        }).RequireAuthorization("SuperAdmin");
         admin.MapPost("/map-image", async (HttpRequest request, IConfiguration config, IWebHostEnvironment environment) => {
             try {
                 var stored=await MapImageStorage.Store(request,config,environment);var info=stored.Info;
@@ -126,11 +140,11 @@ public static class MapEditorEndpoints
             var types = await db.MapFeatureTypes.AsNoTracking().ToListAsync();
             var features = await db.MapFeatures.AsNoTracking().Where(f => f.MapId == map.Id && !f.Deleted).OrderBy(f => f.CreatedAt).ToListAsync();
             return Results.Ok(new { id = slug, mapId = map.Id, image = map.ImageUrl, map.Width, map.Height, map.Version, map.Placeholder, managed = true,
-                tiles=JsonSerializer.Deserialize<JsonElement>(map.TilesJson),
+                tiles=MapImageStorage.ResolveTiles(map.TilesJson),
                 coordinateSystem = map.CoordinateSystem, verified = !map.Placeholder, demo = false,
                 types = types.Where(t => features.Any(f => f.TypeKey == t.Key)).Select(t => new { t.Key, name = locale == "en" ? t.NameEn : t.NameKa, t.Icon, t.Color, t.GeometryKind }),
                 features = features.Select(f => new { f.Id, kind = f.TypeKey, f.GeometryKind, points = f.Points,
-                    f.AnchorModes,label=f.Label==null?null:new {f.Label.X,f.Label.Y,text=locale=="en"?f.Label.TextEn:f.Label.TextKa},
+                    f.AnchorModes,label=f.Label==null?null:new {f.Label.X,f.Label.Y,text=locale=="en"?f.Label.TextEn:f.Label.TextKa,f.Label.CutLine,f.Label.PathPosition,f.Label.Gap},
                     name = locale == "en" ? f.NameEn : f.NameKa, description = locale == "en" ? f.DescriptionEn : f.DescriptionKa,
                     f.Status, f.Difficulty, f.LiftType, f.Opens, f.Closes, f.DurationMinutes, f.UpdatedAt }) });
         });
@@ -152,6 +166,7 @@ public static class MapEditorEndpoints
             return Results.BadRequest(new { message = $"At least {minimum} distinct points within the map are required. / საჭიროა მინიმუმ {minimum} განსხვავებული წერტილი." });
         if(input.AnchorModes is {Length:>0}&&(input.AnchorModes.Length!=input.Points.Length||input.AnchorModes.Any(mode=>mode is not ("smooth" or "corner"))))return Results.BadRequest(new {message="Invalid anchor modes."});
         if(input.Label is { } label&&(!double.IsFinite(label.X)||!double.IsFinite(label.Y)||label.X<0||label.X>map.Width||label.Y<0||label.Y>map.Height||label.TextKa==null||label.TextEn==null||label.TextKa.Length>200||label.TextEn.Length>200))return Results.BadRequest(new {message="Invalid map label."});
+        if(input.Label is {CutLine:true} cut&&(type.GeometryKind!="line"||(cut.PathPosition is {} position&&(!double.IsFinite(position)||position<0||position>1))||!double.IsFinite(cut.Gap)||cut.Gap<=0))return Results.BadRequest(new{message="Invalid line cut position or gap."});
         if (string.IsNullOrWhiteSpace(input.NameKa) || string.IsNullOrWhiteSpace(input.NameEn) || input.NameKa.Length > 200 || input.NameEn.Length > 200 ||
             input.DescriptionKa == null || input.DescriptionEn == null || input.DescriptionKa.Length > 5000 || input.DescriptionEn.Length > 5000 || !type.Statuses.Contains(input.Status) ||
             (input.TypeKey == "trail" ? !Difficulties.Contains(input.Difficulty) : !string.IsNullOrEmpty(input.Difficulty)) ||

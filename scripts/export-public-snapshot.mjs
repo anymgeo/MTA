@@ -63,7 +63,7 @@ const assetDir = path.join(root,'mtaprime/public/published-media');
 await mkdir(assetDir,{recursive:true});
 for(const [base,tiles] of tilePyramids)for(let level=0;level<=tiles.maxLevel;level++){
   const factor=2**(tiles.maxLevel-level),w=Math.ceil(tiles.width/factor),h=Math.ceil(tiles.height/factor);
-  for(let row=0;row<Math.ceil(h/tiles.tileSize);row++)for(let col=0;col<Math.ceil(w/tiles.tileSize);col++)media.add(`${base}/${level}/${col}_${row}.jpg`);
+  for(let row=0;row<Math.ceil(h/tiles.tileSize);row++)for(let col=0;col<Math.ceil(w/tiles.tileSize);col++)media.add(`${base}/${level}/${col}_${row}.${tiles.extension||'jpg'}`);
 }
 async function hashFile(file){const hash=createHash('sha256');for await(const chunk of createReadStream(file))hash.update(chunk);return hash.digest('hex');}
 for (const url of [...media].sort()) {

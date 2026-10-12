@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import {
@@ -23,7 +23,7 @@ import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { clampView, zoomView } from "@/models/map-records";
 import { useSiteSeason } from "@/providers/SeasonProvider";
-import {visibleTiles} from '../../../../shared/map-geometry.mjs';
+import {visibleTiles,liftTickPath,LIFT_STYLE,liftStyleForMap,cutLabelLayout} from '../../../../shared/map-geometry.mjs';
 
 const icons = { trail: Route, lift: CableCar, warning: TriangleAlert };
 
@@ -55,6 +55,7 @@ function ManagedInteractiveTrailMap({ map: initial, ...props }) {
 }
 
 function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
+  const cutPrefix=useId().replaceAll(':','');
   const t = useTranslations("TrailMap");
   const common = useTranslations("Portal");
   const { season } = useSiteSeason();
@@ -558,18 +559,24 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
                 {map.tiles&&visibleTiles(map.tiles,scale,view.x,view.y,size.width,size.height).map(tile=><image key={tile.key} href={tile.url} x={tile.x} y={tile.y} width={tile.width} height={tile.height} preserveAspectRatio="none"/>)}
                 {pins
                   .filter((record) => record.points?.length > 1)
-                  .map((record) => (
+                  .map((record) => {const cut=cutLabelLayout(record.points,record.label,map,scale,record.label?.text||''),maskId=`${cutPrefix}-cut-${record.id}`;return (
+                    <g key={record.id}>
+                    {cut&&<defs><mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width={map.width} height={map.height}><rect width={map.width} height={map.height} fill="white"/><rect data-line-cut={record.id} x={cut.x-cut.width/2} y={cut.y-cut.height/2} width={cut.width} height={cut.height} fill="black" transform={`rotate(${cut.angle} ${cut.x} ${cut.y})`}/></mask></defs>}
                     <path
+                      mask={cut?`url(#${maskId})`:undefined}
                       data-route={record.id}
                       data-kind={record.kind}
                       key={record.id}
                       d={record.path || `M ${record.points.map(point => point.join(",")).join(" L ")}`}
                       fill={record.closedGeometry ? `${record.color || "#d73b32"}33` : "none"}
-                      style={record.sourceKind ? { stroke:record.routeColor, strokeWidth:record.reference ? 2 : undefined, strokeDasharray:record.dashed ? "5 4" : record.reference ? "none" : undefined } : undefined}
+                      data-render-style={record.kind==='lift'?'lift-ticked':undefined}
+                      style={record.kind==='lift'?{stroke:record.routeColor||'#171717',strokeWidth:LIFT_STYLE.strokeWidth,strokeDasharray:'none'}:record.sourceKind ? { stroke:record.routeColor, strokeWidth:record.reference ? 2 : undefined, strokeDasharray:record.dashed ? "5 4" : record.reference ? "none" : undefined } : undefined}
                       className={`trail-line unified-map-route route-${record.kind} difficulty-${record.difficulty || "black"}`}
                     />
-                  ))}
-                {visible.filter(record=>record.label).map(record=><text key={'label-'+record.id} data-map-label={record.id} x={record.label.x} y={record.label.y} fontSize={15/scale} fontWeight="700" fill={record.routeColor||record.color} stroke="white" strokeWidth={4/scale} paintOrder="stroke" strokeLinejoin="round">{record.label.text}</text>)}
+                    {record.kind==='lift'&&<LiftCuts record={record} width={map.width} height={map.height} mask={cut?`url(#${maskId})`:undefined} />}
+                    </g>
+                  );})}
+                {visible.filter(record=>record.label).map(record=>{const cut=cutLabelLayout(record.points,record.label,map,scale,record.label.text||'');return <text key={'label-'+record.id} data-map-label={record.id} data-cut-label={cut?record.id:undefined} x={cut?.x??record.label.x} y={cut?.y??record.label.y} transform={cut?`rotate(${cut.angle} ${cut.x} ${cut.y})`:undefined} textAnchor={cut?'middle':undefined} dominantBaseline={cut?'central':undefined} fontSize={cut?.fontSize??15/scale} fontWeight="700" fill={record.routeColor||record.color} stroke="white" strokeWidth={(cut?2:4)/scale} paintOrder="stroke" strokeLinejoin="round">{record.label.text}</text>;})}
               </g>
             </svg>
 
@@ -647,4 +654,9 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
         document.body,
       )
     : content;
+}
+
+function LiftCuts({record,width,height,mask}) {
+  const d=useMemo(()=>liftTickPath(record.points,liftStyleForMap({width,height})),[record.points,width,height]);
+  return <path data-lift-ticks={record.id} mask={mask} d={d} fill="none" stroke={record.routeColor||'#171717'} strokeWidth={LIFT_STYLE.tickStrokeWidth} vectorEffect="non-scaling-stroke" pointerEvents="none"/>;
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowRight, X } from "lucide-react";
-import SkiPassIcon from "./brand/SkiPassIcon";
+import { X } from "lucide-react";
+import SkipassCTA from "./brand/SkipassCTA";
 export default function SkiPassModal({ onClose }) {
   const t = useTranslations("SkiPassModal");
   return (
@@ -38,14 +38,12 @@ export default function SkiPassModal({ onClose }) {
           {t("chooseADayPassOrReload_105a0b")}
         </p>
 
-        <button
+        <SkipassCTA variant="light"
           onClick={onClose}
-          className="mt-8 brand-cta brand-cta-primary"
+          className="mt-8"
         >
-          <SkiPassIcon />
           {t("viewPassOptions_85f56f")}
-          <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
-        </button>
+        </SkipassCTA>
       </div>
     </div>
   );

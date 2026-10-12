@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-12T10:42:44.701Z",
+  "exportedAt": "2026-10-12T13:00:30.165Z",
   "responses": {
     "content/leadership?locale=ka": [
       {
@@ -5781,13 +5781,21 @@
     "maps/bakuriani?locale=ka": {
       "id": "bakuriani",
       "mapId": "10000000-0000-0000-0000-000000000001",
-      "image": "/published-media/map-ac281e5243524bedb190a55f6f47638f.jpg",
-      "width": 8192,
-      "height": 7181,
-      "version": "516e72a9-9674-4565-9c9f-f9d79d4a5129",
+      "image": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.jpg",
+      "width": 3508,
+      "height": 2629,
+      "version": "d7274e77-dd14-41e2-8a40-0c092424b753",
       "placeholder": false,
       "managed": true,
-      "tiles": null,
+      "tiles": {
+        "width": 3508,
+        "height": 2629,
+        "baseUrl": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files",
+        "maxLevel": 12,
+        "tileSize": 512,
+        "previewUrl": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5-preview.webp",
+        "extension": "jpeg"
+      },
       "coordinateSystem": "image-pixels",
       "verified": true,
       "demo": false,
@@ -5807,12 +5815,12 @@
           "geometryKind": "line",
           "points": [
             [
-              5809.52,
-              1514.74
+              2381.328238406907,
+              554.553886645314
             ],
             [
-              2782.76,
-              2797.83
+              1273.2162707143852,
+              1024.2995502019216
             ]
           ],
           "anchorModes": [],
@@ -5825,7 +5833,7 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-10-06T05:56:54.981541+00:00"
+          "updatedAt": "2026-10-12T12:02:37.527253+00:00"
         },
         {
           "id": "67b78e82-2215-4cf8-8d8b-bda86b75db4c",
@@ -5833,20 +5841,20 @@
           "geometryKind": "line",
           "points": [
             [
-              3441.98,
-              2882.27
+              1514.5600083553823,
+              1055.2134563431277
             ],
             [
-              4013.41,
-              3632.81
+              1723.7633881075058,
+              1329.9899025205402
             ],
             [
-              4013.41,
-              3632.81,
-              4682.92,
-              3658.4,
-              3343.9,
-              3607.22
+              1723.7633881075058,
+              1329.9899025205402,
+              1968.8743461913382,
+              1339.3585294527225,
+              1478.6524300236736,
+              1320.621275588358
             ]
           ],
           "anchorModes": [],
@@ -5859,22 +5867,30 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-10-06T09:38:06.742834+00:00"
+          "updatedAt": "2026-10-12T12:02:37.527287+00:00"
         }
       ]
     },
     "maps/goderdzi?locale=ka": {
       "id": "goderdzi",
       "mapId": "10000000-0000-0000-0000-000000000004",
-      "image": "/maps/goderdzi-live-reference.jpg",
-      "width": 1961,
-      "height": 1455,
-      "version": "20000000-0000-0000-0000-000000000004",
-      "placeholder": true,
+      "image": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.jpg",
+      "width": 3508,
+      "height": 2631,
+      "version": "52cb1e9f-b35f-4419-a0d8-e3477e2499ea",
+      "placeholder": false,
       "managed": true,
-      "tiles": null,
+      "tiles": {
+        "width": 3508,
+        "height": 2631,
+        "baseUrl": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files",
+        "maxLevel": 12,
+        "tileSize": 512,
+        "previewUrl": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874-preview.webp",
+        "extension": "jpeg"
+      },
       "coordinateSystem": "image-pixels",
-      "verified": false,
+      "verified": true,
       "demo": false,
       "types": [
         {
@@ -5883,147 +5899,58 @@
           "icon": "trail",
           "color": "#168354",
           "geometryKind": "line"
-        },
-        {
-          "key": "lift",
-          "name": "საბაგირო",
-          "icon": "lift",
-          "color": "#246ac1",
-          "geometryKind": "line"
         }
       ],
       "features": [
         {
-          "id": "40000000-0000-0000-0000-000000000001",
-          "kind": "lift",
-          "geometryKind": "line",
-          "points": [
-            [
-              1048,
-              1120
-            ],
-            [
-              1090,
-              1048
-            ],
-            [
-              1188,
-              875
-            ],
-            [
-              1290,
-              694
-            ],
-            [
-              1404,
-              524
-            ]
-          ],
-          "anchorModes": [],
-          "label": null,
-          "name": "ზანკა",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "",
-          "liftType": "chairlift",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000002",
-          "kind": "lift",
-          "geometryKind": "line",
-          "points": [
-            [
-              1404,
-              524
-            ],
-            [
-              1412,
-              450
-            ],
-            [
-              1424,
-              292
-            ],
-            [
-              1436,
-              154
-            ]
-          ],
-          "anchorModes": [],
-          "label": null,
-          "name": "ჭანჭახი",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "",
-          "liftType": "chairlift",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000003",
+          "id": "fdfe2f36-5a9c-4764-a5fe-bd4afe114ab0",
           "kind": "trail",
           "geometryKind": "line",
           "points": [
             [
-              1404,
-              524
+              2576.5170153841736,
+              390.63814444339005
             ],
             [
-              1392,
-              757
+              2591.6604231920282,
+              504.2154360542366,
+              2650.3419949734334,
+              404.83536005261885,
+              2532.978851410623,
+              603.5955120558543
             ],
             [
-              1431,
-              1040
+              2510.2635230673486,
+              656.5981975935681,
+              2639.834549138431,
+              598.165496272212,
+              2400.4721917242123,
+              706.1108414814698
             ],
             [
-              1307,
-              1129
-            ],
-            [
-              1087,
-              1196
+              2510.2634147516032,
+              962.3105086074595,
+              2526.353393863195,
+              770.1755975201604,
+              2494.1734356400116,
+              1154.4454196947586
             ]
           ],
-          "anchorModes": [],
-          "label": null,
-          "name": "ზანკა",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "medium",
-          "liftType": "",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000004",
-          "kind": "trail",
-          "geometryKind": "line",
-          "points": [
-            [
-              1436,
-              154
-            ],
-            [
-              1399,
-              373
-            ],
-            [
-              1404,
-              524
-            ]
+          "anchorModes": [
+            "corner",
+            "smooth",
+            "smooth",
+            "smooth"
           ],
-          "anchorModes": [],
-          "label": null,
-          "name": "იაილა",
+          "label": {
+            "x": 2482.010131936396,
+            "y": 673.6812742386569,
+            "text": "იაილა",
+            "cutLine": true,
+            "pathPosition": 0.5474924772366702,
+            "gap": 37
+          },
+          "name": "Yaila",
           "description": "",
           "status": "unknown",
           "difficulty": "difficult",
@@ -6031,7 +5958,7 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
+          "updatedAt": "2026-10-12T12:53:41.776067+00:00"
         }
       ]
     },
@@ -6041,7 +5968,7 @@
       "image": "/maps/gudauri-clean.png",
       "width": 1183,
       "height": 1330,
-      "version": "bf947aaa-19ef-48f2-a6f7-a58d161ae2f7",
+      "version": "ccdac936-3dbe-47c3-b76c-110bd30310db",
       "placeholder": true,
       "managed": true,
       "tiles": null,
@@ -15569,13 +15496,21 @@
     "maps/bakuriani?locale=en": {
       "id": "bakuriani",
       "mapId": "10000000-0000-0000-0000-000000000001",
-      "image": "/published-media/map-ac281e5243524bedb190a55f6f47638f.jpg",
-      "width": 8192,
-      "height": 7181,
-      "version": "516e72a9-9674-4565-9c9f-f9d79d4a5129",
+      "image": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.jpg",
+      "width": 3508,
+      "height": 2629,
+      "version": "d7274e77-dd14-41e2-8a40-0c092424b753",
       "placeholder": false,
       "managed": true,
-      "tiles": null,
+      "tiles": {
+        "width": 3508,
+        "height": 2629,
+        "baseUrl": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files",
+        "maxLevel": 12,
+        "tileSize": 512,
+        "previewUrl": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5-preview.webp",
+        "extension": "jpeg"
+      },
       "coordinateSystem": "image-pixels",
       "verified": true,
       "demo": false,
@@ -15595,12 +15530,12 @@
           "geometryKind": "line",
           "points": [
             [
-              5809.52,
-              1514.74
+              2381.328238406907,
+              554.553886645314
             ],
             [
-              2782.76,
-              2797.83
+              1273.2162707143852,
+              1024.2995502019216
             ]
           ],
           "anchorModes": [],
@@ -15613,7 +15548,7 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-10-06T05:56:54.981541+00:00"
+          "updatedAt": "2026-10-12T12:02:37.527253+00:00"
         },
         {
           "id": "67b78e82-2215-4cf8-8d8b-bda86b75db4c",
@@ -15621,20 +15556,20 @@
           "geometryKind": "line",
           "points": [
             [
-              3441.98,
-              2882.27
+              1514.5600083553823,
+              1055.2134563431277
             ],
             [
-              4013.41,
-              3632.81
+              1723.7633881075058,
+              1329.9899025205402
             ],
             [
-              4013.41,
-              3632.81,
-              4682.92,
-              3658.4,
-              3343.9,
-              3607.22
+              1723.7633881075058,
+              1329.9899025205402,
+              1968.8743461913382,
+              1339.3585294527225,
+              1478.6524300236736,
+              1320.621275588358
             ]
           ],
           "anchorModes": [],
@@ -15647,22 +15582,30 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-10-06T09:38:06.742834+00:00"
+          "updatedAt": "2026-10-12T12:02:37.527287+00:00"
         }
       ]
     },
     "maps/goderdzi?locale=en": {
       "id": "goderdzi",
       "mapId": "10000000-0000-0000-0000-000000000004",
-      "image": "/maps/goderdzi-live-reference.jpg",
-      "width": 1961,
-      "height": 1455,
-      "version": "20000000-0000-0000-0000-000000000004",
-      "placeholder": true,
+      "image": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.jpg",
+      "width": 3508,
+      "height": 2631,
+      "version": "52cb1e9f-b35f-4419-a0d8-e3477e2499ea",
+      "placeholder": false,
       "managed": true,
-      "tiles": null,
+      "tiles": {
+        "width": 3508,
+        "height": 2631,
+        "baseUrl": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files",
+        "maxLevel": 12,
+        "tileSize": 512,
+        "previewUrl": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874-preview.webp",
+        "extension": "jpeg"
+      },
       "coordinateSystem": "image-pixels",
-      "verified": false,
+      "verified": true,
       "demo": false,
       "types": [
         {
@@ -15671,146 +15614,57 @@
           "icon": "trail",
           "color": "#168354",
           "geometryKind": "line"
-        },
-        {
-          "key": "lift",
-          "name": "Lift",
-          "icon": "lift",
-          "color": "#246ac1",
-          "geometryKind": "line"
         }
       ],
       "features": [
         {
-          "id": "40000000-0000-0000-0000-000000000001",
-          "kind": "lift",
-          "geometryKind": "line",
-          "points": [
-            [
-              1048,
-              1120
-            ],
-            [
-              1090,
-              1048
-            ],
-            [
-              1188,
-              875
-            ],
-            [
-              1290,
-              694
-            ],
-            [
-              1404,
-              524
-            ]
-          ],
-          "anchorModes": [],
-          "label": null,
-          "name": "Zanka",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "",
-          "liftType": "chairlift",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000002",
-          "kind": "lift",
-          "geometryKind": "line",
-          "points": [
-            [
-              1404,
-              524
-            ],
-            [
-              1412,
-              450
-            ],
-            [
-              1424,
-              292
-            ],
-            [
-              1436,
-              154
-            ]
-          ],
-          "anchorModes": [],
-          "label": null,
-          "name": "Chanchakhi",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "",
-          "liftType": "chairlift",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000003",
+          "id": "fdfe2f36-5a9c-4764-a5fe-bd4afe114ab0",
           "kind": "trail",
           "geometryKind": "line",
           "points": [
             [
-              1404,
-              524
+              2576.5170153841736,
+              390.63814444339005
             ],
             [
-              1392,
-              757
+              2591.6604231920282,
+              504.2154360542366,
+              2650.3419949734334,
+              404.83536005261885,
+              2532.978851410623,
+              603.5955120558543
             ],
             [
-              1431,
-              1040
+              2510.2635230673486,
+              656.5981975935681,
+              2639.834549138431,
+              598.165496272212,
+              2400.4721917242123,
+              706.1108414814698
             ],
             [
-              1307,
-              1129
-            ],
-            [
-              1087,
-              1196
+              2510.2634147516032,
+              962.3105086074595,
+              2526.353393863195,
+              770.1755975201604,
+              2494.1734356400116,
+              1154.4454196947586
             ]
           ],
-          "anchorModes": [],
-          "label": null,
-          "name": "Zanka",
-          "description": "",
-          "status": "unknown",
-          "difficulty": "medium",
-          "liftType": "",
-          "opens": "",
-          "closes": "",
-          "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
-        },
-        {
-          "id": "40000000-0000-0000-0000-000000000004",
-          "kind": "trail",
-          "geometryKind": "line",
-          "points": [
-            [
-              1436,
-              154
-            ],
-            [
-              1399,
-              373
-            ],
-            [
-              1404,
-              524
-            ]
+          "anchorModes": [
+            "corner",
+            "smooth",
+            "smooth",
+            "smooth"
           ],
-          "anchorModes": [],
-          "label": null,
+          "label": {
+            "x": 2482.010131936396,
+            "y": 673.6812742386569,
+            "text": "Yaila",
+            "cutLine": true,
+            "pathPosition": 0.5474924772366702,
+            "gap": 37
+          },
           "name": "Yaila",
           "description": "",
           "status": "unknown",
@@ -15819,7 +15673,7 @@
           "opens": "",
           "closes": "",
           "durationMinutes": null,
-          "updatedAt": "2026-09-29T11:36:38.05838+00:00"
+          "updatedAt": "2026-10-12T12:53:41.776067+00:00"
         }
       ]
     },
@@ -15829,7 +15683,7 @@
       "image": "/maps/gudauri-clean.png",
       "width": 1183,
       "height": 1330,
-      "version": "bf947aaa-19ef-48f2-a6f7-a58d161ae2f7",
+      "version": "ccdac936-3dbe-47c3-b76c-110bd30310db",
       "placeholder": true,
       "managed": true,
       "tiles": null,
@@ -20067,9 +19921,704 @@
       "sha256": "0c51712765fe9857bebbf3322c0c29be9fe0d1c8ba27e630974dd0e94b9e95cf"
     },
     {
-      "url": "/published-media/map-ac281e5243524bedb190a55f6f47638f.jpg",
-      "bytes": 3600071,
-      "sha256": "e5bfa2e3ddb8360ef4bb449a0195ec1ee87d95ad661de758172858873be37bb9"
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5-preview.webp",
+      "bytes": 903464,
+      "sha256": "fb6e04df32c4ccff49551fe26ed42936f4694907940d1e890b0a0f90139ced2d"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/0/0_0.jpeg",
+      "bytes": 268,
+      "sha256": "e979cd5a978734df9b81dabaf37fa6da6acac457aeaf4bb30468d4bb1e162e3f"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/1/0_0.jpeg",
+      "bytes": 301,
+      "sha256": "a89388ecf93ec74a9c239a03a670682898131c04c49e6c4034140f4335fc0d3d"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/10/0_0.jpeg",
+      "bytes": 96415,
+      "sha256": "5e6ed13204f6241ab55a9571a7472f4a62012318657632069477e5d33a931516"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/10/0_1.jpeg",
+      "bytes": 43513,
+      "sha256": "d3094e3a75cb4cc13ed46918c995fca8a3b7349682f5fef5ef4684c5a0041fcb"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/10/1_0.jpeg",
+      "bytes": 63923,
+      "sha256": "c7d06b29677340d113639c1be1c441c89daf13cd7e9d8d12959423da9c66291c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/10/1_1.jpeg",
+      "bytes": 31962,
+      "sha256": "267411f96a54f7bc311ac2da37c4a640dcff09a6df00ce9beeb9fb3727af798b"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/0_0.jpeg",
+      "bytes": 63845,
+      "sha256": "3f6a57a163f0ccb1e28a6d8f5597d62513fb8d2547479649a1da15ac2a4a8d0c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/0_1.jpeg",
+      "bytes": 131177,
+      "sha256": "b1795501ef4011854f8a84cefa07c1bb06b0f51b856f92bc7ad3fe04d23a344a"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/0_2.jpeg",
+      "bytes": 79128,
+      "sha256": "7d865ae0b19348110f2d294bff9c00da421cb7fd9dfe3292f62e1c4de9c95e6f"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/1_0.jpeg",
+      "bytes": 43357,
+      "sha256": "1b5ca122d64329bb4d0df40ff3d2472f4da988edd7b5e19c035a9be502d4c4a9"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/1_1.jpeg",
+      "bytes": 123487,
+      "sha256": "c7e7973ef307feacc3ff68840d01e731497b7a7a08727caf2cb879128dd08a18"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/1_2.jpeg",
+      "bytes": 83322,
+      "sha256": "689af29cd2a1dcf55b32e62e94883166048958f7ffe94e315ae14e05a2eeecd2"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/2_0.jpeg",
+      "bytes": 46518,
+      "sha256": "0dc56ca7806810f4ec856f025deccf35fa358678856561dfedcc76d8612153cf"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/2_1.jpeg",
+      "bytes": 113259,
+      "sha256": "1e61b0f036d19f34b30189bcffcdd4afa0a586ff6523546031605699b1b8f9f6"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/2_2.jpeg",
+      "bytes": 86511,
+      "sha256": "96d2c807938094cb4f017a589a5568bd61923392a5de20f531bfe0a4fb41f120"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/3_0.jpeg",
+      "bytes": 20573,
+      "sha256": "2713f0997d29c35449bb98cd86e5dddf09332438dfe01da1fb6d4db57ccdc3fd"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/3_1.jpeg",
+      "bytes": 59513,
+      "sha256": "3b179604c9e176033f5166d24afe9304896239ad84462dd6384a3abe175345c1"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/11/3_2.jpeg",
+      "bytes": 35712,
+      "sha256": "6ff1216a2f040541fca309d122bc949aaf48f39503e819562fa4d9ec74b20313"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_0.jpeg",
+      "bytes": 8941,
+      "sha256": "680109993a4a678ac8eb6cce5480f89b86597e8a7ba04b4f64b737b2a630b84c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_1.jpeg",
+      "bytes": 104468,
+      "sha256": "bab85a7c0c40b28a91195ebe831a90342a7dc4ba0ccf56f35d9f9c5a8ea9ab04"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_2.jpeg",
+      "bytes": 87936,
+      "sha256": "984b16c5d557ff8fd87c2a2527d2b4db936f305ea31061bd56594201afcd0745"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_3.jpeg",
+      "bytes": 154190,
+      "sha256": "7c047f3575179d8f65f354a55624df196b3aab9f6827a5c575ca20335b06626e"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_4.jpeg",
+      "bytes": 112367,
+      "sha256": "cce5b0d5d0f6f91aeb402a453f51456949395c541b53d9fa580854916ed88a87"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/0_5.jpeg",
+      "bytes": 16452,
+      "sha256": "ffbcc2cc2a058700ca7b120383595c7acb6d9e7592ef3d7bef1d383db820daab"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_0.jpeg",
+      "bytes": 12946,
+      "sha256": "0e8f63c29ca6e9c4ac0942b59475533ddd7484fcbd0d2af068d362f345e13517"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_1.jpeg",
+      "bytes": 86347,
+      "sha256": "2ffa8933f28fa41f24fc963b753a729b51f6fbfd5d0c5c8786c864377f1704db"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_2.jpeg",
+      "bytes": 100236,
+      "sha256": "b1d87f590262a7062699859cb860b80b81f28ae2068ed4946b6f4796cdfc936b"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_3.jpeg",
+      "bytes": 132359,
+      "sha256": "254df3053e80a568474e1f6d1721e7e0ca3c7c6570fee54aa6ada35e99e0ffb2"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_4.jpeg",
+      "bytes": 127565,
+      "sha256": "202d2b79da343f8525f1e316ebfa4a3d908a39c1ed562b13a2aef2eaa763f233"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/1_5.jpeg",
+      "bytes": 18309,
+      "sha256": "7c5976109825aab7bd6c6de91d70fe5eae4bd2c0edf625ed1e298c6ac20da8da"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_0.jpeg",
+      "bytes": 21690,
+      "sha256": "d2b71787e4316da8a7ee99a350dd8124e443f88dc5a6eae5fe240f477e0c1b33"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_1.jpeg",
+      "bytes": 47087,
+      "sha256": "e67ac36a10179ceb36ce99284176fdbd58b6465861bc65249d5055e5407cdaf2"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_2.jpeg",
+      "bytes": 113916,
+      "sha256": "aecf1a39fad18d9c71476d277c0f1f7411ec7aec6e61a48001bb4aea5c0c2e94"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_3.jpeg",
+      "bytes": 124656,
+      "sha256": "56007702efa0386176d5cabc7c1033ea4a7fd4c90b98751e3bde786942f639d9"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_4.jpeg",
+      "bytes": 134009,
+      "sha256": "80b2f5fcf1a8e7113262bff77fa006e8f691d1c34a377e8c66bafc5fd9e6b220"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/2_5.jpeg",
+      "bytes": 12043,
+      "sha256": "a6df351c5d8a24867412cc0a927d56e1c0c0013f608292becf30b863a6d09c03"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_0.jpeg",
+      "bytes": 28907,
+      "sha256": "7466539bac9a65853f5d41cb57e02111d363efb25e045043f4b5d6cf864b73b2"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_1.jpeg",
+      "bytes": 32329,
+      "sha256": "3a1c76c310c6457242ef3c56402dd538c61e8d0dc8468c05463c494bae8e829c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_2.jpeg",
+      "bytes": 95869,
+      "sha256": "40355d30a73313ecfbf659ade31da51681ce4577d5e8070d1ae5539ec59f4b95"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_3.jpeg",
+      "bytes": 98504,
+      "sha256": "3a816d81fa1b8054d8b5b649f0393b47aeb515c24138651f75db23e669e1a343"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_4.jpeg",
+      "bytes": 136939,
+      "sha256": "a9d1bb10d7e6069402908d8f3e3f9c901dfda4fb270d561ccb35ba9c2fedb65c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/3_5.jpeg",
+      "bytes": 18983,
+      "sha256": "b51cf613161eed83ca26e48372d06f144c7cee4f128691c05d0031852b9944aa"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_0.jpeg",
+      "bytes": 22945,
+      "sha256": "6b883547c94d6af8e03610287c63839c801728341bb3d3f026bbeeefa2a79dab"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_1.jpeg",
+      "bytes": 39308,
+      "sha256": "fa264b965a61d67314bac137aa6602e9fd3acb105875e897b7e542e1460a89b4"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_2.jpeg",
+      "bytes": 93532,
+      "sha256": "fed618967a97c041c20eebb1eee818809498f13c692cb2ab8c8cf06626e9a2d8"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_3.jpeg",
+      "bytes": 84232,
+      "sha256": "bfaa19ba679357556917102265d191ab19c7d8da101212d93e4c0a18a155f369"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_4.jpeg",
+      "bytes": 141630,
+      "sha256": "19bf54c0918299fb1e0702b448e2af1dd75b1f1f799efde8714a2717591788bb"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/4_5.jpeg",
+      "bytes": 19919,
+      "sha256": "54b164e9f3f60949607a5ccbfc7a13bf1245ab18caf3ea01bb84732b2e871ca3"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_0.jpeg",
+      "bytes": 17009,
+      "sha256": "d5c9c2877904bbdd347f5a1e657a3b6a97506aa04e5b6cc7f2f132dac8ebdb5c"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_1.jpeg",
+      "bytes": 58828,
+      "sha256": "84d05b83ea518024c3bcc3db4da175202bb71b1f8682e3b40f0b74b76a5853ce"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_2.jpeg",
+      "bytes": 127429,
+      "sha256": "0e0085b06b65e2f0f0aa10acc0cb814a2b0f62525e6fbae2a89a545321a5c690"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_3.jpeg",
+      "bytes": 84954,
+      "sha256": "e6ed57f368bd5e3f17cd9a72d8408989d54d6632b3d04eb894e8df827ef46646"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_4.jpeg",
+      "bytes": 138171,
+      "sha256": "891e5bc302ac01a721a912ca56885475818a6a27aa18c2138d442bb87408aaea"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/5_5.jpeg",
+      "bytes": 18230,
+      "sha256": "cf2f68d0d4b00d6b294fa29a6bd50125d1866e857cbda6fb24f54da620157753"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_0.jpeg",
+      "bytes": 19035,
+      "sha256": "1df4b1b7c5b3725dda71f51728984d337863ba3f340870764f90fe4be639f2f6"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_1.jpeg",
+      "bytes": 43956,
+      "sha256": "a7ca75631d0e00312c58f3054bd1fcf6f6118fe0fb5c8dc944eae87b5f1d396d"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_2.jpeg",
+      "bytes": 107190,
+      "sha256": "4cde9cd0392099fd7b233460c33b24a7717491bab7ca292cf585f5fd7ed65795"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_3.jpeg",
+      "bytes": 115615,
+      "sha256": "b92618d78b368fa81483a6c22be518348e45a2f7f31303c124342fe8ed0ff0b3"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_4.jpeg",
+      "bytes": 112509,
+      "sha256": "d2e045d669b087e27f9ec991a83728d6a230369e4a6360d6edef6389d0a67008"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/12/6_5.jpeg",
+      "bytes": 16413,
+      "sha256": "e0bf1ef5679f3755ca5446767ae440174b3a065ba8ce4c9e2e6ee8ecda9a4370"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/2/0_0.jpeg",
+      "bytes": 319,
+      "sha256": "f0e90d86bd0eb030dcff20a0210644cf8bc0ffc37de986c18dad99a8402d2a31"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/3/0_0.jpeg",
+      "bytes": 328,
+      "sha256": "51cd1d8b7c0d309c7386f2ad667176eea3991eacf5409b8772bcec5ed945bc85"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/4/0_0.jpeg",
+      "bytes": 432,
+      "sha256": "935723f25eb6d855acc143743ad0cfaad040231826cfcd9ee7c8c8acc8ac2c8d"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/5/0_0.jpeg",
+      "bytes": 749,
+      "sha256": "ce6eca368d73bec3eef03eb85e4c72f09f84695644edf33537b76af8acc77f13"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/6/0_0.jpeg",
+      "bytes": 1734,
+      "sha256": "6936edada3317778a63715772730704916457a4912e9210875ad3d2a26d941ab"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/7/0_0.jpeg",
+      "bytes": 5059,
+      "sha256": "c371a470d166d0d09536fce9656c486a67d0174059e4baa394a962d66a14b648"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/8/0_0.jpeg",
+      "bytes": 16988,
+      "sha256": "30c796ebee18c455e3b32e161b61c7481c905bd1be2301191a9efb43c1fea875"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.dzi_files/9/0_0.jpeg",
+      "bytes": 61814,
+      "sha256": "6bd27e97036c217a077b4873c62fa4acedc4ac02bcac8c07850bb02cf4545a1e"
+    },
+    {
+      "url": "/published-media/map-2c3310a9fe0d4476b5d616c6207464d5.jpg",
+      "bytes": 3394467,
+      "sha256": "2d5f766fb2dcfd896f474322a3a42b2e059b0a2f0daf448e9aa141bccadcda4c"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874-preview.webp",
+      "bytes": 930418,
+      "sha256": "d2c752c9595ad3a721a6ac4cc670951060005da6c6101d906249ae844a347ef9"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/0/0_0.jpeg",
+      "bytes": 268,
+      "sha256": "822e9a366272e1c69e4af187d8686c16efd1237bf27a13256d15df852dc7344d"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/1/0_0.jpeg",
+      "bytes": 301,
+      "sha256": "038126d34282fbe396cf35cb7bdd3484615e2b57233bedbab20ec27543a61c77"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/10/0_0.jpeg",
+      "bytes": 98675,
+      "sha256": "c368ebcc17ad1479141297cd7faa930135701cc99e5e834f96813c0961560cae"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/10/0_1.jpeg",
+      "bytes": 44558,
+      "sha256": "02113be6562115a308a1c98e1e3bebde9d08aaa4a2b92e571528605943d926f1"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/10/1_0.jpeg",
+      "bytes": 72634,
+      "sha256": "3ff64162996949c7fb303888ab7a6c0e54374e5033ec381b6b2c59b37347a0d7"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/10/1_1.jpeg",
+      "bytes": 31980,
+      "sha256": "986a7002219480a8be7c7e8db75b7aefa7cdb2bf0436cf12541b5d5bf6fe7731"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/0_0.jpeg",
+      "bytes": 64446,
+      "sha256": "6664de0bdbdc172ec0a3cf6a1ac73fabfb526f3d24e36c8caf8d8435aa957f83"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/0_1.jpeg",
+      "bytes": 131234,
+      "sha256": "9ddcdfe85e4de546d9776b249a1ba68b4d91358dd6baa9ea3137536f9db308a5"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/0_2.jpeg",
+      "bytes": 79566,
+      "sha256": "80a62b41acf6aaf892862a319c615f71de3876fdaa81e5fb514d9156122c00a8"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/1_0.jpeg",
+      "bytes": 45525,
+      "sha256": "3b4ac2fb5eef54c4a9c501e738e294e8023453192c45030eb61dbf5da9f83128"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/1_1.jpeg",
+      "bytes": 127525,
+      "sha256": "15d3aba0b7aaf4fd25e48db3761f9a54838d00fed7ef19e46efff0bb94759dd5"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/1_2.jpeg",
+      "bytes": 86382,
+      "sha256": "babee243b59296b610e025b81d7dd92b228c161b46c6b86a578c78bf3340a031"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/2_0.jpeg",
+      "bytes": 63455,
+      "sha256": "b257244346e492427d3a2ee267cc49da51bb819e1f4c5c7f290fc02e9b9ba296"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/2_1.jpeg",
+      "bytes": 120523,
+      "sha256": "053ca10a2bd84c4bad992f73e9809d3927ff2756692e8000075cdbf52cd8300e"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/2_2.jpeg",
+      "bytes": 86825,
+      "sha256": "0e3ecfe0bc1f437a3e5f0354c669f0995976c7eda13dcc7d075ead0be4b25ca8"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/3_0.jpeg",
+      "bytes": 20545,
+      "sha256": "0765e04a0503baa2781da758ccfcae1b9adae7c2489785c26c709d86299f6c32"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/3_1.jpeg",
+      "bytes": 59655,
+      "sha256": "97a777345c69d70bf7ee3127d764318480a979ecab69b5e3bbc8a869aeea0e08"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/11/3_2.jpeg",
+      "bytes": 35811,
+      "sha256": "c436985c22eab0c7440cc958b96e4cb2ba11951b2daedab5c5c9737a136651d0"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_0.jpeg",
+      "bytes": 9123,
+      "sha256": "7338241a44af429a86a96cddb66d1c6cfeb0f05e6d4a97cc9a6a49f652f209fa"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_1.jpeg",
+      "bytes": 105561,
+      "sha256": "48115597c7d1efe43b73a153126565602a776ee143a1b5562426bff484191db0"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_2.jpeg",
+      "bytes": 88705,
+      "sha256": "19e4ac0e1f255e71c56ee378e6db27b22cce8d310f222897301f864bdc1f3188"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_3.jpeg",
+      "bytes": 155675,
+      "sha256": "a7814d8b8da2fea8fc11b78d08fc9035b1d295fb7d38e6670b614e82186eb405"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_4.jpeg",
+      "bytes": 113482,
+      "sha256": "cc5c9aa98965615a49c81d25e6123df03ae15dc6eebea0baef6d6414ab96e1b1"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/0_5.jpeg",
+      "bytes": 16702,
+      "sha256": "4ad3d9f7b28e17279ed6ffa6b8378003fcaedaa22d47cf32422edeedf0bf15ba"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_0.jpeg",
+      "bytes": 13171,
+      "sha256": "609ad8f1b639f4419faed0cf18e00614b38eff25d510c3fc6b0b01cf0c4c476a"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_1.jpeg",
+      "bytes": 88214,
+      "sha256": "58ab2bd93302ca35d7d584656c4c5ffcc2ac229c612693d6bf8656a60133169c"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_2.jpeg",
+      "bytes": 101334,
+      "sha256": "c529a4839b2bca6250700db7f8739da67c4429490ab0bfce77601ba013fb6a28"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_3.jpeg",
+      "bytes": 133617,
+      "sha256": "e3a95764c208df09e5c5abbc07776077132a5f8009aa4e63676dd9d9e6c0e848"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_4.jpeg",
+      "bytes": 129338,
+      "sha256": "e80d30a1f5255ad908323eac457367f0baf94738ef98ed4b0ee72988cf7e52ff"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/1_5.jpeg",
+      "bytes": 18591,
+      "sha256": "f7fe48a1b6c3119efc41969f30413baeb14134113d169cd1e5f1966a450b261c"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_0.jpeg",
+      "bytes": 22035,
+      "sha256": "68bd22dd93321319ba034157c76f7fb2315ae562968c9155bfaabac9704845f2"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_1.jpeg",
+      "bytes": 51736,
+      "sha256": "184e6584540c887bf0d4f3bc831d1ec339123f5def319df754f3367e139d42e1"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_2.jpeg",
+      "bytes": 115403,
+      "sha256": "1415916f23afbd1b169c78f53ef0247dd4667a7c1ff20bde94a55e0a18d1a440"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_3.jpeg",
+      "bytes": 128044,
+      "sha256": "5096418927e5cd20eeea8a286861a040dde7263bfac25ec0c6558049bd1b189e"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_4.jpeg",
+      "bytes": 135577,
+      "sha256": "7bd024292c6933acab09d295546b9ce44a01b300aed0973747ce45c17a69e17a"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/2_5.jpeg",
+      "bytes": 12217,
+      "sha256": "9a7f5a73c6075f9a99389855de29ee448feae5795598920c978047a8ea847b0b"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_0.jpeg",
+      "bytes": 29172,
+      "sha256": "faf65695f783b323b366ee58b387887712ef423fe224b0e8de3d6f9985a43d36"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_1.jpeg",
+      "bytes": 34777,
+      "sha256": "8f3f82c6d046348db1b2ce1916e279128ee75583064cb8933950e7bfbbd2c7c6"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_2.jpeg",
+      "bytes": 96863,
+      "sha256": "b28983330a246f87820627bc0332c69476d1386a1064c3561fd5a046ab2f9380"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_3.jpeg",
+      "bytes": 108888,
+      "sha256": "21c49f1c1e987944f31fae32bdcc66f6b12ea88d3d6f24bb49ff48751f99ced8"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_4.jpeg",
+      "bytes": 142801,
+      "sha256": "2f83182384c4e82ceb958b284075d27cf5bb6d88ca57196b0c4bad549228349d"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/3_5.jpeg",
+      "bytes": 19316,
+      "sha256": "dd27602117d7f5de6f9a5a1c818baaf09f8e4c041eaa741f976fb7da11cc5e24"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_0.jpeg",
+      "bytes": 28251,
+      "sha256": "a4c1fbcf91e7110cd576f795d8e92505138abf17d8ab37cdc54369751658e0b4"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_1.jpeg",
+      "bytes": 65379,
+      "sha256": "09a20b1dab4bf11b5976ce7ef52739e3e3ffa74aaf46b5f95b7dae84ed11aed1"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_2.jpeg",
+      "bytes": 107191,
+      "sha256": "c50e1b71339009d3d3859d5eb7811c6923d35b53d5e7b8112b7fe5baa0188cec"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_3.jpeg",
+      "bytes": 90865,
+      "sha256": "cfafecdfeca9511bbdb4c8f1b39d581534b286b401d79ceb3eb43e369e1e8796"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_4.jpeg",
+      "bytes": 142984,
+      "sha256": "4481d01d245c735463c1532e0e2f21482ec933f808fb2741064179c094e89f9e"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/4_5.jpeg",
+      "bytes": 20295,
+      "sha256": "82785588871a830c5064b1267156633e4b61aafdfda353e2a4175818ac45d9c3"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_0.jpeg",
+      "bytes": 27462,
+      "sha256": "ac57f6d54025e927a9a980f7caf0172f8ad007e680c05129e06bfedf7caf3012"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_1.jpeg",
+      "bytes": 64236,
+      "sha256": "223c2e5d43fee61e014db220ad8fc5502e4c42a2652f678f6a4c1e6d93d114a9"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_2.jpeg",
+      "bytes": 128997,
+      "sha256": "a0f1887a533bb7a375b098d33accca74ef352b8ce08ba8bf19f4d4708208d286"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_3.jpeg",
+      "bytes": 86859,
+      "sha256": "b10cfc6e9e5ae51db14521ae62e7b2928b2bb7ec30d806c843c42bebb7993368"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_4.jpeg",
+      "bytes": 139686,
+      "sha256": "fcb935680f89f00e903b262cba7143f5e946c63ad4b8f5d898f161f74721ba72"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/5_5.jpeg",
+      "bytes": 18592,
+      "sha256": "fab527f4cfdcb7ffdb749afff62037abb39ab7ddf6eb8ef9cbb0b3b74ff07b64"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_0.jpeg",
+      "bytes": 19416,
+      "sha256": "f031b9314625b2636296c4052d4dde30ef78ee5ed37f59d4fa80d9070d2cd51c"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_1.jpeg",
+      "bytes": 44028,
+      "sha256": "ecf1024c00ac872523cd8d5bfd60fd22d1a0b20728ca9c22e98b97705ad0a11c"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_2.jpeg",
+      "bytes": 108597,
+      "sha256": "7923f0d7ea105c95bf07c9928919e9675dce347ca8ff983d4d2d27c9a48ec245"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_3.jpeg",
+      "bytes": 116929,
+      "sha256": "885471ebef6b3d893e5b800c603c61dda07b17b9ef573f4e85fa258955831012"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_4.jpeg",
+      "bytes": 113790,
+      "sha256": "fe0b495082da5a25b61560bf013cf573e928b9cbe68b1ec2e52d0d4f60add76f"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/12/6_5.jpeg",
+      "bytes": 16712,
+      "sha256": "f975e6f4cc62c10a7fca00164c9aaa6dc0e67f8627f5830504b9a43241ceeb0a"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/2/0_0.jpeg",
+      "bytes": 316,
+      "sha256": "1ba940b750f060fa3ff257f74b4384c8f99fd00c279cff686ad8d6d04972b3ac"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/3/0_0.jpeg",
+      "bytes": 328,
+      "sha256": "a15987da022d573b7b05f889067a362c58edb5f97b384c56e44bae63afc5534d"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/4/0_0.jpeg",
+      "bytes": 430,
+      "sha256": "457a19a4284c62dd82617982cd69a03f619d09aca6dec3447f1eff28bc4fd07a"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/5/0_0.jpeg",
+      "bytes": 748,
+      "sha256": "6d2e2fc4c7e1516a9b5ca7dc2244b864227cb7a54444b558d5aa887186d133e6"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/6/0_0.jpeg",
+      "bytes": 1764,
+      "sha256": "3b92c3b0d91572bd161c6c8873db1c9fa842a818caa863364343bd7a5d5b94bc"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/7/0_0.jpeg",
+      "bytes": 5210,
+      "sha256": "73b5182f638815483317d69acf59eb014f6f9fcc257f4109b5545b434259e839"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/8/0_0.jpeg",
+      "bytes": 17869,
+      "sha256": "d537ab0ca04f974486154284dbbadaaf509d7ca45a0b88a407f4f38930b7a714"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.dzi_files/9/0_0.jpeg",
+      "bytes": 65463,
+      "sha256": "6d4d560d647cc8c0c60d5cadd2958270aff0a23e51d997693265003e968290ee"
+    },
+    {
+      "url": "/published-media/map-cfbe5eb4ea7c478f9f574405742d3874.jpg",
+      "bytes": 5056505,
+      "sha256": "d01e09b3d246aa946ce8450b7ec6ea4e64727d89fd8b1d1f674b037b38211407"
     }
   ]
 }

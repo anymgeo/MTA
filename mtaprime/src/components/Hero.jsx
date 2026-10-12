@@ -3,11 +3,10 @@ import Image from '@/components/media/SiteImage';
 import ResortIcon from "./brand/ResortIcon";
 import MountainAccent from "./brand/MountainAccent";
 import SnowOverlay from "./SnowOverlay";
-import SkiPassIcon from "./brand/SkiPassIcon";
+import SkipassCTA from "./brand/SkipassCTA";
 
 import { useTranslations } from "next-intl";
 import {
-  ArrowRight,
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
@@ -69,14 +68,11 @@ export default function Hero({
 
           {/* BUTTONS */}
           <div className="mt-8 flex flex-wrap gap-3">
-            <button
+            <SkipassCTA
               onClick={() => setModal("pass")}
-              className="brand-cta brand-cta-primary"
             >
-              <SkiPassIcon />
               {t("buySkiPass_f7fcbe")}
-              <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
-            </button>
+            </SkipassCTA>
 
             <Link
               href="/resorts"

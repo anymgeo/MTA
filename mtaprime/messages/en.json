@@ -1,5 +1,6 @@
 {
   "Infrastructure": {
+    "weekendHours": "Weekend winter hours",
     "name": "Name", "type": "Type", "area": "Ski area", "duration": "Maximum ride time", "hours": "Winter hours", "details": "Details", "weekends": "Weekends",
     "length": "Length", "capacity": "Capacity (as supplied)", "stationElevations": "Lower / upper station elevations", "durationMin": "Minimum ride time", "durationMax": "Maximum ride time", "notes": "Source notes",
     "difficulty": "Difficulty", "difficultySource": "Source difficulty", "accessLifts": "Access lifts", "snowmaking": "Snowmaking coverage", "expert": "Expert / black", "mixed": "Mixed difficulty", "unknown": "To be confirmed", "trail": "Ski trail",

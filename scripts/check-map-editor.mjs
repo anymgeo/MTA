@@ -57,8 +57,11 @@ try {
   imageForm.set('file', new Blob([imageBytes], { type: extension === 'png' ? 'image/png' : extension === 'webp' ? 'image/webp' : 'image/jpeg' }), 'map.'+extension);
   imageForm.set('version', map.version);
   response = await admin(`/api/admin/maps/${map.id}/image-upload`, { method: 'POST', body: new Blob([imageBytes],{type:extension==='png'?'image/png':extension==='webp'?'image/webp':'image/jpeg'}),headers:{'X-Map-Version':map.version} });
-  assert.equal(response.status, 200, 'Map image upload and save succeeds in one request');
-  map = await response.json();
+  assert.equal(response.status, 200, 'Map image upload prepares a non-destructive preview');
+  const pending=(await response.json()).pendingImage;
+  assert.equal((await (await admin(`/api/admin/resorts/${resort.id}/map`)).json()).imageUrl,map.imageUrl,'Preparation does not mutate the live map');
+  response=await admin(`/api/admin/maps/${map.id}/image-replacement`,{method:'POST',body:{version:map.version,token:pending.token,alignment:{scaleX:1,scaleY:1,rotation:0,offsetX:0,offsetY:0},alignmentConfirmed:true}});
+  assert.equal(response.status,200,'Confirmed image and geometry save together');map=await response.json();
   assert.match(map.imageUrl, /^\/media\/map-[a-f0-9]{32}\.(jpg|png|webp)$/, 'Saved map uses managed media URL');
   assert.equal(map.width, referenceWidth, 'Reference width remains unchanged');
   assert.equal(map.height, referenceHeight, 'Reference height remains unchanged');
@@ -114,7 +117,9 @@ try {
 } finally {
   if (didUpload&&originalMap?.imageUrl.startsWith('/media/map-')) {
     const current = await (await admin(`/api/admin/resorts/${originalMap.resortId}/map`)).json();
-    await admin(`/api/admin/maps/${current.id}/image`, {method:'PUT',body:{imageUrl:originalMap.imageUrl,width:originalMap.width,height:originalMap.height,version:current.version}});
+    const prepared=await admin(`/api/admin/maps/${current.id}/image`, {method:'PUT',body:{imageUrl:originalMap.imageUrl,width:originalMap.width,height:originalMap.height,version:current.version}});
+    assert.equal(prepared.status,200);const pending=(await prepared.json()).pendingImage;
+    const restored=await admin(`/api/admin/maps/${current.id}/image-replacement`,{method:'POST',body:{version:current.version,token:pending.token,alignment:{scaleX:1,scaleY:1,rotation:0,offsetX:0,offsetY:0},alignmentConfirmed:true}});assert.equal(restored.status,200);
   }
   if (feature) {
     const resorts = await (await admin('/api/admin/resorts')).json();

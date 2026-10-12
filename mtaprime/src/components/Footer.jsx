@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import SkiPassIcon from "./brand/SkiPassIcon";
+import { ArrowUpRight } from "lucide-react";
+import SkipassCTA from "./brand/SkipassCTA";
 import SocialIcon from './content/SocialIcon';
 export default function Footer({ setModal, settings }) {
   const t = useTranslations("Footer");
@@ -20,14 +20,12 @@ export default function Footer({ setModal, settings }) {
             <p className="mt-4 max-w-sm text-sm leading-6 text-canvas/55">
               {t("georgiaMountainTrailsYourStartingPoint_43bd70")}
             </p>
-            <button
+            <SkipassCTA
               onClick={() => setModal("pass")}
-              className="mt-7 brand-cta brand-cta-primary"
+              className="mt-7"
             >
-              <SkiPassIcon />
               {t("buySkiPass_8f7678")}
-              <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
-            </button>
+            </SkipassCTA>
           </div>
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[.2em] text-canvas/40">

@@ -1,11 +1,22 @@
 using System.Diagnostics;
 using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
 namespace Mta.Api;
 
 public static class MapImageStorage
 {
+    // Read compatibility for pyramids made by the previous .dzi/.jpg naming bug.
+    // Only resolve their real derived-file URL; original images/geometry/versions stay untouched.
+    public static JsonElement ResolveTiles(string json) {
+        var node=JsonNode.Parse(json);
+        if(node is JsonObject data&&data["extension"]==null&&data["baseUrl"]?.GetValue<string>() is {} url&&Regex.IsMatch(url,@"^/media/map-[a-f0-9]{32}_files$")){
+            data["baseUrl"]=url[..^6]+".dzi_files";data["extension"]="jpeg";
+        }
+        return JsonSerializer.SerializeToElement(node);
+    }
     public static string Root(IConfiguration config,IWebHostEnvironment env)=>Path.GetFullPath(config["StoragePath"]??Path.Combine(env.ContentRootPath,"storage"));
     public static object? Tiles(string imageUrl,IConfiguration config,IWebHostEnvironment env) {
         var path=Path.Combine(Root(config,env),"media",Path.GetFileNameWithoutExtension(imageUrl)+".tiles.json");

@@ -1,12 +1,5 @@
 .ski-pass-icon { display:inline-block; width:27px; height:20px; flex-shrink:0; vertical-align:middle; background:currentColor; mask:url('/brand/ski-pass.svg') center / contain no-repeat; }
 .brand-cta { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:52px; padding:15px 27px; border:1px solid transparent; border-radius:999px; font-size:12px; font-weight:750; letter-spacing:.06em; transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s; }
-.brand-cta-primary { min-height:64px; padding:20px 28px; gap:16px; border-radius:4px; background:#d52f32; color:#fff; border-color:transparent; box-shadow:none; text-transform:uppercase; letter-spacing:.065em; }
-.brand-cta-primary:hover { background:#bd2428; color:#fff; border-color:transparent; box-shadow:none; transform:translateY(-2px); }
-.brand-cta-primary .skipass-cta-arrow { margin-left:24px; width:18px; height:18px; flex-shrink:0; }
-.brand-cta-primary:hover .skipass-cta-arrow { transform:translateX(4px); }
-.brand-cta-primary:hover .ski-pass-icon { transform:none; }
-.brand-cta-primary.brand-cta-compact { min-height:40px; padding:10px 14px; gap:9px; }
-.brand-cta-primary.brand-cta-compact .skipass-cta-arrow { margin-left:3px; width:14px; height:14px; }
 .brand-cta .ski-pass-icon,.brand-cta svg { transition:transform .2s; }
 .brand-cta:hover .ski-pass-icon { transform:rotate(-5deg); }
 .brand-cta:hover svg { transform:translate(2px,-2px); }
@@ -14,8 +7,27 @@
 .brand-cta-secondary:hover { color:#040707; background:#fff; border-color:#30C4EB; }
 .brand-cta:active { transform:scale(.98); }
 .brand-cta:focus-visible,.site-nav-label:focus-visible,.site-nav-child:focus-visible,.site-nav-intro:focus-visible { outline:2px solid #30C4EB; outline-offset:5px; }
-.brand-cta-compact { min-height:36px; padding:8px 14px; font-size:11px; gap:8px; }
-.brand-cta-compact .ski-pass-icon { width:22px; height:17px; }
+/* Premium conversion CTA: charcoal in both seasons; the accent alone changes. */
+.skipass-cta { --pass-accent:#a9e4f4; --pass-focus:var(--pass-accent); position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; gap:16px; min-height:64px; max-width:100%; padding:18px 29px; overflow:hidden; border:1px solid #ffffff60; border-radius:999px; background:linear-gradient(145deg,#17262d,#101a1f 75%); color:#f7fafb; font-size:13px; font-weight:650; line-height:1.5; letter-spacing:.055em; text-transform:uppercase; text-decoration:none; box-shadow:0 0 22px color-mix(in srgb,var(--pass-accent) 9%,transparent); transition:transform 250ms ease; }
+.skipass-cta[data-season="summer"] { --pass-accent:#a5e3bb; }
+.skipass-cta::before { content:""; position:absolute; inset:1px; border:1px solid color-mix(in srgb,var(--pass-accent) 24%,transparent); border-radius:inherit; pointer-events:none; }
+.skipass-cta::after { content:""; position:absolute; z-index:0; inset:-50%; pointer-events:none; background:linear-gradient(110deg,transparent 34%,color-mix(in srgb,var(--pass-accent) 14%,transparent) 50%,transparent 66%); opacity:0; transform:translateX(-65%); }
+.skipass-cta > span { position:relative; z-index:1; }
+.skipass-cta__icon,.skipass-cta__arrow { display:inline-flex; flex-shrink:0; align-items:center; color:var(--pass-accent); transition:transform 250ms ease; }
+.skipass-cta__arrow { margin-left:12px; }
+.skipass-cta__label { min-width:0; overflow-wrap:anywhere; text-align:center; }
+html[lang="ka"] .skipass-cta { letter-spacing:.015em; font-size:13px; }
+.skipass-cta--light { --pass-focus:#246b84; border-color:#101a1f; }
+.skipass-cta--light[data-season="summer"] { --pass-focus:#216742; }
+.skipass-cta--compact { flex-shrink:0; min-height:48px; padding:11px 17px; gap:10px; font-size:11px; }
+.skipass-cta--compact .skipass-cta__label { white-space:nowrap; }
+html[lang="ka"] .skipass-cta--compact { font-size:11px; }
+.skipass-cta--compact .ski-pass-icon { width:25px; height:19px; }
+.skipass-cta--compact .skipass-cta__arrow { margin-left:2px; }
+@media(hover:hover) { .skipass-cta:hover { transform:translateY(-2px); } .skipass-cta:hover::after { animation:skipass-shine 650ms ease-out both; } .skipass-cta:hover .skipass-cta__arrow { transform:translateX(4px); } .skipass-cta:hover .skipass-cta__icon { transform:rotate(-7deg) translateY(-1px); } }
+.skipass-cta:active { transform:scale(.98); }
+.skipass-cta:focus-visible { outline:3px solid var(--pass-focus); outline-offset:4px; }
+@keyframes skipass-shine { 0% { opacity:0; transform:translateX(-65%); } 25% { opacity:1; } 100% { opacity:0; transform:translateX(65%); } }
 .site-nav-group { position:relative; }
 .site-nav-label { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; white-space:nowrap; transition:color .2s; }
 .site-nav-label:hover { color:#30C4EB; }
@@ -35,8 +47,10 @@
 .site-nav-child[aria-disabled] { opacity:.55; }
 .mobile-nav-utilities,.small-phone-season { display:none; }
 @keyframes nav-panel-in { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
-@media(min-width:1440px) { .site-nav-panel { position:absolute; top:100%; left:0; z-index:60; min-width:210px; } .site-nav-panel-today,.site-nav-panel-resorts { width:340px; } }
+@media(min-width:1600px) { .site-nav-panel { position:absolute; top:100%; left:0; z-index:60; min-width:210px; } .site-nav-panel-today,.site-nav-panel-resorts { width:340px; } }
 @media(max-width:639px) { .brand-cta:not(.brand-cta-compact) { padding:14px 21px; min-height:50px; } .brand-cta-compact { padding:8px 11px; } .site-nav-panel { max-height:none; } .site-header-logo { width:100px; } .header-search-action { display:none; } .mobile-nav-utilities { display:flex; flex-wrap:wrap; align-items:center; gap:20px; margin-top:25px; padding-top:20px; border-top:1px solid #ffffff12; } }
 @media(max-width:380px) { .site-header-logo { width:90px; } .header-season-action { display:none; } .small-phone-season { display:block; } }
-@media(max-width:639px) { .brand-cta-primary:not(.brand-cta-compact) { min-height:58px; padding:18px 24px; } .brand-cta-primary.brand-cta-compact .skipass-cta-arrow { display:none; } }
+@media(max-width:1599px) { .mobile-nav-utilities { display:flex; flex-wrap:wrap; gap:20px; margin-top:25px; } .mobile-nav-utilities .skipass-cta { width:100%; } }
+@media(max-width:639px) { .skipass-cta:not(.skipass-cta--compact) { width:100%; min-height:58px; padding:16px 23px; } .skipass-cta--compact { min-width:52px; padding:11px 13px; } .skipass-cta--compact .skipass-cta__label,.skipass-cta--compact .skipass-cta__arrow { display:none; } }
 @media(prefers-reduced-motion:reduce) { .brand-cta,.brand-cta svg,.brand-cta .ski-pass-icon,.site-nav-label,.site-nav-label svg,.site-nav-child { transition:none; } .site-nav-panel { animation:none; } }
+@media(prefers-reduced-motion:reduce) { .skipass-cta,.skipass-cta__arrow,.skipass-cta__icon { transition:none; } .skipass-cta::after { animation:none !important; display:none; } .skipass-cta:hover,.skipass-cta:active,.skipass-cta:hover .skipass-cta__arrow,.skipass-cta:hover .skipass-cta__icon { transform:none; } }

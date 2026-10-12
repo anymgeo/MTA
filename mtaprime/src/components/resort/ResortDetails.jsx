@@ -1,8 +1,8 @@
 "use client";
 import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
-import { ArrowRight, ArrowUpRight, Mountain, Footprints, Bike, Camera, TentTree, CloudSnow, Plane, Utensils } from "lucide-react";
-import SkiPassIcon from "@/components/brand/SkiPassIcon";
+import { ArrowUpRight, Mountain, Footprints, Bike, Camera, TentTree, CloudSnow, Plane, Utensils } from "lucide-react";
+import SkipassCTA from "@/components/brand/SkipassCTA";
 import { Link } from "@/i18n/navigation";
 import { useSiteSeason } from "@/providers/SeasonProvider";
 import ResortHero from "./ResortHero";
@@ -26,7 +26,7 @@ export default function ResortDetails({ resort, context, trailMap }) {
     <ResortMotion />
     <ResortHero key={`${resort.slug}:${page.videoUrl}:${page.videoWebmUrl}`} resort={resort} />
     <nav className="rp-ctas" aria-label={p("quickLinks")}>
-      <a className="brand-cta brand-cta-primary" href={page.purchaseUrl || context.operations?.purchaseUrl || "https://status.mta.ski/en"}><SkiPassIcon />{p("buySkipass")}<ArrowRight className="skipass-cta-arrow" aria-hidden="true" /></a>
+      <SkipassCTA variant="light" href={page.purchaseUrl || context.operations?.purchaseUrl || "https://status.mta.ski/en"}>{p("buySkipass")}</SkipassCTA>
       <Link className="rp-button secondary" href="/today">{p("today", { resort: resort.name })}</Link>
       <a className="rp-button secondary" href="#gallery"><Camera size={16} />{p("gallery")}</a>
     </nav>
@@ -71,16 +71,13 @@ export default function ResortDetails({ resort, context, trailMap }) {
             </h2>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
+            <SkipassCTA
               href={page.purchaseUrl || context.operations?.purchaseUrl || "https://status.mta.ski/en"}
               target="_blank"
               rel="noreferrer"
-              className="brand-cta brand-cta-primary"
             >
-              <SkiPassIcon />
               {t("buySkiPass_8f7678")}
-              <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
-            </a>
+            </SkipassCTA>
             <Link
               href={`/resorts/${resort.slug}/maps`}
               className="inline-flex items-center gap-3 border border-canvas/30 px-6 py-4 text-xs font-bold uppercase tracking-[.16em] transition hover:bg-canvas/10"

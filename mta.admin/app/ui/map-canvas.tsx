@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect,useMemo,useRef,useState, type PointerEvent } from 'react';
-import { pathData, closestOnPath, moveAnchor, visibleTiles } from '../../../shared/map-geometry.mjs';
+import { useEffect,useId,useMemo,useRef,useState, type PointerEvent } from 'react';
+import { pathData, closestOnPath, moveAnchor, visibleTiles, liftTickPath, LIFT_STYLE, liftStyleForMap,cutLabelLayout } from '../../../shared/map-geometry.mjs';
 import { featureColor,type MapFeature,type Point,type ResortMap } from './map-model';
 type Gesture={kind:'place'|'anchor'|'handle'|'label'|'pan';index:number;side?:'in'|'out';origin:Point;point?:Point;offset?:{x:number;y:number};moved?:boolean};
-type Props={map:ResortMap;draft:MapFeature|null;drawing:boolean;pan:boolean;selectedVertex:number|null;
+type Props={map:ResortMap;draft:MapFeature|null;drawing:boolean;pan:boolean;cut?:boolean;onCut?:(feature:MapFeature,index:number,t:number)=>void;selectedVertex:number|null;
   onPoint:(point:Point)=>void;onSelect:(feature:MapFeature)=>void;onVertex:(index:number,point:Point,smooth?:boolean)=>void;
   onHandle:(index:number,side:'in'|'out',point:Point,broken:boolean)=>void;onVertexSelect:(index:number)=>void;onInsert:(index:number,t:number)=>void;
   onLabel:(point:Point)=>void;onHover:(feature:MapFeature|null)=>void;onFinish:()=>void;onGeometryStart:()=>void;onGeometryEnd:()=>void;onActiveChange?:(active:boolean)=>void};
 
-export default function MapCanvas({map,draft,drawing,pan,selectedVertex,onPoint,onSelect,onVertex,onHandle,onVertexSelect,onInsert,onLabel,onHover,onFinish,onGeometryStart,onGeometryEnd,onActiveChange}:Props){
+export default function MapCanvas({map,draft,drawing,pan,cut=false,onCut,selectedVertex,onPoint,onSelect,onVertex,onHandle,onVertexSelect,onInsert,onLabel,onHover,onFinish,onGeometryStart,onGeometryEnd,onActiveChange}:Props){
+  const cutPrefix=useId().replaceAll(':','');
   const host=useRef<HTMLDivElement>(null),gesture=useRef<Gesture|null>(null),lastPlace=useRef<{point:Point;time:number}|null>(null);
   const [size,setSize]=useState({width:900,height:700}),[view,setView]=useState({zoom:1,x:0,y:0}),[preview,setPreview]=useState<Point|null>(null),[dragging,setDragging]=useState(false);
   const imageUrl=map.tiles?.previewUrl||(map.imageUrl.startsWith('/media/')?map.imageUrl:'/assets'+map.imageUrl);
@@ -19,6 +20,9 @@ export default function MapCanvas({map,draft,drawing,pan,selectedVertex,onPoint,
   useEffect(()=>{let active=true;const image=new window.Image();image.onload=()=>{if(active)setImageStatus({url:imageUrl,ready:true,error:false});};image.onerror=()=>{if(active)setImageStatus({url:imageUrl,ready:false,error:true});};image.src=imageUrl;return()=>{active=false;};},[imageUrl]);
   const fit=Math.min(size.width/map.width,size.height/map.height),scale=fit*view.zoom,x=(size.width-map.width*scale)/2+view.x,y=(size.height-map.height*scale)/2+view.y;
   const features=useMemo(()=>[...map.features.filter(f=>f.id!==draft?.id),...(draft?[draft]:[])],[map.features,draft]);
+  const tickPaths=useMemo(()=>new Map(features.filter(f=>f.typeKey==='lift').map(f=>[f,liftTickPath(f.points,liftStyleForMap({width:map.width,height:map.height}))])),[features,map.width,map.height]);
+  // Preview the full tentative lift, so spacing continues across all committed anchors.
+  const previewPoints=draft&&preview?[...draft.points,preview]:[];
   const tiles=map.tiles?visibleTiles(map.tiles,scale,x,y,size.width,size.height):[];
   function screen(event:{clientX:number;clientY:number}){const box=host.current!.getBoundingClientRect();return [event.clientX-box.left,event.clientY-box.top] as Point;}
   function world(event:{clientX:number;clientY:number}){const p=screen(event);return [(p[0]-x)/scale,(p[1]-y)/scale] as Point;}
@@ -26,6 +30,7 @@ export default function MapCanvas({map,draft,drawing,pan,selectedVertex,onPoint,
   function down(event:PointerEvent<HTMLDivElement>){
     if(event.button!==0||!loaded)return;host.current?.focus();onActiveChange?.(true);
     const p=world(event),target=event.target as SVGElement,kind=target.dataset.edit,index=Number(target.dataset.index),current={draft,drawing,pan,view,size};
+    if(cut&&!pan){const feature=features.find(f=>(f.id||'draft')===target.dataset.feature);if(feature?.geometryKind==='line'){const hit=closestOnPath(feature.points,p,false,.2/scale);if(hit.distance*scale<15)onCut?.(feature,hit.index,hit.t);}return;}
     if(current.pan){gesture.current={kind:'pan',index:0,origin:screen(event),offset:{x:current.view.x,y:current.view.y}};}
     else if(!current.drawing&&current.draft&&kind){
       onGeometryStart();if(kind!=='label')onVertexSelect(index);
@@ -57,19 +62,26 @@ export default function MapCanvas({map,draft,drawing,pan,selectedVertex,onPoint,
         <g transform={`translate(${x} ${y}) scale(${scale})`}>
           <image href={imageUrl} width={map.width} height={map.height} preserveAspectRatio="none" pointerEvents="none"/>
           {tiles.map(tile=><image key={tile.key} href={tile.url} x={tile.x} y={tile.y} width={tile.width} height={tile.height} preserveAspectRatio="none" pointerEvents="none"/>)}
-          {features.map((f,i)=>{const color=featureColor(f,map.types),active=f===draft,id=f.id||'draft',d=pathData(f.points,f.geometryKind==='polygon');return <g key={id+'-'+i} data-feature-group={id}>
+          {features.map((f,i)=>{const color=featureColor(f,map.types),active=f===draft,id=f.id||'draft',d=pathData(f.points,f.geometryKind==='polygon'),cutLayout=cutLabelLayout(f.points,f.label,map,scale,f.label?.textKa||f.label?.textEn||''),maskId=`${cutPrefix}-cut-${id}`;return <g key={id+'-'+i} data-feature-group={id}>
+            {cutLayout&&<defs><mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width={map.width} height={map.height}><rect width={map.width} height={map.height} fill="white"/><rect data-line-cut={id} x={cutLayout.x-cutLayout.width/2} y={cutLayout.y-cutLayout.height/2} width={cutLayout.width} height={cutLayout.height} fill="black" transform={`rotate(${cutLayout.angle} ${cutLayout.x} ${cutLayout.y})`}/></mask></defs>}
             {f.geometryKind==='point'?f.points[0]&&(f.typeKey==='label'?<text data-feature={id} data-edit={active&&!drawing?'anchor':undefined} data-index="0" x={f.points[0][0]} y={f.points[0][1]} fontSize={13/scale} fontWeight="700" fill={color} stroke="white" strokeWidth={3/scale} paintOrder="stroke" strokeLinejoin="round">{f.nameKa||f.nameEn}</text>:<g data-feature={id}><circle cx={f.points[0][0]} cy={f.points[0][1]} r={11/scale} fill={color} stroke="white" strokeWidth={2/scale} data-feature={id} data-edit={active&&!drawing?'anchor':undefined} data-index="0"/><text x={f.points[0][0]} y={f.points[0][1]+4/scale} fill="white" fontSize={14/scale} textAnchor="middle" pointerEvents="none">{['warning','official-hazard'].includes(f.typeKey)?'!':f.typeKey==='parking'?'P':f.typeKey==='first-aid'?'+':'•'}</text></g>):<>
-              <path d={d} fill={f.geometryKind==='polygon'?color+'22':'none'} stroke="white" strokeWidth={active?8:6} vectorEffect="non-scaling-stroke" pointerEvents="none"/>
-              <path d={d} data-vector-path={id} fill="none" stroke={color} strokeWidth={active?4:3} strokeDasharray={f.typeKey==='lift'?`${12/scale} ${7/scale}`:undefined} vectorEffect="non-scaling-stroke" pointerEvents="none"/>
+              <path d={d} mask={cutLayout?`url(#${maskId})`:undefined} fill={f.geometryKind==='polygon'?color+'22':'none'} stroke="white" strokeWidth={active?8:6} vectorEffect="non-scaling-stroke" pointerEvents="none"/>
+              <path d={d} mask={cutLayout?`url(#${maskId})`:undefined} data-vector-path={id} data-render-style={f.typeKey==='lift'?'lift-ticked':undefined} visibility={f.typeKey==='lift'&&active&&drawing&&preview&&!dragging?'hidden':undefined} fill="none" stroke={color} strokeWidth={f.typeKey==='lift'?LIFT_STYLE.strokeWidth:active?4:3} vectorEffect="non-scaling-stroke" pointerEvents="none"/>
+              {f.typeKey==='lift'&&<path mask={cutLayout?`url(#${maskId})`:undefined} data-lift-ticks={id} visibility={active&&drawing&&preview&&!dragging?'hidden':undefined} d={tickPaths.get(f)} fill="none" stroke={color} strokeWidth={LIFT_STYLE.tickStrokeWidth} vectorEffect="non-scaling-stroke" pointerEvents="none"/>}
               <path d={d} data-feature={id} fill={f.geometryKind==='polygon'?'transparent':'none'} stroke="transparent" strokeWidth="20" vectorEffect="non-scaling-stroke" onPointerEnter={()=>{if(!drawing)onHover(f);}} onPointerLeave={()=>onHover(null)}/>
             </>}
-            {f.label&&<text data-feature={id} data-edit={active&&!drawing?'label':undefined} x={f.label.x} y={f.label.y} fontSize={15/scale} fontWeight="700" fill={color} stroke="white" strokeWidth={4/scale} paintOrder="stroke" strokeLinejoin="round" style={{cursor:active?'move':'pointer'}}>{f.label.textKa||f.label.textEn||f.nameKa}</text>}
-            {active&&!pan&&f.geometryKind!=='point'&&f.points.map((p,index)=><g key={index}>
-              {index===selectedVertex&&(['in','out'] as const).map(side=>{const hi=side==='in'?2:4,hx=p[hi]??p[0],hy=p[hi+1]??p[1];return <g key={side}><line x1={p[0]} y1={p[1]} x2={hx} y2={hy} stroke="#65788b" strokeWidth={1/scale} pointerEvents="none"/><circle data-edit="handle" data-index={index} data-side={side} cx={hx} cy={hy} r={6/scale} fill="white" stroke={color} strokeWidth={2/scale} style={{cursor:'crosshair'}}/></g>;})}
-              <rect data-edit="anchor" data-index={index} x={p[0]-5/scale} y={p[1]-5/scale} width={10/scale} height={10/scale} fill={index===selectedVertex?color:'white'} stroke={index===selectedVertex?'white':color} strokeWidth={2/scale} style={{cursor:drawing?'crosshair':'move'}}/>
-            </g>)}
           </g>;})}
-          {drawing&&draft&&draft.geometryKind!=='point'&&draft.points.length>0&&preview&&!dragging&&<path d={pathData([draft.points.at(-1)!,preview])} fill="none" stroke={featureColor(draft,map.types)} strokeWidth="2" strokeDasharray={`${7/scale} ${5/scale}`} vectorEffect="non-scaling-stroke" pointerEvents="none" data-pen-preview="true"/>}
+          {drawing&&draft&&draft.geometryKind!=='point'&&draft.points.length>0&&preview&&!dragging&&<g pointerEvents="none" opacity=".7">
+            <path d={pathData(draft.typeKey==='lift'?previewPoints:[draft.points.at(-1)!,preview])} fill="none" stroke={featureColor(draft,map.types)} strokeWidth={draft.typeKey==='lift'?LIFT_STYLE.strokeWidth:2} strokeDasharray={draft.typeKey==='lift'?undefined:`${7/scale} ${5/scale}`} vectorEffect="non-scaling-stroke" data-pen-preview="true"/>
+            {draft.typeKey==='lift'&&<path data-lift-preview-ticks="true" d={liftTickPath(previewPoints,liftStyleForMap(map))} fill="none" stroke={featureColor(draft,map.types)} strokeWidth={LIFT_STYLE.tickStrokeWidth} vectorEffect="non-scaling-stroke"/>}
+          </g>}
+          {/* Labels above every hit path; active handles above labels. Overlapping routes
+              must not intercept clicks or drags intended for a visible name. */}
+          {features.filter(f=>f.label).map(f=>{const id=f.id||'draft',active=f===draft,color=featureColor(f,map.types),label=f.label!,cutLayout=cutLabelLayout(f.points,label,map,scale,label.textKa||label.textEn||'');return <text key={'label-'+id} data-feature={id} data-edit={active&&!drawing?'label':undefined} data-cut-label={cutLayout?id:undefined} x={cutLayout?.x??label.x} y={cutLayout?.y??label.y} transform={cutLayout?`rotate(${cutLayout.angle} ${cutLayout.x} ${cutLayout.y})`:undefined} textAnchor={cutLayout?'middle':undefined} dominantBaseline={cutLayout?'central':undefined} fontSize={cutLayout?.fontSize??15/scale} fontWeight="700" fill={color} stroke="white" strokeWidth={(cutLayout?2:4)/scale} paintOrder="stroke" strokeLinejoin="round" style={{cursor:active?'move':'pointer'}}>{label.textKa||label.textEn||(cutLayout?'':f.nameKa)}</text>;})}
+          {draft&&!pan&&draft.geometryKind!=='point'&&draft.points.map((p,index)=>{const color=featureColor(draft,map.types);return <g key={'anchor-'+index}>
+            {index===selectedVertex&&(['in','out'] as const).map(side=>{const hi=side==='in'?2:4,hx=p[hi]??p[0],hy=p[hi+1]??p[1];return <g key={side}><line x1={p[0]} y1={p[1]} x2={hx} y2={hy} stroke="#65788b" strokeWidth={1/scale} pointerEvents="none"/><circle data-edit="handle" data-index={index} data-side={side} cx={hx} cy={hy} r={6/scale} fill="white" stroke={color} strokeWidth={2/scale} style={{cursor:'crosshair'}}/></g>;})}
+            <rect data-edit="anchor" data-index={index} x={p[0]-5/scale} y={p[1]-5/scale} width={10/scale} height={10/scale} fill={index===selectedVertex?color:'white'} stroke={index===selectedVertex?'white':color} strokeWidth={2/scale} style={{cursor:drawing?'crosshair':'move'}}/>
+          </g>;})}
         </g>
       </svg>
       {failed?<div className="map-canvas-state" role="alert">რუკის ფოტო ვერ ჩაიტვირთა / Image could not load</div>:!loaded?<div className="map-canvas-state" role="status">რუკა იტვირთება / Loading map…</div>:null}
