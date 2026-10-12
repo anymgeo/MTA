@@ -1,5 +1,5 @@
 export type News = {
-  id: string; slug: string; date: string; image: string; category: 'news' | 'article' | 'blog'; gallery: string[];
+  id: string; slug: string; date: string; image: string; category: 'news' | 'blog'; gallery: string[];
   titleKa: string; excerptKa: string; contentKa: string[];
   titleEn: string; excerptEn: string; contentEn: string[];
   published: boolean; updatedAt: string; version: string;
@@ -12,13 +12,13 @@ export class ApiError extends Error {
 }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
-  if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type', 'application/json');
+  if (init.body && !(init.body instanceof FormData) && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
   if (init.method && !['GET', 'HEAD'].includes(init.method)) {
     const session = await api<Session>('/admin/session');
     headers.set('X-CSRF-TOKEN', session.csrfToken);
   }
   let response: Response;
-  try { response = await fetch('/backend' + path, { ...init, headers, credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(20000) }); }
+  try { response = await fetch(path.startsWith('/map-upload/')?path:'/backend' + path, { ...init, headers, credentials: 'same-origin', cache: 'no-store', signal: init.signal ?? AbortSignal.timeout(20000) }); }
   catch { throw new ApiError('API-სთან დაკავშირება ვერ მოხერხდა. შეამოწმეთ სერვერი და სცადეთ ხელახლა.', 0); }
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));

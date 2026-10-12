@@ -1,0 +1,24 @@
+/* Shared public tokens. Resort identity colors remain independent of season. */
+.season-atmosphere { --season-action:#087895; --season-tint:#e5f5fb; }
+.season-atmosphere[data-season="summer"] { --season-action:#286947; --season-tint:#e8f4e9; }
+.season-atmosphere .segmented-toggle__option[data-toggle-option="winter"][aria-pressed="true"] {background:#dff5ff;color:#085b76;border-radius:999px;}
+.season-atmosphere .segmented-toggle__option[data-toggle-option="summer"][aria-pressed="true"] {background:#e4f4e7;color:#245f37;border-radius:999px;}
+.season-atmosphere a:focus-visible,.season-atmosphere button:focus-visible {outline:2px solid var(--season-action);outline-offset:4px;}
+.rp-ctas .rp-button {background:var(--season-action);border-color:var(--season-action);color:white;box-shadow:none;}
+.rp-ctas .rp-button.secondary {background:var(--season-tint);color:var(--season-action);}
+.segmented-toggle:has([data-toggle-option="ka"]) {background:#ffffff0a;border-color:#ffffff30;}
+.segmented-toggle:has([data-toggle-option="ka"]) .segmented-toggle__option {min-width:36px;font-size:10px;letter-spacing:.025em;}
+.news-category-tag[data-news-category="news"],button[data-news-category="news"] {background:#e5f5fb;color:#07566e;border-color:#9ed1e1;}
+.news-category-tag[data-news-category="blog"],button[data-news-category="blog"] {background:#edf4e5;color:#395e25;border-color:#b8cfa6;}
+button[data-news-category="news"][aria-pressed="true"] {background:#07566e;color:white;}
+button[data-news-category="blog"][aria-pressed="true"] {background:#395e25;color:white;}
+.gallery-rail-controls {display:flex;align-items:center;justify-content:end;gap:10px;margin:0 0 18px;color:var(--color-muted);font-size:12px;}
+.gallery-rail-controls span {margin-right:auto;}
+.gallery-rail-controls button {display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--color-border);border-radius:50%;background:var(--color-canvas);color:var(--color-ink);}
+.media-gallery--carousel .media-gallery__grid {display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:2px;overscroll-behavior-x:contain;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:var(--season-action) transparent;}
+.media-gallery--carousel .media-gallery__grid>button {flex:0 0 64%;aspect-ratio:3/2;scroll-snap-align:start;min-width:0;border-radius:24px;}
+.media-gallery--carousel .gallery-photo-caption {position:absolute;inset:auto 0 0;padding:50px 26px 26px;background:linear-gradient(transparent,#07100edc);color:#fff;text-align:left;}
+.gallery-photo-caption small {display:block;font-size:11px;margin-bottom:8px;opacity:.9;}
+.gallery-photo-caption strong {display:block;font-size:clamp(16px,2vw,24px);max-width:85%;line-height:1.4;}
+.media-gallery--carousel .media-gallery__grid>button>span {bottom:auto;top:18px;}
+@media(max-width:800px) {.media-gallery--carousel .media-gallery__grid>button {flex-basis:88%;aspect-ratio:4/5;border-radius:18px;}.media-gallery--carousel .gallery-photo-caption {padding:45px 18px 20px;}.media-lightbox__frame footer {flex-wrap:wrap;}.media-lightbox__frame footer strong {max-width:100%;white-space:normal;}}

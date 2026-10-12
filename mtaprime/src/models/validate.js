@@ -104,14 +104,14 @@ export function validateCollection(kind, items) {
         "transport",
       );
     }
-    if (kind === "news" || kind === "projects")
+    if (kind === "news" || (kind === "projects" && item.datePrecision !== "year"))
       assert(
         /^\d{4}-\d{2}-\d{2}$/.test(item.date) &&
           !Number.isNaN(Date.parse(item.date)),
         "ISO date",
       );
     if (kind === "news") {
-      assert(["news", "article", "blog"].includes(item.category), "category");
+      assert(["news", "blog"].includes(item.category), "category");
       strings(item.content, "content");
       strings(item.gallery, "gallery");
     }

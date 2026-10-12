@@ -51,6 +51,8 @@ export default async function sitemap() {
     "/news",
     "/projects",
     "/resorts",
+    "/maps",
+    "/today",
     "/safety",
     "/structure",
     ...resorts.flatMap(({ slug }) =>

@@ -1,0 +1,17 @@
+/* Canvas owns the screen; properties remain a compact independent rail. */
+.map-editor .map-studio{grid-template-columns:60px minmax(0,1fr) 270px;min-height:760px}
+.map-editor .map-stage-panel{padding:8px}.map-editor .map-canvas{height:80vh;min-height:700px}
+.map-editor .map-properties{padding:16px;max-height:calc(80vh + 50px)}
+.map-editor .map-canvas svg{display:block}.map-editor .map-canvas-chrome{top:16px;left:16px;right:16px}
+.map-editor .map-canvas-footer{flex-wrap:wrap;gap:8px;font-size:10px}
+.map-anchor-controls{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;border-block:1px solid var(--ui-border)}
+.map-anchor-controls>span{width:100%;font-size:11px;color:var(--ui-muted)}
+.map-editor .map-anchor-controls button,.map-editor .map-label-controls button{padding:7px 9px;min-height:32px;font-size:11px}
+.map-label-controls{margin-block:14px}.map-label-controls small{font-size:10px;color:var(--ui-muted)}
+.map-tool-button svg{pointer-events:none}
+.map-native-select{width:100%;padding:11px 12px;border:1px solid var(--ui-border);border-radius:8px;background:#fff;color:var(--ui-ink);font:inherit;min-height:42px}
+.map-editor.is-expanded{position:fixed;inset:8px;z-index:1500;margin:0;padding:16px;background:#f6f8f7;overflow:auto;border:1px solid #dce5e1;border-radius:16px}
+.map-editor.is-expanded .map-canvas{height:calc(100vh - 165px);min-height:500px}
+.map-editor.is-expanded .map-properties{max-height:calc(100vh - 120px)}
+@media(min-width:1200px){.resort-editor-page:has(.map-editor) .resort-editor-body{grid-template-columns:180px minmax(0,1fr)}}
+@media(max-width:1000px){.map-editor .map-studio{grid-template-columns:52px minmax(0,1fr)}.map-editor .map-properties{grid-column:1/-1;max-height:none;border-left:0}.map-editor .map-canvas{min-height:500px;height:65vh}}

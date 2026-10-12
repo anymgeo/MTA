@@ -1,0 +1,20 @@
+.watermark {
+  position: absolute;
+  z-index: 1;
+  bottom: 2.5%;
+  left: 2.5%;
+  width: 5%;
+  aspect-ratio: 769.82 / 198.61;
+  background: url("/brand/mta-watermark-white.svg") center / contain no-repeat;
+  opacity: .8;
+  pointer-events: none;
+  user-select: none;
+}
+
+.photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 0;
+}

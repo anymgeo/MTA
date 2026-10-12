@@ -19,6 +19,13 @@ public class Resort
     {
         var result = JsonNode.Parse(locale == "en" ? EnJson : KaJson)!.AsObject();
         result["id"] = Id.ToString(); result["slug"] = Slug; result["status"] = Status;
+        // Import audit payloads belong to the authenticated CMS, not public responses.
+        if (result["page"] is JsonObject page) {
+            page.Remove("infrastructureImportNotes");
+            foreach (var key in new[] { "liftList", "trailList" })
+                if (page[key] is JsonArray rows)
+                    foreach (var row in rows.OfType<JsonObject>()) { row.Remove("sourceRaw"); row.Remove("source"); }
+        }
         return result;
     }
 }
@@ -37,7 +44,7 @@ public record ResortInput(string? Slug, string? Status, JsonElement Ka, JsonElem
     }
     static bool Image(string? path) => path != null && path.Length <= 250 && Regex.IsMatch(path, @"^/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+\.(?:jpg|jpeg|png|webp)$", RegexOptions.IgnoreCase);
     static bool String(JsonElement v, int max = 20000) => v.ValueKind == JsonValueKind.String && v.GetString()!.Length <= max;
-    static bool Field(JsonElement obj, string key, bool required = false) => obj.TryGetProperty(key, out var v) && String(v) && (!required || !string.IsNullOrWhiteSpace(v.GetString()));
+    static bool Field(JsonElement obj, string key, bool required = false, int max = 20000) => obj.TryGetProperty(key, out var v) && String(v, max) && (!required || !string.IsNullOrWhiteSpace(v.GetString()));
     static bool Array(JsonElement obj, string key, Func<JsonElement, bool> predicate, int max = 100) => obj.TryGetProperty(key, out var a) && a.ValueKind == JsonValueKind.Array && a.GetArrayLength() <= max && a.EnumerateArray().All(predicate);
     static bool ObjectFields(JsonElement obj, params string[] fields) => obj.ValueKind == JsonValueKind.Object && fields.All(f => Field(obj, f));
     static bool ValidContent(JsonElement data)
@@ -48,6 +55,15 @@ public record ResortInput(string? Slug, string? Status, JsonElement Ka, JsonElem
         if (!new[] { "image", "summerImage" }.All(f => Field(data, f) && Image(data.GetProperty(f).GetString()))) return false;
         if (!new[] { "lifts", "trails", "temp", "snow", "newSnow", "wind", "hours", "elevation", "highestPoint", "pistes", "winterSeason" }.All(f => Field(data, f))) return false;
         if (!Array(data, "heroImages", p => String(p) && Image(p.GetString()), 12) || !Array(data, "gallery", p => String(p) && Image(p.GetString()), 12)) return false;
+        if (data.TryGetProperty("galleryDetails", out var details)) {
+            var photos = data.GetProperty("gallery").EnumerateArray().Select(p => p.GetString()).ToArray();
+            if (details.ValueKind != JsonValueKind.Array || details.GetArrayLength() != photos.Length) return false;
+            var index = 0;
+            foreach (var photo in details.EnumerateArray()) {
+                if (!ObjectFields(photo, "url", "title", "category") || !Field(photo, "title", true, 200) || !Field(photo, "category", true, 80)
+                    || photo.GetProperty("url").GetString() != photos[index++]) return false;
+            }
+        }
         if (!Array(data, "liftList", p => ObjectFields(p, "name", "type", "hours"))) return false;
         if (!Array(data, "trailDifficulty", p => ObjectFields(p, "label", "description") && p.TryGetProperty("value", out var v) && v.ValueKind == JsonValueKind.Number && v.TryGetDouble(out var d) && d >= 0 && d <= 100)) return false;
         if (!data.TryGetProperty("experience", out var experience) || experience.ValueKind != JsonValueKind.Object || !new[] { "winter", "summer" }.All(s => Array(experience, s, p => ObjectFields(p, "title", "text", "iconKey")))) return false;
@@ -81,6 +97,10 @@ public record ResortInput(string? Slug, string? Status, JsonElement Ka, JsonElem
             var previousContent = JsonNode.Parse(previous)!.AsObject();
             if (!next.ContainsKey("page") && previousContent.ContainsKey("page"))
                 next["page"] = previousContent["page"]?.DeepClone();
+            // Legacy clients cannot leave metadata pointing at a different photo order.
+            if (!next.ContainsKey("galleryDetails") && previousContent.ContainsKey("galleryDetails") &&
+                JsonNode.DeepEquals(next["gallery"], previousContent["gallery"]))
+                next["galleryDetails"] = previousContent["galleryDetails"]?.DeepClone();
             next.Remove("liveConditions"); // Operational observations cannot be submitted through CMS.
             if (liveManaged) {
                 var old = JsonNode.Parse(previous)!.AsObject();
@@ -97,6 +117,24 @@ public static class ResortEndpoints
 {
     public static void MapResorts(this WebApplication app, RouteGroupBuilder admin)
     {
+        admin.MapPost("/gallery-photo", async (HttpRequest request, IConfiguration config, IWebHostEnvironment environment) => {
+            if (!request.HasFormContentType) return Results.BadRequest();
+            var file = (await request.ReadFormAsync()).Files.GetFile("file");
+            if (file == null || file.Length < 12 || file.Length > 45 * 1024 * 1024)
+                return Results.BadRequest(new { message = "Original JPG/PNG/WebP photos, maximum 45 MB each." });
+            await using var stream = new MemoryStream();
+            await file.CopyToAsync(stream); stream.Position = 0;
+            try {
+                var info = MapImageInfo.Read(stream);
+                if (info.Width > 16000 || info.Height > 16000 || (long)info.Width * info.Height > 64000000)
+                    return Results.BadRequest(new { message = "Maximum 16,000 pixels per side and 64 megapixels." });
+                var storage = Path.GetFullPath(config["StoragePath"] ?? Path.Combine(environment.ContentRootPath, "storage"));
+                var name = "gallery-" + Guid.NewGuid().ToString("N") + info.Extension;
+                stream.Position = 0;
+                await using var output = File.Create(Path.Combine(storage, "media", name)); await stream.CopyToAsync(output);
+                return Results.Ok(new { url = "/media/" + name, width = info.Width, height = info.Height });
+            } catch (InvalidDataException) { return Results.BadRequest(new { message = "Invalid JPG/PNG/WebP photo." }); }
+        });
         app.MapGet("/api/resorts/conditions", async (AppDb db, ILiveConditionsProvider provider, HttpContext ctx, ILogger<UnavailableLiveConditionsProvider> logger) => {
             ctx.Response.Headers.CacheControl = "no-store";
             var resorts = await db.Resorts.AsNoTracking().Select(r => new { r.Id, r.Slug }).ToListAsync(ctx.RequestAborted);

@@ -1,0 +1,272 @@
+/* Admin-only foundation, loaded after legacy module styles, including portalled menus. */
+:root {
+  --ui-text: #202322;
+  --ui-muted: #606763;
+  --ui-border: #dcdedb;
+  --ui-surface: #ffffff;
+  --ui-soft: #f5f6f4;
+  --ui-accent: #c43620;
+  --ui-accent-hover: #a82c19;
+  --ui-accent-soft: #fff1ed;
+  --ui-focus: 0 0 0 3px rgba(196, 54, 32, .13);
+  --ui-success: #24664c;
+  --ui-success-soft: #edf7f1;
+  --ui-danger: #a83236;
+  --ui-danger-soft: #fff0f1;
+  --ui-warning: #805811;
+  --ui-warning-soft: #fff7e5;
+  --ui-radius: 11px;
+  --ui-card-shadow: 0 2px 10px rgba(20, 25, 22, .025), 0 1px 2px rgba(20, 25, 22, .025);
+  --ui-popover-shadow: 0 8px 24px rgba(20, 25, 22, .08);
+  --ink: var(--ui-text);
+  --muted: var(--ui-muted);
+  --green: var(--ui-accent);
+  --line: var(--ui-border);
+  --canvas: #f6f6f4;
+  --surface: var(--ui-surface);
+  --shadow: var(--ui-card-shadow);
+  --editor-accent: var(--ui-accent);
+}
+body { line-height: 1.6; }
+::selection { color: var(--ui-text); background: #fbded6; }
+.main-content, .resort-editor-page { background: var(--canvas); }
+.resort-editor-page { --editor-accent: var(--ui-accent); }
+:is(h1, h2, h3, h4, h5, h6) { color: var(--ui-text); }
+h1 { line-height: 1.22; letter-spacing: -.025em; }
+h2, h3 { line-height: 1.35; letter-spacing: -.015em; }
+:is(label, .field-label), .cms-fields label, .cms-settings label { color: var(--ui-text); font-size: 12px; font-weight: 600; gap: 8px; }
+:is(label, .field-label) small, .cms-fields small, .premium-card > header p, .subsection-heading p,
+.collection-heading p, .editor-language-bar small, .media-upload small, .mini-media small,
+.map-form-section-title > small, .map-feature-list small, .map-hover-card small,
+.map-card-title span, .map-properties-card p, .map-tool-help p { color: var(--ui-muted); font-size: 12px; line-height: 1.65; }
+.premium-card label > span, .map-metadata label > span { color: var(--ui-text); font-size: 12px; }
+.stack { gap: 20px; }
+
+/* Controls retain their native semantics and existing event/validation handlers. */
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]):not([type=range]):not([type=color]),
+textarea, select, .p-inputtext, .p-inputtextarea, .p-dropdown, .p-multiselect {
+  border: 1px solid var(--ui-border); border-radius: var(--ui-radius);
+  background: var(--ui-surface); color: var(--ui-text); min-height: 44px;
+  padding: 11px 13px; font: inherit; font-size: 13px; font-weight: 400; line-height: 1.55;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+textarea { resize: vertical; min-height: 110px; }
+input::placeholder, textarea::placeholder, .p-dropdown-label.p-placeholder { color: #727873; opacity: 1; }
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]):not([type=range]):not([type=color]):enabled:hover,
+textarea:enabled:hover, select:enabled:hover, .p-dropdown:not(.p-disabled):hover, .p-multiselect:not(.p-disabled):hover { border-color: #aab0aa; }
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]):not([type=range]):not([type=color]):enabled:focus,
+textarea:enabled:focus, select:enabled:focus, .p-inputtext:enabled:focus, .p-inputtextarea:enabled:focus,
+.p-dropdown:not(.p-disabled).p-focus, .premium-dropdown:not(.p-disabled).p-focus, .p-multiselect:not(.p-disabled).p-focus,
+.login-form .p-inputtext:enabled:focus, .map-metadata input:focus, .map-metadata textarea:focus {
+  outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); background: var(--ui-surface);
+}
+.p-dropdown, .p-multiselect { padding: 0; }
+.p-dropdown .p-dropdown-label, .premium-dropdown .p-dropdown-label, .p-multiselect .p-multiselect-label {
+  padding: 11px 13px; border: 0; border-radius: var(--ui-radius); min-height: 42px;
+  background: transparent; font-size: 13px; color: inherit; line-height: 1.55;
+}
+.p-dropdown .p-dropdown-trigger, .p-multiselect .p-multiselect-trigger { width: 40px; color: var(--ui-muted); }
+.p-inputnumber { max-width: 100%; }
+.p-inputnumber-input { width: 100%; }
+.time-select-pair, .cms-date { gap: 10px; }
+input:disabled, textarea:disabled, select:disabled, .p-disabled, .p-component:disabled {
+  opacity: 1; color: var(--ui-muted); background-color: var(--ui-soft); cursor: not-allowed;
+}
+input:disabled, textarea:disabled, select:disabled, .p-dropdown.p-disabled { color: var(--ui-muted) !important; background-color: var(--ui-soft) !important; }
+input[readonly], textarea[readonly] { background: #f8f9f7; border-style: dashed; color: #535b55; }
+.p-inputtext.p-invalid, [aria-invalid=true]:not(label), input:user-invalid, textarea:user-invalid,
+.field-invalid .p-inputtext, .p-inputtext.is-invalid, .media-upload.is-invalid {
+  border-color: var(--ui-danger) !important; box-shadow: 0 0 0 3px rgba(168, 50, 54, .08);
+}
+label:has(> input:user-invalid)::after, label:has(> textarea:user-invalid)::after {
+  content: '⚠ შეამოწმეთ ველი / Check this field'; color: var(--ui-danger); font-size: 12px; font-weight: 400;
+}
+.field-invalid em, .media-upload em, label small[role=alert] { color: var(--ui-danger); font-size: 12px; font-style: normal; }
+label small[role=alert]::before, .field-invalid em::before, .inline-error::before { content: '⚠ '; }
+
+/* Native and PrimeReact checkboxes, with keyboard focus kept visible. */
+label:has(> input[type=checkbox]) { display: flex; flex-direction: row; align-items: center; gap: 10px; flex-wrap: wrap; }
+input[type=checkbox]:not(.p-checkbox-input) {
+  appearance: none; width: 20px; height: 20px; min-height: 20px; flex: 0 0 20px;
+  padding: 0; margin: 0; border: 1.5px solid #a5ada6; border-radius: 6px; background: #fff;
+  cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+input[type=checkbox]:not(.p-checkbox-input):checked {
+  background: var(--ui-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m5 10 3 3 7-7'/%3E%3C/svg%3E") center / 18px no-repeat;
+  border-color: var(--ui-accent);
+}
+input[type=checkbox]:focus-visible, .p-checkbox.p-focus .p-checkbox-box, .p-inputswitch.p-focus .p-inputswitch-slider {
+  outline: none; box-shadow: var(--ui-focus); border-color: var(--ui-accent);
+}
+input[type=checkbox]:disabled { opacity: .65; cursor: not-allowed; }
+.p-checkbox .p-checkbox-box { border-radius: 6px; border-color: #a5ada6; transition: background-color 160ms ease; }
+.p-checkbox.p-highlight .p-checkbox-box, .p-checkbox .p-checkbox-box.p-highlight { background: var(--ui-accent); border-color: var(--ui-accent); color: #fff; }
+.cms-settings input[type=checkbox], .toggle-row input[type=checkbox], .admin-switch {
+  position: relative; width: 40px !important; height: 24px !important; min-height: 24px;
+  flex-basis: 40px !important; border-radius: 999px !important; background: #d5dad5 !important; border-color: #d5dad5 !important;
+}
+.cms-settings input[type=checkbox]::before, .toggle-row input[type=checkbox]::before, .admin-switch::before {
+  content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; left: 2px; top: 2px;
+  background: #fff; box-shadow: 0 1px 3px #0000001a; transition: transform 180ms ease;
+}
+.cms-settings input[type=checkbox]:checked, .toggle-row input[type=checkbox]:checked, .admin-switch:checked { background: var(--ui-accent) !important; border-color: var(--ui-accent) !important; }
+.cms-settings input[type=checkbox]:checked::before, .toggle-row input[type=checkbox]:checked::before, .admin-switch:checked::before { transform: translateX(16px); }
+.cms-settings > label:has(> input[type=checkbox]) { align-self: end; min-height: 44px; }
+.p-inputswitch .p-inputswitch-slider { background: #d5dad5; }
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider { background: var(--ui-accent); }
+
+/* One action hierarchy across PrimeReact forms and the custom map workspace. */
+.p-button, .cms-module .p-button, .map-property-actions button, .map-tool-help > button, .map-admin-tools > button, .map-type-editor > button {
+  min-height: 42px; border-radius: var(--ui-radius); padding: 10px 16px; font-size: 12px; font-weight: 600;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 120ms ease;
+}
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-danger),
+.cms-module .p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-danger),
+.map-editor .map-property-actions .map-primary-action, .map-editor .map-tool-help .map-primary-action,
+.login-form .p-button:not(.p-button-text) {
+  color: #fff !important; background: var(--ui-accent) !important; border-color: var(--ui-accent) !important;
+  box-shadow: 0 2px 4px rgba(196, 54, 32, .1);
+}
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-danger):enabled:hover,
+.cms-module .p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-danger):enabled:hover,
+.map-editor .map-primary-action:enabled:hover, .login-form .p-button:enabled:hover { background: var(--ui-accent-hover) !important; border-color: var(--ui-accent-hover) !important; transform: none; }
+.p-button.p-button-outlined, .p-button.p-button-text, .cms-module .p-button.p-button-outlined, .cms-module .p-button.p-button-text {
+  color: var(--ui-text) !important; background: #fff !important; border-color: var(--ui-border); box-shadow: none;
+}
+.p-button.p-button-text, .cms-module .p-button.p-button-text { background: transparent !important; border-color: transparent; }
+.p-button.p-button-outlined:enabled:hover, .p-button.p-button-text:enabled:hover,
+.cms-module .p-button.p-button-outlined:enabled:hover, .cms-module .p-button.p-button-text:enabled:hover { background: var(--ui-soft) !important; border-color: var(--ui-border); }
+.p-button.p-button-danger, .cms-module .p-button.p-button-danger, .map-editor .map-danger-action {
+  color: #fff !important; background: var(--ui-danger) !important; border-color: var(--ui-danger) !important; box-shadow: none;
+}
+.p-button.p-button-danger.p-button-text, .p-button.p-button-danger.p-button-outlined,
+.cms-module .p-button.p-button-danger.p-button-text, .cms-module .p-button.p-button-danger.p-button-outlined, .map-editor .map-danger-action {
+  color: var(--ui-danger) !important; background: #fff !important; border-color: #ecd3d5 !important;
+}
+.p-button.p-button-danger:enabled:hover, .cms-module .p-button.p-button-danger:enabled:hover, .map-editor .map-danger-action:enabled:hover { background: var(--ui-danger-soft) !important; color: var(--ui-danger) !important; }
+button:focus-visible, a:focus-visible, input[type=file]:focus-visible, .upload-button:has(+ input:focus-visible),
+.map-upload-button:focus-within { outline: 2px solid var(--ui-accent); outline-offset: 3px; }
+.p-button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.p-button .p-button-label, .cms-module .p-button .p-button-label { color: inherit !important; font-size: inherit; }
+button:disabled, .p-button.p-disabled { opacity: .55; cursor: not-allowed; box-shadow: none !important; }
+button:enabled:active:not(.nav-group-toggle):not(.nav-item) { transform: translateY(1px); }
+.row-actions .p-button, .cms-array-actions .p-button { min-width: 36px; min-height: 36px; }
+
+/* Opaque menus are critical: these render outside the module DOM in a portal. */
+.p-dropdown-panel, .p-multiselect-panel, .p-datepicker, .p-menu, .p-overlaypanel {
+  background: #fff !important; color: var(--ui-text) !important; border: 1px solid var(--ui-border);
+  border-radius: 12px; box-shadow: var(--ui-popover-shadow) !important; overflow: hidden;
+}
+.p-dropdown-panel .p-dropdown-items, .p-multiselect-panel .p-multiselect-items { padding: 6px; }
+.p-dropdown-panel .p-dropdown-item, .p-multiselect-panel .p-multiselect-item {
+  position: relative; border-radius: 7px; margin: 2px 0; padding: 10px 32px 10px 12px; font-size: 13px;
+  line-height: 1.5; color: var(--ui-text) !important; background: #fff; transition: background-color 120ms ease;
+}
+.p-dropdown-panel .p-dropdown-item:hover, .p-dropdown-panel .p-dropdown-item.p-focus,
+.p-multiselect-panel .p-multiselect-item:hover { background: var(--ui-soft) !important; }
+.p-dropdown-panel .p-dropdown-item.p-highlight, .p-multiselect-panel .p-multiselect-item.p-highlight { background: var(--ui-accent-soft) !important; color: #9c2918 !important; font-weight: 600; }
+.p-dropdown-panel .p-dropdown-item.p-highlight::after { content: '✓'; position: absolute; right: 12px; color: var(--ui-accent); }
+.p-dropdown-header, .p-multiselect-header { background: var(--ui-soft) !important; border-color: var(--ui-border); padding: 10px; }
+select { appearance: none; padding-right: 38px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23606763' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E") right 12px center / 16px no-repeat; }
+option { color: var(--ui-text); background: #fff; }
+
+/* Uploads: hidden custom pickers stay hidden and retain their click targets. */
+input[type=file]:not(.file-input):not(.map-upload-button input) {
+  max-width: 100%; padding: 8px; border: 1px dashed #bbc2ba; border-radius: var(--ui-radius);
+  background: var(--ui-soft); color: var(--ui-muted); font-size: 12px;
+}
+input[type=file]::file-selector-button {
+  border: 1px solid var(--ui-border); border-radius: 7px; padding: 8px 12px; margin-right: 12px;
+  font: inherit; font-weight: 600; background: #fff; color: var(--ui-text); cursor: pointer;
+}
+.upload-button, .map-upload-button { border-radius: var(--ui-radius); border-color: #bbc2ba; background: var(--ui-soft); color: var(--ui-text); font-size: 12px; }
+.upload-button:hover, .map-upload-button:hover { border-color: var(--ui-accent); background: var(--ui-accent-soft); }
+.cms-upload { padding: 12px; border: 1px dashed var(--ui-border); border-radius: var(--ui-radius); background: var(--ui-soft); }
+
+/* Gentle elevation everywhere: card shadows should never compete with content. */
+.news-panel, .stat-card, .editor-card, .premium-card, .cms-row, .cms-fields, .cms-accordion,
+.cms-array-item, .collection-row, .media-upload, .mini-media, .map-properties-card,
+.map-activity, .map-type-editor, .live-card-editor, .map-meta-accordion.is-open,
+.map-studio, .map-canvas-wrap, .map-hover-card, .map-canvas-state, .map-canvas-badge, .map-zoom, .splash .brand-logo, .sidebar > .brand,
+.mountain-badge, .account .avatar, .login-story .brand-logo, .admin-lockup {
+  box-shadow: var(--ui-card-shadow); border-color: var(--ui-border);
+}
+.news-panel, .stat-card, .editor-card, .cms-row, .cms-fields, .cms-accordion { border-radius: 16px; }
+.cms-fields { border: 1px solid var(--ui-border); }
+.premium-card > header { background: #fff; }
+.collection-row, .media-upload, .mini-media, .resort-gallery-admin__grid article, .live-observations dl > div, .resort-section-nav { background: var(--ui-soft); }
+.media-preview { background: #eef0ec; }
+.resort-section-nav a, .resort-section-nav a > span, .news-title small, .account small, .map-audit,
+.map-canvas-footer, .live-observations dt, .live-admin-observations dt { color: var(--ui-muted); }
+.cms-language button[aria-pressed=true], .language-tabs button.selected, .filters button.selected,
+.p-paginator .p-paginator-page.p-highlight { color: var(--ui-accent-hover); background: var(--ui-accent-soft); border-color: #efd3cb; }
+.editor-language-bar .language-tabs button.selected { background: var(--ui-accent-soft); box-shadow: none; }
+.cms-row { padding: 20px; gap: 12px; }
+.cms-row strong { font-size: 14px; line-height: 1.6; }
+.cms-row small, .cms-savebar span, .nav-label, .topbar-brand small, .map-note { color: var(--ui-muted); }
+.cms-accordion summary { font-size: 13px; color: var(--ui-text); }
+.cms-accordion summary span { color: var(--ui-muted); }
+.cms-accordion summary::marker { color: var(--ui-accent); }
+.resort-editor-sticky, .editor-language-bar, .cms-savebar { box-shadow: var(--ui-card-shadow); border-color: var(--ui-border); background: #fff; }
+.p-dialog { border: 1px solid var(--ui-border); border-radius: 18px; overflow: hidden; box-shadow: 0 12px 40px rgba(20, 25, 22, .12); }
+.p-dialog .p-dialog-header, .p-dialog .p-dialog-content, .p-dialog .p-dialog-footer { background: #fff; color: var(--ui-text); }
+.p-dialog .p-dialog-title { font-size: 18px; line-height: 1.5; }
+.p-datatable .p-datatable-thead > tr > th { color: var(--ui-muted); background: #f9faf8; font-size: 11px; font-weight: 600; }
+.p-datatable .p-datatable-tbody > tr > td { border-color: #eceeeb; }
+.p-datatable .p-datatable-tbody > tr:hover { background: #fafbf9; }
+.p-datatable .p-datatable-loading-overlay { background: rgba(255, 255, 255, .82); }
+.p-datatable .p-datatable-loading-icon { color: var(--ui-accent); }
+
+/* Status is semantic, separate from the brand and resort identity colors. */
+.p-tag { padding: 5px 9px; border-radius: 7px; font-size: 11px; line-height: 1.5; font-weight: 600; }
+.p-tag:not(.p-tag-success):not(.p-tag-warning):not(.p-tag-danger):not(.p-tag-info) { color: #4a554d; background: #eff2ee; }
+.p-tag.p-tag-success, .p-message.p-message-success, .p-inline-message.p-inline-message-success,
+.editor-banner.success, .cms-feedback:not(.error) { color: var(--ui-success); background: var(--ui-success-soft); border-color: #cfe3d5; }
+.p-tag.p-tag-warning, .p-message.p-message-warn, .map-conflict, .map-note.warning { color: var(--ui-warning); background: var(--ui-warning-soft); border-color: #eadbb9; }
+.p-tag.p-tag-danger, .p-message.p-message-error, .p-inline-message.p-inline-message-error,
+.editor-banner.error, .cms-feedback.error, .inline-error { color: var(--ui-danger); background: var(--ui-danger-soft); border-color: #ecd3d5; }
+.p-tag.p-tag-info, .p-message.p-message-info, .p-inline-message.p-inline-message-info { color: #4a554d; background: #eff2ee; border-color: #dce2da; }
+.p-message, .p-inline-message, .cms-feedback, .editor-banner { border-radius: var(--ui-radius); font-size: 13px; line-height: 1.65; }
+p[role=alert], .cms-upload [role=alert] { color: var(--ui-danger); padding: 12px 14px; border: 1px solid #ecd3d5; border-radius: var(--ui-radius); background: var(--ui-danger-soft); }
+p[role=alert]::before { content: '⚠ '; }
+.empty, .premium-empty, .map-properties-card { color: var(--ui-muted); background: #fafbf9; border-color: var(--ui-border); }
+.empty { text-align: center; padding: 40px 24px; border: 1px dashed var(--ui-border); border-radius: 16px; }
+.premium-empty p, .premium-empty i, .media-preview > div { color: var(--ui-muted); }
+.save-state.saved { color: var(--ui-success); }
+.save-state.dirty { color: var(--ui-warning); }
+.panel-footer i, .login-note i, .login-form .eyebrow { color: var(--ui-accent); }
+.admin-lockup .mountain-badge { background: var(--ui-accent); }
+
+/* Sidebar and map tool behavior/layout are unchanged. Keep geographic colors intact. */
+.nav-item.active, .nav-group-toggle.has-active { color: var(--ui-accent-hover); }
+.nav-group-toggle, .nav-item { transition: background-color 160ms ease, color 160ms ease; }
+.nav-group-toggle.has-active { background: var(--ui-accent-soft); }
+.map-editor { --map-muted: var(--ui-muted); --map-line: var(--ui-border); --map-soft: var(--ui-soft); }
+.map-toolrail { box-shadow: none; background: #fafbf9; border-color: var(--ui-border); }
+.map-editor .map-tool-button:hover:not(:disabled) { box-shadow: var(--ui-card-shadow); }
+.map-editor .map-tool-button[aria-pressed=true] { box-shadow: inset 3px 0 var(--tool-tone); }
+.map-metadata label, .map-form-section-title > span { font-size: 12px; }
+.map-editor .map-meta-accordion__trigger > span { font-size: 11px; }
+.map-vertex-actions, .map-properties-head { color: var(--ui-muted); border-color: var(--ui-border); }
+.map-editor .map-meta-accordion__trigger { background: var(--ui-soft); color: var(--ui-text); }
+.map-upload-button small { color: var(--ui-muted); }
+.map-tool-help h5 { font-size: 14px; line-height: 1.5; }
+.search-box { background: #fff; border-color: var(--ui-border); border-radius: var(--ui-radius); }
+.search-box .p-inputtext { border: 0; padding-left: 34px; box-shadow: none; background: transparent; }
+.search-box:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .p-dropdown-panel, .p-multiselect-panel { animation: admin-menu-in 140ms ease-out; }
+  @keyframes admin-menu-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
+@media (forced-colors: active) {
+  input[type=checkbox]:not(.p-checkbox-input) { appearance: auto; }
+  .cms-settings input[type=checkbox]::before, .toggle-row input[type=checkbox]::before, .admin-switch::before { display: none; }
+}
+.resort-gallery-admin__grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; }
+.resort-gallery-admin__grid article > .resort-gallery-admin__fields { display: block; padding: 16px; }
+.resort-gallery-admin__fields label { display: grid; gap: 6px; font-size: 12px; font-weight: 600; }
+.resort-gallery-admin__fields .p-inputtext { width: 100%; min-width: 0; }

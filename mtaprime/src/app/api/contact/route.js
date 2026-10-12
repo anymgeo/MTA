@@ -1,5 +1,6 @@
 import { env } from '@/config/env';
 export async function POST(request) {
+  if (env.snapshot) return Response.json({ code: 'STATIC_RELEASE' }, { status: 503 });
   if (Number(request.headers.get("content-length") || 0) > 20000)
     return Response.json({ code: "TOO_LARGE" }, { status: 413 });
   let data;

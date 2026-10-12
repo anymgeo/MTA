@@ -1,3 +1,4 @@
+import Image from "@/components/media/SiteImage";
 import LocalizedDate from "@/components/LocalizedDate";
 import NewsCategoryTag from "@/components/NewsCategoryTag";
 import { getTranslations } from "next-intl/server";
@@ -7,6 +8,7 @@ import { getNewsArticleBySlug, getNewsSlugs } from "@/services/news";
 import { contentMetadata } from "@/lib/metadata";
 import { env } from "@/config/env";
 import MediaGallery from "@/components/media/MediaGallery";
+import EditorialBody from "@/components/content/EditorialBody";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }) {
   const { locale, slug } = await params;
@@ -75,7 +77,7 @@ export default async function NewsDetailsPage({ params }) {
           <div className="space-y-10">
             {/* IMAGE */}
             <div className="overflow-hidden rounded-3xl bg-surface">
-              <img
+              <Image width={1200} height={800} quality={75} sizes="(max-width: 768px) 100vw, 66vw"
                 src={article.image}
                 alt={article.title}
                 className="aspect-[4/3] w-full object-cover md:aspect-[16/9] lg:aspect-[2/1]"
@@ -85,9 +87,7 @@ export default async function NewsDetailsPage({ params }) {
             {/* INTRO TEXT */}
             {firstParagraph && (
               <div className="mx-auto max-w-3xl border-l-4 border-brand-yellow pl-6">
-                <p className="text-xl font-medium leading-9 text-ink md:text-2xl md:leading-10">
-                  {firstParagraph}
-                </p>
+                <EditorialBody paragraphs={[firstParagraph]} className="font-medium text-ink" />
               </div>
             )}
           </div>
@@ -96,14 +96,7 @@ export default async function NewsDetailsPage({ params }) {
           {remainingParagraphs.length > 0 && (
             <div className="mx-auto mt-14 max-w-3xl">
               <div className="space-y-7">
-                {remainingParagraphs.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="text-xl leading-9 text-muted md:text-[1.375rem] md:leading-10"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+                <EditorialBody paragraphs={remainingParagraphs.map(text => /^https:\/\/mta\.ski\//.test(text) ? `[mta.ski ↗](${text})` : text)} className="text-muted" />
               </div>
             </div>
           )}

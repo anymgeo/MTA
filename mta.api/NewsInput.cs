@@ -15,7 +15,7 @@ public record NewsInput(
         bool Text(string? s, int max, bool required = true) => s != null && s.Length <= max && (!required || !string.IsNullOrWhiteSpace(s));
         Check(Slug != null && Regex.IsMatch(Slug, "^[a-z0-9]+(?:-[a-z0-9]+)*$") && Slug.Length <= 150, "slug", "მისამართისთვის გამოიყენეთ ლათინური ასოები, ციფრები და ტირე.");
         Check(Date.Year >= 2000 && Date.Year <= 2100, "date", "მიუთითეთ სწორი თარიღი.");
-        Check(Category is "news" or "article" or "blog", "category", "აირჩიეთ სწორი კატეგორია.");
+        Check(Category is "news" or "blog", "category", "აირჩიეთ სწორი კატეგორია.");
         Check(Text(TitleKa, 200), "titleKa", "ქართული სათაური აუცილებელია (მაქს. 200 სიმბოლო).");
         Check(Text(ExcerptKa, 600, Published), "excerptKa", "ქართული მოკლე აღწერა აუცილებელია გამოქვეყნებისთვის (მაქს. 600).");
         Check(Text(TitleEn, 200, Published), "titleEn", "ინგლისური სათაური აუცილებელია გამოქვეყნებისთვის (მაქს. 200).");

@@ -3,12 +3,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import {
-  ChevronDown,
+  ArrowRight,
   Menu,
   Search,
-  Snowflake,
-  Sun,
-  Ticket,
   X,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -18,6 +15,7 @@ import { useSiteSeason } from "@/providers/SeasonProvider";
 import CmsNavigation from "./content/CmsNavigation";
 import SeasonToggle from "./SeasonToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
+import SkiPassIcon from "./brand/SkiPassIcon";
 export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = false, navigation }) {
   const t = useTranslations("Header");
   const { season } = useSiteSeason();
@@ -43,17 +41,20 @@ export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = f
             onClick={() => setMenuOpen(!menuOpen)}
             className="mr-1 rounded-full p-1 sm:mr-3 sm:p-2 transition hover:bg-canvas/10 min-[1440px]:hidden"
             aria-label={t("toggleMenu_520922")}
+            aria-expanded={menuOpen}
+            aria-controls="site-navigation"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
           <Link href="/" onClick={closeMenu} className="rounded-md p-1">
-            <Image src="/brand/mta-wordmark-light.svg" alt="M.T.A. Mountain Trails Agency" width={387} height={199} className="h-auto w-[95px] sm:w-[110px]" priority />
+            <Image src="/brand/mta-official-light.svg" alt="M.T.A. Mountain Trails Agency" width={770} height={200} sizes="(max-width:640px) 116px, 150px" quality={75} className="site-header-logo h-auto w-[116px] sm:w-[150px]" />
           </Link>
         </div>
 
         {/* CENTER - NAVIGATION */}
         <nav
+          id="site-navigation"
           className={`
             absolute left-0 top-full w-full border-t border-canvas/10
             max-h-[calc(100dvh-96px)] overflow-y-auto min-[1440px]:overflow-visible bg-ink/95 px-6 py-8 backdrop-blur-xl
@@ -69,8 +70,12 @@ export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = f
             ${menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 min-[1440px]:visible min-[1440px]:translate-y-0 min-[1440px]:opacity-100"}
           `}
         >
-          <div className="flex flex-col gap-6 min-[1440px]:flex-row min-[1440px]:items-center min-[1440px]:justify-center min-[1440px]:gap-7">
+          <div className="flex flex-col gap-6 min-[1440px]:flex-row min-[1440px]:items-center min-[1440px]:justify-center min-[1440px]:gap-4">
             <CmsNavigation items={navigation ?? []} onNavigate={closeMenu} />
+          </div>
+          <div className="mobile-nav-utilities">
+            <button type="button" onClick={() => { closeMenu(); setModal('search'); }} className="site-nav-label"><Search size={18} aria-hidden="true" />{t('search_bce064')}</button>
+            <div className="small-phone-season"><SeasonToggle /></div>
           </div>
         </nav>
 
@@ -80,25 +85,26 @@ export default function Header({ menuOpen, setMenuOpen, setModal, resortPage = f
           <button
             type="button"
             onClick={() => setModal("search")}
-            className="rounded-full p-1 sm:p-2 transition hover:bg-canvas/10"
+            className="header-search-action rounded-full p-1 sm:p-2 transition hover:bg-canvas/10"
             aria-label={t("search_bce064")}
           >
             <Search size={19} />
           </button>
 
           <LanguageSwitcher />
-          <SeasonToggle />
+          <div className="header-season-action"><SeasonToggle /></div>
 
           {/* SKI PASS */}
           <button
             type="button"
             onClick={() => setModal("pass")}
             aria-label={t("skiPass_7289e8")}
-            className="bg-white flex items-center gap-2 rounded-full px-2 sm:px-4 py-2 text-xs font-bold text-ink transition hover:brightness-110"
+            className="brand-cta brand-cta-primary brand-cta-compact"
           >
-            <Ticket size={16} />
+            <SkiPassIcon />
 
             <span className="hidden sm:block">{t("skiPass_7289e8")}</span>
+            <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
           </button>
         </div>
       </div>

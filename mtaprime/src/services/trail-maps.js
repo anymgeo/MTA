@@ -10,12 +10,12 @@ import { assembleMapRecords, validateMapRecords } from "@/models/map-records";
 export async function getTrailMap(slug, { locale }) {
   const resort = await getResortBySlug(slug, { locale });
   if (!resort) return null;
-  if (env.apiBaseUrl) {
+  if (env.snapshot || env.apiBaseUrl) {
     const managed = await request("maps/" + slug, { locale, revalidate: 0 });
     if (managed) {
       if (!managed.managed || !Array.isArray(managed.types) || !Array.isArray(managed.features) || !(managed.width > 0) || !(managed.height > 0))
         throw new Error("Invalid CMS map");
-      return managed;
+      return { ...managed, catalogRecords: assembleMapRecords({ map: { ...managed, features: [] }, resort }) };
     }
   }
   const map =

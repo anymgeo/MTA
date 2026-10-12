@@ -1,12 +1,14 @@
 "use client";
+import Image from '@/components/media/SiteImage';
 import ResortIcon from "./brand/ResortIcon";
 import MountainAccent from "./brand/MountainAccent";
 import SnowOverlay from "./SnowOverlay";
+import SkiPassIcon from "./brand/SkiPassIcon";
 
 import { useTranslations } from "next-intl";
 import {
+  ArrowRight,
   ArrowUpRight,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -34,9 +36,8 @@ export default function Hero({
       <div
         data-home-hero-media
         className="home-hero-media"
-        style={{ backgroundImage: `url("${background}")` }}
         aria-hidden="true"
-      />
+      ><Image src={background} alt="" fill quality={75} sizes="100vw" priority className="object-cover" /></div>
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-ink/45" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-ink/30" />
@@ -70,15 +71,16 @@ export default function Hero({
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => setModal("pass")}
-              className="bg-white text-ink flex items-center gap-3 rounded-full px-7 py-4 text-xs font-bold tracking-wider transition hover:brightness-110"
+              className="brand-cta brand-cta-primary"
             >
+              <SkiPassIcon />
               {t("buySkiPass_f7fcbe")}
-              <ArrowUpRight size={18} />
+              <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
             </button>
 
             <Link
               href="/resorts"
-              className="flex items-center gap-3 rounded-full border border-canvas/30 bg-ink/20 px-7 py-4 text-xs font-bold tracking-wider transition hover:bg-canvas hover:text-ink"
+              className="brand-cta brand-cta-secondary"
             >
               {t("exploreResort")}
               <ArrowUpRight size={18} />
@@ -104,7 +106,7 @@ export default function Hero({
               ● {current.statusLabel}
             </strong>
             <small className="text-xs text-canvas/50">
-              {current.lifts} {t("lifts")}
+              {current.publicSnapshot ? "—" : current.lifts} {t("lifts")}
             </small>
           </div>
 
@@ -123,9 +125,9 @@ export default function Hero({
             <span className="text-[9px] tracking-widest text-canvas/50">
               {t("updated_47b23b")}
             </span>
-            <strong className="mt-2 block text-2xl">{t("04Min_cdd22e")}</strong>
+            <strong className="mt-2 block text-2xl">{current.publicSnapshot ? "—" : t("04Min_cdd22e")}</strong>
             <small className="text-xs text-canvas/50">
-              {t("liveData_6301f7")}
+              {current.publicSnapshot ? current.statusLabel : t("liveData_6301f7")}
             </small>
           </div>
         </div>

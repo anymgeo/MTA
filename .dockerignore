@@ -1,0 +1,12 @@
+.git
+.local
+.tools
+.vercel
+**/node_modules
+**/.next
+**/.next-*
+**/bin
+**/obj
+**/.env*
+**/*.tsbuildinfo
+deploy/tls

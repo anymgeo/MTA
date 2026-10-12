@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+import Image from "@/components/media/SiteImage";
 import { Play, VideoOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { CameraBadge } from "./WebcamCard";
@@ -25,9 +25,9 @@ export default function CameraPlayer({ camera }) {
               src={camera.image}
               alt={camera.name}
               fill
+              quality={75}
               sizes="(max-width: 1024px) 100vw, 80vw"
               className="object-cover"
-              priority
             />
             <div className="camera-shade" />
             <div className="absolute inset-0 flex items-center justify-center">

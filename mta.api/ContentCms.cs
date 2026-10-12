@@ -138,7 +138,8 @@ public static class ContentCms
             if (module == "projects") {
                 foreach (var key in new[] { "resort", "resortId", "category", "image", "date", "description", "overview" })
                     if (data[key] is not JsonValue value || !value.TryGetValue<string>(out _)) errors[locale + "." + key] = ["Expected text."];
-                if (!Regex.IsMatch(data["date"]?.ToString() ?? "", "^\\d{4}-\\d{2}-\\d{2}$") || !DateOnly.TryParse(data["date"]?.ToString(), out _)) errors[locale + ".date"] = ["Choose a project date."];
+                var yearOnly = data["datePrecision"]?.ToString() == "year" && data["date"]?.ToString() == "" && int.TryParse(data["year"]?.ToString(), out var projectYear) && projectYear is >= 1980 and <= 2100;
+                if (!yearOnly && (!Regex.IsMatch(data["date"]?.ToString() ?? "", "^\\d{4}-\\d{2}-\\d{2}$") || !DateOnly.TryParse(data["date"]?.ToString(), out _))) errors[locale + ".date"] = ["Choose a project date, or its documented year with year precision."];
                 foreach (var key in new[] { "activities", "highlights" })
                     if (data[key] is not JsonArray list || list.Any(x => x is not JsonValue v || !v.TryGetValue<string>(out _))) errors[locale + "." + key] = ["Expected a list of text values."];
             }

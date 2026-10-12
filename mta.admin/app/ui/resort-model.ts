@@ -4,6 +4,7 @@ export type Media = { image: string; heroImages: string[] };
 export type LiveCardSettings = { winterImage?: string; summerImage?: string; imageAlt?: string; note?: string; featured?: boolean; homepageVisible?: boolean; displayOrder?: number };
 export type Conditions = { resortId: string; status: string; temperature: number | null; weatherCondition: string | null; snowDepthCm: number | null; newSnow24hCm: number | null; liftsOpen: number | null; liftsTotal: number | null; trailsOpen: number | null; trailsTotal: number | null; windSpeedKmh: number | null; windDirection: string | null; visibility: string | null; operatingFrom: string | null; operatingTo: string | null; topElevationM: number | null; lastUpdatedAt: string | null };
 export type ResortContent = {
+  galleryDetails?: { url: string; title: string; category: string }[];
   page?: ResortPageContent;
   liveCard?: LiveCardSettings;
   name: string; region: string; description: string; image: string; summerImage: string;

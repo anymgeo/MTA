@@ -33,7 +33,7 @@ export default function ResortCard({ resort, conditions, season, now, detailsHre
   return (
     <article data-resort={resort.slug} className={`live-resort-card ${featured ? "is-featured" : ""}`}>
       <div className="live-card-cover">
-        {image && image !== failedImage ? <Image src={image} alt={config.imageAlt || resort.name} fill sizes="(min-width:1280px) 25vw, (min-width:768px) 50vw, 100vw" className="object-cover" onError={() => setFailedImage(image)} /> : <Mountain className="live-card-placeholder" aria-hidden="true" />}
+        {image && image !== failedImage ? <Image src={image} alt={config.imageAlt || resort.name} fill quality={75} sizes="(min-width:1280px) 25vw, (min-width:768px) 50vw, 100vw" className="object-cover" onError={() => setFailedImage(image)} /> : <Mountain className="live-card-placeholder" aria-hidden="true" />}
         <div className="live-card-shade" />
         <div className="live-card-badges">
           {featured ? <span className="live-featured"><Star size={12} aria-hidden="true" />{t("featured")}</span> : <span />}

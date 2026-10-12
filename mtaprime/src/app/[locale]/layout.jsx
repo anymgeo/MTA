@@ -1,5 +1,8 @@
 import { firago, mta } from "@/fonts";
 import "../globals.css";
+import "../brand-navigation.css";
+import "../public-polish.css";
+import "../map-polish.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";

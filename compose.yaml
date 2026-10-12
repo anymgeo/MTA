@@ -41,7 +41,7 @@ services:
     security_opt: [no-new-privileges:true]
     cap_drop: [ALL]
   site:
-    build: ./mtaprime
+    build: {context: ., dockerfile: mtaprime/Dockerfile}
     restart: unless-stopped
     environment:
       API_BASE_URL: http://api:8080/api
@@ -54,7 +54,7 @@ services:
     security_opt: [no-new-privileges:true]
     cap_drop: [ALL]
   admin:
-    build: ./mta.admin
+    build: {context: ., dockerfile: mta.admin/Dockerfile}
     restart: unless-stopped
     environment:
       SITE_PUBLIC_ORIGIN: https://${SITE_HOST}

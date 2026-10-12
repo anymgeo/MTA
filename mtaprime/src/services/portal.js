@@ -12,7 +12,7 @@ export async function getPortalRecords(kind, { locale, area } = {}) {
   const records =
     ['leadership','events','history','infrastructure','documents','safety','contacts','webcams','navigation'].includes(kind)
       ? await getCmsRecords(kind === 'navigation' ? 'home-navigation' : kind, locale)
-      : env.dataSource === "api"
+      : env.snapshot || env.dataSource === "api"
       ? await request(kind, {
           locale,
           revalidate: ["closures", "avalanches", "resortOperations"].includes(

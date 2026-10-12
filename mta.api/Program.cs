@@ -64,6 +64,10 @@ var app = builder.Build();
 app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.Use(async (ctx, next) => {
+    if (ctx.Request.Path.Value is { } path && (path.EndsWith("/image-upload") || path == "/api/admin/map-image")) {
+        var limit=ctx.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>();
+        if(limit is {IsReadOnly:false})limit.MaxRequestBodySize=null;
+    }
     ctx.Response.Headers.XContentTypeOptions = "nosniff";
     if (ctx.Request.Path.StartsWithSegments("/api/admin")) {
         ctx.Response.Headers.CacheControl = "no-store";
@@ -240,6 +244,7 @@ if (args.Contains("--initialize")) {
         }
         db.Bootstrap.Add(new BootstrapState { Id = "initial-resorts" }); await db.SaveChangesAsync();
     }
+    await BrandContentRefresh.ApplyAsync(db, app.Environment.ContentRootPath);
     Console.WriteLine("Database initialized. Existing passwords and content were preserved.");
     return;
 }

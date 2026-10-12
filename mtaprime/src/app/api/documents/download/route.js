@@ -27,8 +27,8 @@ export async function GET(request) {
   if (!file) return Response.json({ code: "NOT_FOUND" }, { status: 404 });
   let bytes;
   try {
-    if (url.startsWith("/documents/")) {
-      const root = path.resolve(process.cwd(), "public/documents"),
+    if (url.startsWith("/documents/") || (env.snapshot && url.startsWith("/published-media/"))) {
+      const root = path.resolve(process.cwd(), "public", url.startsWith('/documents/') ? 'documents' : 'published-media'),
         target = path.resolve(process.cwd(), "public", url.slice(1));
       if (!target.startsWith(root + path.sep))
         return Response.json({ code: "NOT_FOUND" }, { status: 404 });

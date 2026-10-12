@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
+import SkiPassIcon from "./brand/SkiPassIcon";
 export default function SkiPassModal({ onClose }) {
   const t = useTranslations("SkiPassModal");
   return (
@@ -39,10 +40,11 @@ export default function SkiPassModal({ onClose }) {
 
         <button
           onClick={onClose}
-          className="mt-8 flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-xs font-bold tracking-wider text-white transition-all hover:brightness-110 active:scale-95"
+          className="mt-8 brand-cta brand-cta-primary"
         >
+          <SkiPassIcon />
           {t("viewPassOptions_85f56f")}
-          <ArrowUpRight size={18} />
+          <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
         </button>
       </div>
     </div>

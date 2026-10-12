@@ -56,7 +56,7 @@ export default function Editor({ initial, onClose, onSaved }: { initial: News; o
     set('gallery', gallery);
   }
   const ka = locale === 'ka';
-  const categoryOptions = [{ label: 'სიახლე', value: 'news' }, { label: 'სტატია / ისტორია', value: 'article' }, { label: 'ბლოგი', value: 'blog' }];
+  const categoryOptions = [{ label: 'სიახლე / News', value: 'news' }, { label: 'ბლოგი / Blog', value: 'blog' }];
   return <><Dialog visible onHide={close} header={<div><span className="eyebrow">MTA / სიახლეები</span><h2>{initial.id ? 'ნიუსის რედაქტირება' : 'ახალი ნიუსი'}</h2></div>} modal className="editor-dialog" style={{ width: '1040px', maxWidth: '97vw' }} closable={!busy && !uploading} draggable={false} footer={<div className="editor-footer"><span>{dirty ? 'არის შეუნახავი ცვლილებები' : 'ყველა ცვლილება შენახულია'}</span><div><Button label="გაუქმება" text onClick={close} disabled={busy || uploading} /><Button label={initial.published ? 'გამოქვეყნებიდან მოხსნა' : 'მონახაზად შენახვა'} outlined onClick={() => save(false)} disabled={busy || uploading} /><Button label={initial.published ? 'ცვლილებების შენახვა' : 'გამოქვეყნება'} icon="pi pi-check" onClick={() => save(true)} loading={busy} disabled={uploading} /></div></div>}>
       {error && <div className="editor-error" role="alert"><Message severity="error" text={error} /></div>}
       <div className="editor-grid"><section className="editor-copy"><div className="language-tabs" role="group" aria-label="ნიუსის ენა"><button aria-pressed={ka} className={ka ? 'selected' : ''} onClick={() => setLocale('ka')}>ქართული <span>KA</span></button><button aria-pressed={!ka} className={!ka ? 'selected' : ''} onClick={() => setLocale('en')}>English <span>EN</span></button></div>

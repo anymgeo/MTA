@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
@@ -21,7 +22,7 @@ export default function AboutPage({ resorts, content }) {
       <section className="relative min-h-screen overflow-hidden bg-ink text-canvas">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img
+          <Image fill quality={75} sizes="100vw" priority
             src="/Gudauri.jpg"
             alt={t("gudauriMountains_b71863")}
             className="h-full w-full scale-105 object-cover transition-transform duration-[2500ms]"
@@ -128,7 +129,7 @@ export default function AboutPage({ resorts, content }) {
        ========================================================= */}
       <section className="px-4 lg:px-8">
         <div className="relative mx-auto max-w-[1700px] overflow-hidden rounded-[2rem]">
-          <img
+          <Image width={1200} height={800} quality={75} sizes="(max-width: 768px) 100vw, 66vw"
             src="/MESTIA.webp"
             alt={t("mestiaMountains_965f5e")}
             className="h-[70vh] w-full object-cover transition duration-700 hover:scale-105"
@@ -368,7 +369,7 @@ function ResortCard({ resort, large = false }) {
       href={resort.href}
       className={`group relative block overflow-hidden rounded-[1.75rem] ${large ? "min-h-[620px] lg:min-h-[700px]" : "min-h-[500px]"}`}
     >
-      <img
+      <Image fill quality={75} sizes="(max-width: 768px) 100vw, 66vw"
         src={resort.image}
         alt={resort.name}
         className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-110"
@@ -437,7 +438,7 @@ function TimelineItem({ year, title, text }) {
 function SeasonCard({ image, title, color }) {
   return (
     <div className="group relative min-h-[400px] overflow-hidden rounded-[1.5rem]">
-      <img
+      <Image fill quality={75} sizes="(max-width: 768px) 100vw, 66vw"
         src={image}
         alt={title}
         className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-110"

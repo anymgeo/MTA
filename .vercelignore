@@ -1,0 +1,22 @@
+# Only the public Next.js app belongs in this existing Vercel project.
+.git/
+.local/
+.tools/
+.verify/
+.vercel/
+.env*
+mta.admin/
+mta.api/
+deploy/
+docs/
+scripts/
+node_modules/
+mtaprime/node_modules/**
+mtaprime/.next/**
+mtaprime/.next-*/**
+mtaprime/.env*
+mtaprime/.vercel/**
+mtaprime/out/**
+mtaprime/build/**
+mtaprime/*.tsbuildinfo
+mtaprime/*debug.log*

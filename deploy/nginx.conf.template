@@ -45,6 +45,20 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-For $remote_addr;
     }
+    # Original map images stream to the protected API without size caps or disk buffering.
+    location ~ "^/map-upload/[a-fA-F0-9-]{36}$" {
+        client_max_body_size 0;
+        client_body_timeout 3600s;
+        proxy_request_buffering off;
+        proxy_http_version 1.1;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        rewrite ^/map-upload/([^/]+)$ /api/admin/maps/$1/image-upload break;
+        proxy_pass http://api:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
     location /backend/ {
         proxy_pass http://api:8080/api/;
         proxy_set_header Host $host;

@@ -1,0 +1,70 @@
+{
+  "bakuriani": {
+    "source": "https://georgia.travel/resorts/bakuriani",
+    "en": {
+      "about": "Bakuriani is a mountain resort in Borjomi Municipality, surrounded by forest. Winter sports and family holidays are complemented by walking and cycling in the warmer months.",
+      "facts": "The town stands around 1,700 metres above sea level. Choose a ski area before setting out and check its current lift and trail status.",
+      "history": "One of Georgia’s longstanding winter destinations, Bakuriani combines mountain recreation with a tradition of sporting training.",
+      "arrivalText": "Access is via Borjomi. Allow extra time in winter and check road conditions before departure. Arrange the final transfer to your chosen ski area in advance.",
+      "infrastructureText": "Use the map to explore the lift network and saved trail information. Opening status is not guaranteed by the catalogue; check the live update before skiing."
+    },
+    "ka": {
+      "about": "ბაკურიანი ბორჯომის მუნიციპალიტეტის მთის კურორტია, რომელსაც ტყე აკრავს. ზამთრის სპორტსა და ოჯახურ დასვენებას თბილ სეზონზე სეირნობა და ველოსიპედით მოგზაურობა ემატება.",
+      "facts": "დაბა ზღვის დონიდან დაახლოებით 1 700 მეტრზე მდებარეობს. გამგზავრებამდე შეარჩიეთ სასრიალო არეალი და გადაამოწმეთ საბაგიროებისა და ტრასების მიმდინარე მდგომარეობა.",
+      "history": "ბაკურიანი საქართველოს ტრადიციული ზამთრის მიმართულებაა, სადაც მთაში დასვენებას სპორტული მომზადების გამოცდილებაც ახლავს.",
+      "arrivalText": "მისასვლელი გზა ბორჯომზე გადის. ზამთარში გაითვალისწინეთ დამატებითი დრო და წინასწარ გადაამოწმეთ გზის მდგომარეობა. სასრიალო არეალამდე ტრანსფერი წინასწარ დაგეგმეთ.",
+      "infrastructureText": "რუკაზე გაეცანით საბაგიროების ქსელსა და შენახულ ინფორმაციას ტრასების შესახებ. კატალოგი გახსნის გარანტიას არ იძლევა — სრიალამდე გადაამოწმეთ მიმდინარე სტატუსი."
+    }
+  },
+  "gudauri-kobi": {
+    "source": "https://georgia.travel/gudauri-in-winter",
+    "en": {
+      "about": "Gudauri is a Greater Caucasus winter destination with open mountain landscapes. Plan your visit around the ski area and the conditions on the day.",
+      "facts": "Choose terrain suited to your experience. Check lift operation, visibility and restrictions before heading higher.",
+      "history": "Gudauri has become one of Georgia’s best-known winter destinations, attracting visitors for mountain scenery and winter sports.",
+      "arrivalText": "Plan your road journey in advance and check winter restrictions before departure. Snow and weather can change journey times; do not rely on a fixed arrival estimate.",
+      "infrastructureText": "Explore Gudauri and Kobi through the resort map. Treat the lift catalogue as planning information, not a live operating report."
+    },
+    "ka": {
+      "about": "გუდაური დიდი კავკასიონის ზამთრის მიმართულებაა, რომელსაც გაშლილი მთის ლანდშაფტი გამოარჩევს. ვიზიტი სასრიალო არეალისა და იმ დღის პირობების მიხედვით დაგეგმეთ.",
+      "facts": "შეარჩიეთ თქვენი გამოცდილების შესაბამისი ტრასა. მაღალ ზონებში ასვლამდე გადაამოწმეთ საბაგიროების მუშაობა, ხილვადობა და შეზღუდვები.",
+      "history": "გუდაური საქართველოს ერთ-ერთ ცნობილ ზამთრის მიმართულებად ჩამოყალიბდა და სტუმრებს მთის პეიზაჟებითა და ზამთრის სპორტით იზიდავს.",
+      "arrivalText": "საავტომობილო მგზავრობა წინასწარ დაგეგმეთ და გამგზავრებამდე გადაამოწმეთ ზამთრის შეზღუდვები. თოვლი და ამინდი მგზავრობის ხანგრძლივობას ცვლის — ფიქსირებულ დროს ნუ დაეყრდნობით.",
+      "infrastructureText": "გუდაურისა და კობის არეალებს კურორტის რუკაზე გაეცანით. საბაგიროების კატალოგი დაგეგმვისთვისაა და მიმდინარე მუშაობის ანგარიშს არ წარმოადგენს."
+    }
+  },
+  "mestia": {
+    "source": "https://georgia.travel/cities-towns/mestia",
+    "en": {
+      "about": "Mestia is a base for exploring Svaneti, combining mountain landscapes and local cultural heritage. Hatsvali and Tetnuldi offer nearby winter-sports areas.",
+      "facts": "Hatsvali and Tetnuldi are separate areas. Select your destination before arranging transport and check the relevant lift status.",
+      "history": "Svan towers and Mestia’s cultural collections reflect the region’s distinctive heritage. Mountain visits can be combined with time in the town.",
+      "arrivalText": "Plan your journey to Mestia and your onward transfer separately. Check road and weather conditions, especially before travelling to higher mountain areas.",
+      "infrastructureText": "Use the map and lift information to plan your chosen area. Avoid assuming that all Svaneti lifts operate together or share the same daily conditions."
+    },
+    "ka": {
+      "about": "მესტია სვანეთის გაცნობის საწყისი წერტილია, სადაც მთის ლანდშაფტი ადგილობრივ კულტურულ მემკვიდრეობას ერწყმის. ჰაწვალი და თეთნულდი ახლომდებარე ზამთრის სპორტის არეალებია.",
+      "facts": "ჰაწვალი და თეთნულდი სხვადასხვა არეალია. ტრანსპორტის დაგეგმვამდე შეარჩიეთ მიმართულება და გადაამოწმეთ შესაბამისი საბაგიროების სტატუსი.",
+      "history": "სვანური კოშკები და მესტიის კულტურული კოლექციები რეგიონის გამორჩეულ მემკვიდრეობას ასახავს. მთაში ვიზიტს დაბის გაცნობაც შეგიძლიათ შეუთავსოთ.",
+      "arrivalText": "მესტიამდე მგზავრობა და სასრიალო არეალამდე ტრანსფერი ცალ-ცალკე დაგეგმეთ. განსაკუთრებით მაღალმთიან ზონებში გამგზავრებამდე გადაამოწმეთ გზა და ამინდი.",
+      "infrastructureText": "შერჩეული არეალის დასაგეგმად გამოიყენეთ რუკა და საბაგიროების ინფორმაცია. ყველა საბაგიროს მუშაობა და ყოველდღიური პირობები ერთნაირად არ ჩათვალოთ."
+    }
+  },
+  "goderdzi": {
+    "source": "https://georgia.travel/resorts/goderdzi",
+    "en": {
+      "about": "Goderdzi is a mountain resort in highland Adjara, known for its forested landscape and winter recreation. It offers a different mountain setting from Georgia’s other major resorts.",
+      "facts": "Plan for mountain weather and changing access conditions. Confirm the operating lift network and any restrictions on the day of your visit.",
+      "history": "Goderdzi is among Georgia’s newer winter-resort destinations, extending mountain tourism in Adjara.",
+      "arrivalText": "Arrange transport suited to the season and check road access before departure. In winter, allow extra time and confirm the final transfer with your accommodation or transport provider.",
+      "infrastructureText": "Check saved lifts, trails and warnings on the map. Missing warnings do not establish that a route is safe; follow current resort instructions."
+    },
+    "ka": {
+      "about": "გოდერძი მაღალმთიანი აჭარის კურორტია, რომელსაც ტყიანი ლანდშაფტი და ზამთრის დასვენება გამოარჩევს. ის საქართველოს სხვა მსხვილი კურორტებისგან განსხვავებულ მთის გარემოს გთავაზობთ.",
+      "facts": "გაითვალისწინეთ მთის ამინდი და მისასვლელი გზის ცვალებადი პირობები. ვიზიტის დღეს გადაამოწმეთ მოქმედი საბაგიროები და შეზღუდვები.",
+      "history": "გოდერძი საქართველოს შედარებით ახალი ზამთრის კურორტების რიცხვს მიეკუთვნება და აჭარაში მთის ტურიზმის განვითარებას ემსახურება.",
+      "arrivalText": "შეარჩიეთ სეზონის შესაბამისი ტრანსპორტი და გამგზავრებამდე გადაამოწმეთ გზა. ზამთარში გაითვალისწინეთ დამატებითი დრო; საბოლოო ტრანსფერი საცხოვრებელთან ან გადამზიდავთან შეათანხმეთ.",
+      "infrastructureText": "რუკაზე გადაამოწმეთ შენახული საბაგიროები, ტრასები და გაფრთხილებები. გაფრთხილების არარსებობა უსაფრთხოებას არ ადასტურებს — მიჰყევით კურორტის მიმდინარე მითითებებს."
+    }
+  }
+}

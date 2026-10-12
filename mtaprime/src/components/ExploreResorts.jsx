@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useSiteSeason } from "@/providers/SeasonProvider";
@@ -43,7 +44,7 @@ export default function ExploreResorts({ resorts = [], directory = false }) {
                 href={`/resorts/${resort.slug}`}
                 className="resort-brand-card group relative block aspect-[4/5] overflow-hidden bg-ink"
               >
-                <img
+                <Image fill quality={75} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   src={resort.seasons[season].image}
                   alt={resort.name}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -72,7 +73,7 @@ export default function ExploreResorts({ resorts = [], directory = false }) {
 
                   {!directory && <div className="mt-5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest">
                     <span
-                      className={`inline-block h-1.5 w-1.5 rounded-full ${isOpen ? "bg-brand-green" : "bg-brand-yellow"}`}
+                      className={`inline-block h-1.5 w-1.5 rounded-full ${resort.publicSnapshot ? "bg-canvas/50" : isOpen ? "bg-brand-green" : "bg-brand-yellow"}`}
                     />
 
                     <span>{resort.statusLabel}</span>

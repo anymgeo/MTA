@@ -1,0 +1,11 @@
+export type Point = [number,number,number?,number?,number?,number?];
+export const MAP_COLORS: Record<string,string>;
+export function pathData(points:Point[],closed?:boolean):string;
+export function cubicAt(a:Point,b:Point,t:number):[number,number];
+export function controls(a:Point,b:Point):number[][];
+export function splitSegment(points:Point[],index:number,t:number):Point[];
+export function closestOnPath(points:Point[],target:Point,closed?:boolean,tolerance?:number):{index:number;t:number;distance:number;point:Point};
+export function moveAnchor(p:Point,next:Point):Point;
+export function moveHandle(p:Point,side:'in'|'out',next:Point,smooth?:boolean):Point;
+export type MapTiles={baseUrl:string;previewUrl:string;width:number;height:number;tileSize:number;maxLevel:number};
+export function visibleTiles(tiles:MapTiles,scale:number,x:number,y:number,width:number,height:number):{key:string;url:string;x:number;y:number;width:number;height:number}[];

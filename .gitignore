@@ -1,4 +1,5 @@
 .tools/
+.vercel/
 .local/
 .verify/
 **/node_modules/
@@ -15,3 +16,6 @@
 **/*.tsbuildinfo
 deploy/tls/
 deploy/tls/
+
+.vercel
+.env*

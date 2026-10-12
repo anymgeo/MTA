@@ -5,6 +5,7 @@ import { request } from "./client";
 import { localizeFixture } from "./fixtures";
 import { validateCollection } from "@/models/validate";
 import { getTranslations } from "next-intl/server";
+import { compareResorts } from '@/models/resort-order';
 
 const localResortMedia = {
   "gudauri-kobi": { videoUrl: "/videos/gudauri.mp4", posterUrl: "/videos/gudauri-poster.jpg" },
@@ -15,15 +16,17 @@ const localResortMedia = {
 /** @param {{locale: 'ka'|'en'}} options @returns {Promise<import('@/models/content').Resort[]>} */
 export async function getResorts({ locale }) {
   const items =
-    env.resortsDataSource === "api"
+    env.snapshot || env.resortsDataSource === "api"
       ? await request("resorts", { locale, revalidate: 0 })
       : await localizeFixture(fixtures, locale);
   validateCollection("resorts", items);
   const t = await getTranslations({ locale, namespace: "Common" });
-  return items.map((item) => ({
+  const live = await getTranslations({ locale, namespace: "LiveCards" });
+  return [...items].sort((a, b) => compareResorts(a.slug, b.slug)).map((item) => ({
     ...item,
     page: { ...localResortMedia[item.slug], ...item.page },
     statusLabel: t(item.status.toLowerCase()),
+    ...(env.snapshot ? { publicSnapshot: true, statusLabel: live("unavailable"), temp: "—", snow: "—", newSnow: "—", wind: "—" } : {}),
     seasons: item.seasons ?? { winter: { image: item.image, heroImages: item.heroImages }, summer: { image: item.summerImage, heroImages: [item.summerImage] } },
   }));
 }

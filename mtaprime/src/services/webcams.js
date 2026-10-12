@@ -2,6 +2,7 @@ import "server-only";
 import { getResorts } from "./resorts";
 import { getPortalRecords } from "./portal";
 import { matchesArea } from "@/models/portal";
+import { compareResorts } from '@/models/resort-order';
 /** Camera views join existing resort imagery with the available feed records.
  * A preview never inherits simulated weather or a live label from resort fixtures. */
 export async function getWebcamViews({ locale, area } = {}) {
@@ -11,6 +12,7 @@ export async function getWebcamViews({ locale, area } = {}) {
   ]);
   return feeds
     .filter(feed => feed.status !== 'inactive' && (!area || matchesArea(feed, area)))
+    .toSorted((a, b) => compareResorts(a.areaId, b.areaId))
     .map((feed) => {
       const resort = resorts.find(r => r.slug === feed.areaId);
       return {

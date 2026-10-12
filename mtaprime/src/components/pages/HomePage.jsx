@@ -6,7 +6,6 @@ import { useSiteSeason } from "@/providers/SeasonProvider";
 import Hero from "@/components/Hero";
 import LiveMountainData from "@/components/LiveMountainData";
 import ExploreResorts from "@/components/ExploreResorts";
-import MountainMap from "@/components/MountainMap";
 import Webcams from "@/components/Webcams";
 import SafetySection from "@/components/SafetySection";
 import Activities from "@/components/Activities";
@@ -46,8 +45,6 @@ export default function HomePage({ resorts, activities, news, cameras }) {
       />
 
       <ExploreResorts resorts={resorts} setResortIndex={setResortIndex} />
-
-      <MountainMap />
 
       <Webcams current={current} cameras={cameras} />
 

@@ -1,4 +1,12 @@
 {
+  "Infrastructure": {
+    "name": "Name", "type": "Type", "area": "Ski area", "duration": "Maximum ride time", "hours": "Winter hours", "details": "Details", "weekends": "Weekends",
+    "length": "Length", "capacity": "Capacity (as supplied)", "stationElevations": "Lower / upper station elevations", "durationMin": "Minimum ride time", "durationMax": "Maximum ride time", "notes": "Source notes",
+    "difficulty": "Difficulty", "difficultySource": "Source difficulty", "accessLifts": "Access lifts", "snowmaking": "Snowmaking coverage", "expert": "Expert / black", "mixed": "Mixed difficulty", "unknown": "To be confirmed", "trail": "Ski trail",
+    "catalogEyebrow": "Mountain catalog", "catalogTitle": "Choose, compare and explore", "searchLabel": "Search infrastructure", "searchLifts": "Search lifts by name, area or type…", "searchTrails": "Search trails by name, area or lift…", "results": "{count} results", "filterDifficulty": "Filter trails by difficulty", "allDifficulties": "All levels", "noResults": "Nothing matches your search", "tryAnotherSearch": "Try another name, area or difficulty level.",
+    "destination": "Google Maps destination", "destinationLabel": "Destination label", "destinationLat": "Latitude", "destinationLng": "Longitude", "destinationUrl": "Google Maps link", "mappedDestination": "Google Maps destination available", "destinationReady": "Verified coordinates or a saved Google Maps link", "destinationPending": "The exact map pin has not been added yet", "openGoogleMaps": "Open in Google Maps",
+    "referenceNote": "Winter reference information, not live operating status. Trail lengths have a source tolerance of 50–100 m. Unconfirmed values remain marked; follow current resort instructions."
+  },
   "PortalDate":{"months":{"1":"Jan","2":"Feb","3":"Mar","4":"Apr","5":"May","6":"Jun","7":"Jul","8":"Aug","9":"Sep","10":"Oct","11":"Nov","12":"Dec"}},
   "ResortMeet": {"title":"Meet us at {resort}"},
   "ResortPage": {"allResorts":"All resorts","pauseVideo":"Pause video","playVideo":"Play video","quickLinks":"Plan your visit","buySkipass":"Buy Skipass","today":"Today in {resort}","gallery":"Gallery","skiArea":"Ski area","lifts":"Lifts","trails":"Trails","season":"Season","hours":"Working hours","altitude":"Top altitude","about":"About {resort}","history":"History","facts":"Key facts","copyPending":"Content coming soon. Details will be published by the resort team.","gettingThere":"How to get there","journeyMap":"Illustrated Georgia map showing {resort}","schematic":"Illustration · not a navigation map","timePending":"Driving time to be confirmed","directions":"Get directions","mountainGuide":"Your mountain guide","liftsTrails":"Lifts & trails","infrastructurePending":"Explore the lift network and marked trails. Check the interactive map for current restrictions before setting out.","name":"Name","type":"Type","duration":"Ride duration","length":"Length","difficulty":"Difficulty","easy":"Easy","medium":"Medium","difficult":"Difficult","pending":"To be confirmed","trailsPending":"Individual trail lengths and difficulty details will be published here.","interactiveMap":"Interactive trail map & restricted zones","yourDay":"Make it your day","activities":"Activities","events":"Events","meet":"Meet us on the mountain","pdfMap":"Download PDF trail map","pdfPending":"PDF trail map — coming soon","socialLinks":"Stay connected","social":{"resortFacebook":"Resort Facebook","facebook":"MTA Facebook","instagram":"Instagram","tiktok":"TikTok"},"tiktokPending":"TikTok — coming soon","safety":"Safety & emergency contacts","livePlaceholder":"Live data is not connected. Dashes are placeholders, not current conditions.","temperature":"Temperature"},
@@ -12,7 +20,11 @@
     "news": "News",
     "article": "Article",
     "blog": "Blog",
-    "empty": "No items are available in this category."
+    "empty": "No news is available yet.",
+    "pagination": "News pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {number}"
   },
   "news_Detail": {
     "backToNews_a790ac": "← Back to news",
@@ -1113,7 +1125,7 @@
     "title": "Explore the mountain",
     "eyebrow": "Interactive terrain viewer",
     "pending": "Trail overlays are awaiting a matching Gudauri reference. This terrain image is not a navigational piste map.",
-    "hint": "Zoom in, then drag or scroll to explore. Select a mapped feature or choose it from the list for details.",
+    "hint": "Use + and − to zoom, then drag to explore. Scrolling continues down the page. Select a mapped feature or choose it from the list for details.",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "reset": "Reset view",
@@ -1164,10 +1176,11 @@
     "searchPlaceholder": "Search lifts, trails or alerts…",
     "filters": "Map filters",
     "liveAlerts": "Live alerts",
+    "referenceAlerts": "Official map hazards (not live)",
     "legend": "Legend",
     "demoShort": "Demo data",
     "statusPending": "Live feed pending",
-    "mapHint": "Select a marker for details · drag to move · scroll to zoom",
+    "mapHint": "Select a marker for details · drag to move · + / − to zoom",
     "open": "Open",
     "limited": "Open with delays",
     "closed": "Closed"

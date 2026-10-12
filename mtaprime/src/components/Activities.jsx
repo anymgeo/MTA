@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
@@ -18,7 +19,7 @@ export default function Activities({ activities = [] }) {
               key={item.id}
               className={`news-card group relative isolate flex min-h-[320px] items-end overflow-hidden rounded-3xl bg-ink p-7 text-canvas md:min-h-[380px] ${i === 0 || i === 3 ? "lg:col-span-2" : ""}`}
             >
-              <img
+              <Image fill quality={75} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 src={item.image}
                 alt=""
                 loading="lazy"

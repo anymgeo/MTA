@@ -2,7 +2,7 @@
 import { Dropdown } from 'primereact/dropdown';
 export const times=Array.from({length:48},(_,i)=>`${String(Math.floor(i/2)).padStart(2,'0')}:${i%2?'30':'00'}`);
 export const durations=[1,2,3,4,5,6,7,8,9,10,12,15,20,25,30,45,60];
-export const liftTypes={en:['Gondola','Chairlift','Drag lift','Surface lift','Magic carpet'],ka:['გონდოლა','სავარძლიანი საბაგირო','ბუგელი','ზედაპირული საბაგირო','კონვეიერი']};
+export const liftTypes={en:['Gondola','Chairlift','Drag lift','Surface lift','Magic carpet','Funicular'],ka:['გონდოლა','სავარძლიანი საბაგირო','ბუგელი','ზედაპირული საბაგირო','კონვეიერი','ფუნიკულიორი']};
 export const travelDurations=Array.from({length:48},(_,i)=>(i+1)*15);
 const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const monthKa=['იანვარი','თებერვალი','მარტი','აპრილი','მაისი','ივნისი','ივლისი','აგვისტო','სექტემბერი','ოქტომბერი','ნოემბერი','დეკემბერი'];

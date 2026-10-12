@@ -1,3 +1,4 @@
+import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { portalDateParts } from "@/lib/portal-date";
@@ -123,7 +124,7 @@ export function RecordBody({ record }) {
   return (
     <>
       {record.image && (
-        <img
+        <Image width={1200} height={800} quality={75} sizes="(max-width: 768px) 100vw, 66vw"
           src={record.image}
           alt={record.title}
           className="mb-10 max-h-[640px] w-full rounded-3xl object-cover"
@@ -205,7 +206,7 @@ export function RecordBody({ record }) {
         </section>
       )}
       {record.images?.map((src) => (
-        <img
+        <Image width={1200} height={800} quality={75} sizes="(max-width: 768px) 100vw, 66vw"
           key={src}
           src={src}
           alt=""

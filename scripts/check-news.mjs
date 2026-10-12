@@ -31,6 +31,9 @@ try {
   assert.equal((await request(`/api/news/${slug}`)).status, 404);
   assert.ok(!(await (await request('/api/news')).json()).some(n => n.slug === slug));
   assert.equal((await request('/api/admin/news', { method: 'POST', body: draft })).status, 409);
+  assert.equal((await request(`/api/admin/news/${record.id}`, { method: 'PUT', body: { ...record, category:'article' } })).status, 400, 'Article is no longer an editable category');
+  response = await request(`/api/admin/news/${record.id}`, { method:'PUT', body:{...record,category:'blog'} });
+  assert.equal(response.status,200); record=await response.json(); assert.equal(record.category,'blog');
   assert.equal((await request(`/api/admin/news/${record.id}`, { method: 'PUT', body: { ...record, published: true } })).status, 400);
   const badUpload = new FormData(); badUpload.set('file', new Blob(['<svg onload="alert(1)"></svg>'], { type: 'image/svg+xml' }), 'test.svg');
   assert.equal((await request('/api/admin/media', { method: 'POST', body: badUpload })).status, 400);

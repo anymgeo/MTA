@@ -77,10 +77,6 @@ function getLocalizedContent(t) {
       label: t("avalancheWarnings_e7d5b2"),
       href: "/safety/avalanche-danger",
     },
-    {
-      label: t("trailClassification_0cd57b"),
-      href: "/safety/piste-classification",
-    },
   ];
   return {
     SAFETY_LINKS,

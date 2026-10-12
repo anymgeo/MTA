@@ -1,5 +1,6 @@
 "use client";
 
+import Image from '@/components/media/SiteImage';
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useSiteSeason } from "@/providers/SeasonProvider";
@@ -7,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import ResortCard from "./ResortCard";
 export default function LiveMountainData({
   resorts,
+  standalone = false,
 }) {
   const t = useTranslations("LiveMountainData");
   const labels = useTranslations("LiveCards");
@@ -30,12 +32,11 @@ export default function LiveMountainData({
     const clock = setInterval(() => setNow(Date.now()), 15000);
     return () => { active = false; controller.abort(); clearInterval(poll); clearInterval(clock); };
   }, []);
-  const cards = resorts.filter(r => r.liveCard?.homepageVisible !== false)
-    .toSorted((a, b) => (a.liveCard?.displayOrder ?? 100) - (b.liveCard?.displayOrder ?? 100));
+  const cards = standalone ? resorts : resorts.filter(r => r.liveCard?.homepageVisible !== false);
   const backdrop = cards[0]?.seasons?.[season]?.image;
   return (
     <section id="live" className="live-mountains-section px-6 py-24 md:px-10 lg:py-28">
-      {backdrop && <div aria-hidden="true" className="live-section-backdrop" style={{ backgroundImage: `url("${backdrop}")` }} />}
+      {backdrop && <div aria-hidden="true" className="live-section-backdrop"><Image src={backdrop} alt="" fill sizes="100vw" quality={75} className="object-cover" /></div>}
       <div className="relative mx-auto max-w-[1760px]">
         {/* SECTION HEADER */}
         <div className="mb-14 grid gap-8 lg:grid-cols-2 lg:items-end">

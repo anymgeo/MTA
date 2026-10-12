@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { DateTime } from "@/components/content/ContentUI";
+import { compareResorts } from '@/models/resort-order';
 function ProjectCard({ project }) {
   const p = useTranslations("Portal");
   const t = useTranslations("ProjectsPage");
@@ -11,7 +13,7 @@ function ProjectCard({ project }) {
     <article className="group overflow-hidden rounded-[28px] border border-border bg-canvas shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
       <Link href={`/projects/${project.slug}`}>
         <div className="relative h-[300px] overflow-hidden">
-          <img
+          <Image fill quality={75} sizes="100vw" priority
             src={project.image}
             alt={project.title}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -87,7 +89,7 @@ export default function ProjectsPage({ projects }) {
   const t = useTranslations("ProjectsPage");
   const resortOptions = [
     "all",
-    ...new Set(projects.map((project) => project.resortId)),
+    ...[...new Set(projects.map((project) => project.resortId))].sort(compareResorts),
   ];
   const yearOptions = [
     "all",

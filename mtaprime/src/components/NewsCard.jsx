@@ -1,3 +1,4 @@
+import Image from "@/components/media/SiteImage";
 import LocalizedDate from "@/components/LocalizedDate";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -5,11 +6,16 @@ import { ArrowUpRight } from "lucide-react";
 import NewsCategoryTag from "./NewsCategoryTag";
 export default function NewsCard({ item }) {
   const t = useTranslations("NewsCard");
+  // Cards use plain summaries; full editorial formatting belongs on the detail page.
+  const excerpt = String(item.excerpt || "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_`]|\\(?=\s|$)/g, "")
+    .replace(/^#{1,6}\s+/gm, "");
   return (
     <article className="news-card group flex h-full flex-col overflow-hidden rounded-3xl bg-canvas">
       <Link href={`/news/${item.slug}`} className="flex h-full flex-col">
         <div className="relative aspect-[4/3] overflow-hidden bg-surface">
-          <img
+          <Image fill quality={75} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             src={item.image}
             alt={item.title}
             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -24,7 +30,7 @@ export default function NewsCard({ item }) {
 
           <h3 className="mt-3 text-2xl font-black leading-tight">{item.title}</h3>
 
-          <p className="mt-3 mb-6 line-clamp-2 text-base leading-7 text-muted">{item.excerpt}</p>
+          <p className="mt-3 mb-6 line-clamp-2 text-base leading-7 text-muted">{excerpt}</p>
 
           <span className="mt-auto flex items-center justify-between gap-2 pt-5 text-xs font-bold">
             {t("readArticle_47faf7")}

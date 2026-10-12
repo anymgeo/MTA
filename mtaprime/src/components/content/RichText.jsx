@@ -7,7 +7,7 @@ export default function RichText({text='',className=''}) {
   if(part.startsWith('**')&&part.endsWith('**'))return <strong key={i}>{part.slice(2,-2)}</strong>;
   if(part.startsWith('*')&&part.endsWith('*'))return <em key={i}>{part.slice(1,-1)}</em>;
   const link=/^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
-  if(link&&(/^(https:\/\/|\/(?!\/))/.test(link[2])))return <a key={i} href={link[2]} className="font-semibold" rel="noreferrer">{link[1]}</a>;
+  if(link&&(/^(https?:\/\/|mailto:|tel:|\/(?!\/))/.test(link[2])))return <a key={i} href={link[2]} className="font-semibold underline underline-offset-4" rel="noreferrer">{link[1]}</a>;
   return <Fragment key={i}>{part}</Fragment>;
  })}</span>;
 }

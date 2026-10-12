@@ -18,15 +18,40 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import ResortIcon from "@/components/brand/ResortIcon";
-import CmsTrailMap from "./CmsTrailMap";
+import { managedMapView } from "@/models/managed-map-view";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { clampView, zoomView } from "@/models/map-records";
 import { useSiteSeason } from "@/providers/SeasonProvider";
+import {visibleTiles} from '../../../../shared/map-geometry.mjs';
 
 const icons = { trail: Route, lift: CableCar, warning: TriangleAlert };
 
 export default function InteractiveTrailMap(props) {
-  return props.map.managed ? <CmsTrailMap {...props} /> : <LegacyInteractiveTrailMap {...props} />;
+  return props.map.managed ? <ManagedInteractiveTrailMap {...props} /> : <LegacyInteractiveTrailMap {...props} />;
+}
+
+function ManagedInteractiveTrailMap({ map: initial, ...props }) {
+  const locale = useLocale();
+  const [map, setMap] = useState(initial);
+  useEffect(() => {
+    const controller = new AbortController();
+    let alive = true;
+    async function refresh() {
+      if (document.hidden) return;
+      try {
+        const response = await fetch(`/api/resort-map?slug=${encodeURIComponent(initial.id)}&locale=${locale}`, { cache: "no-store", signal: controller.signal });
+        if (!response.ok) return;
+        const next = await response.json();
+        if (alive && next.managed && Array.isArray(next.features) && next.width > 0 && next.height > 0)
+          setMap({ ...next, catalogRecords: initial.catalogRecords });
+      } catch { /* Keep the last saved map visible while the connection recovers. */ }
+    }
+    const timer = setInterval(refresh, 15000);
+    window.addEventListener("focus", refresh);
+    return () => { alive = false; controller.abort(); clearInterval(timer); window.removeEventListener("focus", refresh); };
+  }, [initial.id, initial.catalogRecords, locale]);
+  return <LegacyInteractiveTrailMap {...props} map={managedMapView(map)} />;
 }
 
 function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
@@ -73,7 +98,7 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
   });
   const pins = visible.filter((record) => record.position);
   const selected =
-    pins.find((record) => record.id === selectedId) || pins[0] || null;
+    visible.find((record) => record.id === selectedId) || pins[0] || null;
   const lifts = inArea.filter((record) => record.kind === "lift");
   const trails = inArea.filter((record) => record.kind === "trail");
   const warnings = inArea.filter((record) => record.kind === "warning");
@@ -109,31 +134,10 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
     });
     observer.observe(element);
 
-    const handleWheel = (event) => {
-      if (event.target.closest("button, input, a")) return;
-      event.preventDefault();
-      const box = element.getBoundingClientRect();
-      const factor = Math.exp(
-        -Math.max(
-          -100,
-          Math.min(100, event.deltaY * (event.deltaMode === 1 ? 16 : 1)),
-        ) * 0.003,
-      );
-      applyView(
-        zoomView(
-          viewRef.current,
-          factor,
-          { x: event.clientX - box.left, y: event.clientY - box.top },
-          sizeRef.current,
-          map,
-        ),
-      );
-    };
-
-    element.addEventListener("wheel", handleWheel, { passive: false });
+    // Let wheel/trackpad scrolling continue through the page. Zoom remains
+    // available through explicit controls, keyboard shortcuts and pinch.
     return () => {
       observer.disconnect();
-      element.removeEventListener("wheel", handleWheel);
       activePointers.clear();
     };
   }, [expanded, map]);
@@ -316,7 +320,7 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
         ].map(([label, value]) => (
           <div key={label}>
             <dt>{t(label)}</dt>
-            <dd>{translateValue(value)}</dd>
+            <dd style={label==='difficulty'&&selected.routeColor?{color:selected.routeColor,fontWeight:800}:undefined}>{translateValue(value)}</dd>
           </div>
         ))}
       </dl>
@@ -446,7 +450,7 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
 
           <section className="unified-map-alerts">
             <h3>
-              <TriangleAlert /> {t("liveAlerts")} <span>{warnings.length}</span>
+              <TriangleAlert /> {t(warnings.some(warning => warning.reference) ? "referenceAlerts" : "liveAlerts")} <span>{warnings.length}</span>
             </h3>
             {warnings.length ? (
               warnings.slice(0, 2).map((warning) => (
@@ -550,20 +554,22 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
               aria-hidden="true"
             >
               <g transform={`translate(${view.x} ${view.y}) scale(${scale})`}>
-                <image href={map.image} width={map.width} height={map.height} />
+                <image href={map.tiles?.previewUrl||map.image} width={map.width} height={map.height} preserveAspectRatio="none"/>
+                {map.tiles&&visibleTiles(map.tiles,scale,view.x,view.y,size.width,size.height).map(tile=><image key={tile.key} href={tile.url} x={tile.x} y={tile.y} width={tile.width} height={tile.height} preserveAspectRatio="none"/>)}
                 {pins
                   .filter((record) => record.points?.length > 1)
                   .map((record) => (
-                    <polyline
+                    <path
                       data-route={record.id}
                       data-kind={record.kind}
                       key={record.id}
-                      points={record.points
-                        .map((point) => point.join(","))
-                        .join(" ")}
+                      d={record.path || `M ${record.points.map(point => point.join(",")).join(" L ")}`}
+                      fill={record.closedGeometry ? `${record.color || "#d73b32"}33` : "none"}
+                      style={record.sourceKind ? { stroke:record.routeColor, strokeWidth:record.reference ? 2 : undefined, strokeDasharray:record.dashed ? "5 4" : record.reference ? "none" : undefined } : undefined}
                       className={`trail-line unified-map-route route-${record.kind} difficulty-${record.difficulty || "black"}`}
                     />
                   ))}
+                {visible.filter(record=>record.label).map(record=><text key={'label-'+record.id} data-map-label={record.id} x={record.label.x} y={record.label.y} fontSize={15/scale} fontWeight="700" fill={record.routeColor||record.color} stroke="white" strokeWidth={4/scale} paintOrder="stroke" strokeLinejoin="round">{record.label.text}</text>)}
               </g>
             </svg>
 
@@ -576,16 +582,17 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
                   data-kind={record.kind}
                   data-area={record.areaId}
                   data-status={record.status || "unknown"}
-                  className={`unified-map-pin pin-${record.kind}`}
+                  className={`unified-map-pin pin-${record.kind}${record.reference ? " pin-reference" : ""}`}
                   style={{
                     left: view.x + record.position.x * scale,
                     top: view.y + record.position.y * scale,
+                    ...(record.sourceKind && record.kind !== "label" ? { background:record.routeColor || record.color || "#fff", color:["official-hazard","parking","snowpark"].includes(record.sourceKind) ? "#17231f" : "#fff" } : {}),
                   }}
                   aria-label={record.name}
                   aria-pressed={selected?.id === record.id}
                   onClick={() => setSelectedId(record.id)}
                 >
-                  <Icon />
+                  {record.kind === "label" ? <span className="unified-map-reference-label">{record.name}</span> : <Icon />}
                   <span className="unified-map-tooltip">{record.name}</span>
                 </button>
               );
@@ -615,7 +622,7 @@ function LegacyInteractiveTrailMap({ map, resortName, resortSlug }) {
         <ul>
           {visible.map((record) => (
             <li key={record.id}>
-              <button onClick={() => setSelectedId(record.id)}>
+              <button onClick={() => setSelectedId(record.id)} style={record.routeColor?{borderLeft:`3px solid ${record.routeColor}`}:undefined}>
                 <span>{record.name}</span>
                 <small>
                   {t(record.kind in icons ? record.kind : "poi")}

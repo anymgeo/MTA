@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -16,12 +17,8 @@ export default function SafetyPage({ contacts = [] }) {
       {/* HERO */}
       <section
         className="relative min-h-[650px] overflow-hidden bg-ink"
-        style={{
-          backgroundImage: "url('/Gudauri.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       >
+        <Image src="/Gudauri.jpg" alt="" fill sizes="100vw" quality={75} priority className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/65 to-ink/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
 
@@ -195,7 +192,6 @@ export default function SafetyPage({ contacts = [] }) {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               "code-of-conduct",
-              "piste-classification",
               "mountain-patrol",
               "emergency-contacts",
               "closures",
@@ -298,11 +294,8 @@ export default function SafetyPage({ contacts = [] }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid overflow-hidden rounded-[2rem] border border-border bg-surface lg:grid-cols-2">
             <div
-              className="min-h-[500px] bg-cover bg-center"
-              style={{
-                backgroundImage: "url('/Gudauri.jpg')",
-              }}
-            />
+              className="relative min-h-[500px]"
+            ><Image src="/Gudauri.jpg" alt="" fill sizes="(max-width:1024px) 100vw, 50vw" quality={75} className="object-cover" /></div>
 
             <div className="p-8 text-ink md:p-12 lg:p-16">
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-ink">

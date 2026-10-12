@@ -81,6 +81,11 @@ public class AppDb(DbContextOptions<AppDb> options) : IdentityDbContext<PortalUs
         model.Entity<MapFeatureType>().HasKey(t => t.Key);
         model.Entity<MapFeatureType>().Property(t => t.Version).IsConcurrencyToken();
         model.Entity<MapFeature>().Ignore(f => f.Points);
+        model.Entity<MapFeature>().Ignore(f => f.AnchorModes);
+        model.Entity<MapFeature>().Ignore(f => f.Label);
+        model.Entity<MapFeature>().Property(f => f.AnchorModesJson).HasColumnType("jsonb").HasDefaultValue("[]");
+        model.Entity<MapFeature>().Property(f => f.LabelJson).HasColumnType("jsonb").HasDefaultValue("null");
+        model.Entity<ResortMap>().Property(f => f.TilesJson).HasColumnType("jsonb").HasDefaultValue("null");
         model.Entity<MapFeature>().Property(f => f.PointsJson).HasColumnType("jsonb");
         model.Entity<MapFeature>().Property(f => f.Version).IsConcurrencyToken();
         model.Entity<MapFeature>().HasIndex(f => new { f.MapId, f.Deleted });
@@ -94,7 +99,7 @@ public class AppDb(DbContextOptions<AppDb> options) : IdentityDbContext<PortalUs
         model.Entity<News>().HasIndex(n => n.Slug).IsUnique();
         model.Entity<News>().Property(n => n.Slug).HasMaxLength(150);
         model.Entity<News>().Property(n => n.Category).HasMaxLength(20);
-        model.Entity<News>().ToTable(t => t.HasCheckConstraint("CK_News_Category", "\"Category\" IN ('news', 'article', 'blog')"));
+        model.Entity<News>().ToTable(t => t.HasCheckConstraint("CK_News_Category", "\"Category\" IN ('news', 'blog')"));
         model.Entity<News>().Property(n => n.Version).IsConcurrencyToken();
         model.Entity<News>().HasIndex(n => new { n.Published, n.Date });
         model.Entity<Resort>().HasIndex(r => r.Slug).IsUnique();

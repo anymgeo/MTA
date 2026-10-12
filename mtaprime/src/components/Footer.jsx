@@ -1,7 +1,8 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, Ticket } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import SkiPassIcon from "./brand/SkiPassIcon";
 import SocialIcon from './content/SocialIcon';
 export default function Footer({ setModal, settings }) {
   const t = useTranslations("Footer");
@@ -21,10 +22,11 @@ export default function Footer({ setModal, settings }) {
             </p>
             <button
               onClick={() => setModal("pass")}
-              className="mt-7 inline-flex items-center gap-3 rounded-full bg-border px-5 py-3 text-xs font-bold uppercase tracking-[.15em] text-ink transition hover:bg-canvas"
+              className="mt-7 brand-cta brand-cta-primary"
             >
-              <Ticket size={16} />
+              <SkiPassIcon />
               {t("buySkiPass_8f7678")}
+              <ArrowRight className="skipass-cta-arrow" aria-hidden="true" />
             </button>
           </div>
           <div>

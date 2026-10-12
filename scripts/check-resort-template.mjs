@@ -31,6 +31,7 @@ try {
   for(const lang of ['ka','en']) {
     input[lang].page.about='Verification copy '+lang;
     input[lang].page.liftList=[{name:'Test lift',type:'Gondola',duration:'5 min',hours:'09:00–17:00'}];
+    input[lang].page.informationUrl='/about';
     input[lang].page.trailList=[{name:'Test trail',length:'1 km',difficulty:'easy'}];
     input[lang].page.activities=[{title:'Test activity',text:'Test description',iconKey:'hiking'}];
   }
@@ -39,9 +40,10 @@ try {
   for(const locale of ['en','ka']) {
     const publicRows=await (await fetch(origin+'/api/resorts?locale='+locale)).json();
     assert.equal(publicRows.find(r=>r.id===record.id).page.about,'Verification copy '+locale);
+    assert.equal(publicRows.find(r=>r.id===record.id).page.informationUrl,'/about');
   }
   for(const bad of [{videoUrl:'javascript:alert(1)'},{videoUrl:'https://example.com/a.gif'},{pdfUrl:'https://example.com/a.html'},
-      {videoWebmUrl:'https://example.com/not-webm.mp4'},{posterUrl:'javascript:alert(1)'},
+      {videoWebmUrl:'https://example.com/not-webm.mp4'},{posterUrl:'javascript:alert(1)'},{informationUrl:'javascript:alert(1)'},
       {trailList:[{name:'bad',length:'1 km',difficulty:'unknown'}]},{markerX:'200'},{social:{facebook:'javascript:alert(1)'}}]) {
     response=await request('/api/admin/resorts/'+record.id,{method:'PUT',body:{...record,en:{...record.en,page:{...record.en.page,...bad}}}});
     assert.equal(response.status,400);

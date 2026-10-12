@@ -1,0 +1,15 @@
+[
+  {"slug":"resorts","sortOrder":1,
+   "ka":{"title":"კურორტები","description":"აღმოაჩინეთ საქართველოს ოთხი მთის კურორტი","href":"/resorts","menuKind":"resorts","introTitle":"საქართველოს მთები","introHref":"/resorts","children":[{"title":"გუდაური","href":"/resorts/gudauri-kobi","resortSlug":"gudauri-kobi"},{"title":"მესტია","href":"/resorts/mestia","resortSlug":"mestia"},{"title":"ბაკურიანი","href":"/resorts/bakuriani","resortSlug":"bakuriani"},{"title":"გოდერძი","href":"/resorts/goderdzi","resortSlug":"goderdzi"}]},
+   "en":{"title":"Resorts","description":"Discover Georgia’s four mountain resorts","href":"/resorts","menuKind":"resorts","introTitle":"Mountains of Georgia","introHref":"/resorts","children":[{"title":"Gudauri","href":"/resorts/gudauri-kobi","resortSlug":"gudauri-kobi"},{"title":"Mestia","href":"/resorts/mestia","resortSlug":"mestia"},{"title":"Bakuriani","href":"/resorts/bakuriani","resortSlug":"bakuriani"},{"title":"Goderdzi","href":"/resorts/goderdzi","resortSlug":"goderdzi"}]}},
+  {"slug":"maps","sortOrder":2,
+   "ka":{"title":"დღეს მთაში","description":"","href":"/#live","menuKind":"today","children":[{"title":"ინტერაქტიული რუკა","description":"აირჩიეთ კურორტი — ტრასები, საბაგიროები და გაფრთხილებები","href":"/maps","iconKey":"map"},{"title":"მიმდინარე მდგომარეობა","description":"ამინდი, თოვლი, საბაგიროები და ტრასები","href":"/#live","iconKey":"status"},{"title":"მთის კამერები","description":"კურორტების კამერები და ხელმისაწვდომი ხედები","href":"/webcams","iconKey":"cameras"}]},
+   "en":{"title":"Today on the Mountain","description":"","href":"/#live","menuKind":"today","children":[{"title":"Interactive Map","description":"Choose a resort — trails, lifts and warnings","href":"/maps","iconKey":"map"},{"title":"Live Status","description":"Weather, snow, lifts and trail conditions","href":"/#live","iconKey":"status"},{"title":"Live Cameras","description":"Resort cameras and available mountain views","href":"/webcams","iconKey":"cameras"}]}},
+  {"slug":"news","sortOrder":3,"ka":{"title":"სიახლეები","description":"","href":"/news","children":[]},"en":{"title":"News","description":"","href":"/news","children":[]}},
+  {"slug":"events","sortOrder":4,"ka":{"title":"ღონისძიებები","description":"","href":"/events","children":[]},"en":{"title":"Events","description":"","href":"/events","children":[]}},
+  {"slug":"safety","sortOrder":5,"ka":{"title":"უსაფრთხოება","description":"","href":"/safety","children":[]},"en":{"title":"Safety","description":"","href":"/safety","children":[]}},
+  {"slug":"about","sortOrder":6,
+   "ka":{"title":"სააგენტოს შესახებ","description":"","href":"/about","children":[{"title":"MTA-ს შესახებ","href":"/about"},{"title":"სტრუქტურა","href":"/structure"},{"title":"კონტაქტი","href":"/contact"}]},
+   "en":{"title":"About the Agency","description":"","href":"/about","children":[{"title":"About MTA","href":"/about"},{"title":"Structure","href":"/structure"},{"title":"Contact","href":"/contact"}]}},
+  {"slug":"faq","sortOrder":7,"ka":{"title":"ხშირი კითხვები","description":"","href":"/faq","children":[]},"en":{"title":"FAQ","description":"","href":"/faq","children":[]}}
+]

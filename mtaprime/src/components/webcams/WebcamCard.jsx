@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "@/components/media/SiteImage";
 import ResortIcon from "@/components/brand/ResortIcon";
 import { ArrowUpRight, Video } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -33,6 +33,7 @@ export default function WebcamCard({ camera, featured = false }) {
           src={camera.seasonImages?.[season]?.image || camera.image}
           alt={camera.name}
           fill
+          quality={75}
           sizes={
             featured
               ? "(max-width: 1024px) 100vw, 66vw"

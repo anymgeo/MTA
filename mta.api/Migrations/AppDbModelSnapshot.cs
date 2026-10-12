@@ -417,6 +417,12 @@ namespace Mta.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("AnchorModesJson")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("[]");
+
                     b.Property<string>("Closes")
                         .IsRequired()
                         .HasColumnType("text");
@@ -457,6 +463,12 @@ namespace Mta.Api.Migrations
                     b.Property<string>("GeometryKind")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("LabelJson")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("null");
 
                     b.Property<string>("LiftType")
                         .IsRequired()
@@ -668,7 +680,7 @@ namespace Mta.Api.Migrations
 
                     b.ToTable("News", t =>
                         {
-                            t.HasCheckConstraint("CK_News_Category", "\"Category\" IN ('news', 'article', 'blog')");
+                            t.HasCheckConstraint("CK_News_Category", "\"Category\" IN ('news', 'blog')");
                         });
                 });
 
@@ -797,6 +809,12 @@ namespace Mta.Api.Migrations
 
                     b.Property<Guid>("ResortId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("TilesJson")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("null");
 
                     b.Property<Guid>("Version")
                         .IsConcurrencyToken()

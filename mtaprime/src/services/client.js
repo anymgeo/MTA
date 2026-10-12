@@ -1,7 +1,9 @@
 import "server-only";
 import { env } from "@/config/env";
+import { snapshotRequest } from './snapshot';
 /** Fetch a JSON resource. Errors propagate to the localized route error boundary. */
 export async function request(path, { locale, revalidate = 300 } = {}) {
+  if (env.snapshot) return snapshotRequest(path, locale);
   if (!env.apiBaseUrl) throw new Error("API_BASE_URL is not configured");
   const url = new URL(
     env.apiBaseUrl.replace(/\/$/, "") + "/" + path.replace(/^\//, ""),

@@ -8,18 +8,18 @@ import { validateCollection } from "@/models/validate";
 /** @param {{locale: 'ka'|'en'}} options @returns {Promise<import('@/models/content').NewsArticle[]>} */
 export async function getNews({ locale }) {
   const items =
-    env.newsDataSource === "api"
+    env.snapshot || env.newsDataSource === "api"
       ? await request("news", { locale, revalidate: 0 })
       : await localizeFixture(fixtures, locale);
-  const normalized = items.map((item) => ({ ...item, category: item.category || "news" }));
+  const normalized = items.map((item) => ({ ...item, category: item.category === "article" ? "blog" : item.category || "news" }));
   validateCollection("news", normalized);
   return normalized;
 }
 /** @returns {Promise<import('@/models/content').NewsArticle|null>} */
 export async function getNewsArticleBySlug(slug, { locale }) {
-  if (env.newsDataSource === "api") {
+  if (env.snapshot || env.newsDataSource === "api") {
     const item = await request("news/" + encodeURIComponent(slug), { locale, revalidate: 0 });
-    const normalized = item ? { ...item, category: item.category || "news" } : null;
+    const normalized = item ? { ...item, category: item.category === "article" ? "blog" : item.category || "news" } : null;
     if (normalized) validateCollection("news", [normalized]);
     return normalized;
   }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { sendContactMessage } from "@/services/contact-client";
@@ -9,7 +10,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import SocialIcon from '../content/SocialIcon';
-export default function ContactPage({ settings }) {
+export default function ContactPage({ settings, snapshotMode = false, locale }) {
   const t = useTranslations("ContactPage");
   const p = useTranslations("Portal");
   const [formData, setFormData] = useState({
@@ -61,6 +62,7 @@ export default function ContactPage({ settings }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (snapshotMode) return;
     setSending(true);
     setSendStatus(null);
     try {
@@ -77,7 +79,7 @@ export default function ContactPage({ settings }) {
       {/* HERO */}
       <section className="relative min-h-[55vh] overflow-hidden bg-ink text-canvas">
         <div className="absolute inset-0">
-          <img
+          <Image fill quality={75} sizes="100vw" priority
             src="/MESTIA.webp"
             alt={t("georgiaMountainLandscape_ebc873")}
             className="h-full w-full object-cover"
@@ -368,7 +370,7 @@ export default function ContactPage({ settings }) {
 
               {/* SUBMIT */}
               <Button
-                disabled={sending}
+                disabled={sending || snapshotMode}
                 loading={sending}
                 type="submit"
                 label={t("sendMessage_c70a89")}
@@ -376,6 +378,7 @@ export default function ContactPage({ settings }) {
                 iconPos="right"
                 className="w-full border-0 !bg-ink !px-6 !py-4 font-semibold !text-white hover:!bg-ink sm:w-auto"
               />
+              {snapshotMode && <p role="status" className="mt-4 text-sm leading-6 text-ink/80">{locale === 'ka' ? 'ამ დროებით ვერსიაში ფორმით გაგზავნა მიუწვდომელია. დაგვიკავშირდით ზემოთ მითითებული ელფოსტით ან ტელეფონით.' : 'Message submission is unavailable in this temporary version. Please contact us using the email or phone above.'}</p>}
             </form>
           </div>
         </div>
@@ -394,7 +397,7 @@ export default function ContactPage({ settings }) {
       <section className="border-t border-ink/10 bg-ink text-canvas">
         <div className="grid min-h-[500px] lg:grid-cols-2">
           <div className="relative min-h-[400px] overflow-hidden">
-            <img
+            <Image fill quality={75} sizes="(max-width: 768px) 100vw, 66vw"
               src="/Gudauri.jpg"
               alt={t("mountainTrailsAgency_1ebf43")}
               className="h-full w-full object-cover opacity-70"

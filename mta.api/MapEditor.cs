@@ -3,11 +3,13 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 namespace Mta.Api;
 
+public record MapLabelInput(double X,double Y,string TextKa,string TextEn);
 public record MapFeatureInput(Guid MapVersion, Guid? Version, string TypeKey, double[][] Points,
     string NameKa, string NameEn, string DescriptionKa, string DescriptionEn, string Status,
-    string Difficulty = "", string LiftType = "", string Opens = "", string Closes = "", int? DurationMinutes = null);
+    string Difficulty = "", string LiftType = "", string Opens = "", string Closes = "", int? DurationMinutes = null,string[]? AnchorModes=null,MapLabelInput? Label=null);
 public record MapImageInput(Guid Version, string ImageUrl, int Width, int Height);
 public static class MapEditorEndpoints
 {
@@ -19,9 +21,11 @@ public static class MapEditorEndpoints
     static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web);
     static IResult Conflict() => Results.Conflict(new { message = "რუკა სხვა მომხმარებელმა შეცვალა. განაახლეთ რუკა და გადაამოწმეთ ცვლილებები. / This map changed in another session. Reload and review before saving. Your drawing has not been overwritten." });
     static object Feature(MapFeature f) => new { f.Id, f.MapId, f.TypeKey, f.GeometryKind, points = f.Points,
+        f.AnchorModes,f.Label,
         f.NameKa, f.NameEn, f.DescriptionKa, f.DescriptionEn, f.Status, f.Difficulty, f.LiftType, f.Opens, f.Closes,
         f.DurationMinutes, f.CreatedByName, f.CreatedAt, f.UpdatedByName, f.UpdatedAt, f.Version, f.Deleted };
     static async Task<object> View(ResortMap map, AppDb db) => new { map.Id, map.ResortId, map.ImageUrl, map.Width, map.Height,
+        tiles=JsonSerializer.Deserialize<JsonElement>(map.TilesJson),
         map.CoordinateSystem, map.Placeholder, map.Version, types = await db.MapFeatureTypes.AsNoTracking().OrderBy(t => t.Key).ToListAsync(),
         features = (await db.MapFeatures.AsNoTracking().Where(f => f.MapId == map.Id && !f.Deleted).OrderBy(f => f.CreatedAt).ToListAsync()).Select(Feature) };
     static async Task<(string Id, string Name)> Actor(HttpContext ctx, UserManager<PortalUser> users)
@@ -49,33 +53,44 @@ public static class MapEditorEndpoints
             if (!File.Exists(path)) return Results.BadRequest();
             using var imageStream = File.OpenRead(path);
             var info = MapImageInfo.Read(imageStream);
-            if (info.Width != input.Width || info.Height != input.Height || info.Width > 16000 || info.Height > 16000) return Results.BadRequest();
+            if (info.Width != input.Width || info.Height != input.Height) return Results.BadRequest();
             // A different reference size cannot silently invalidate existing coordinates.
             if (await db.MapFeatures.AnyAsync(f => f.MapId == mapId) && (map.Width != info.Width || map.Height != info.Height))
                 return Results.BadRequest(new { message = "Use an image with the same reference dimensions while map features exist. / შეინარჩუნეთ რუკის არსებული ზომები." });
             var before = new { map.ImageUrl, map.Width, map.Height };
             map.ImageUrl = input.ImageUrl!; map.Width = info.Width; map.Height = info.Height; map.Placeholder = false; map.Version = Guid.NewGuid();
+            map.TilesJson=await MapImageStorage.Worker(path,"build",config,environment,ctx.RequestAborted);
             Revision(db, mapId, null, "image", await Actor(ctx, users), before, new { map.ImageUrl, map.Width, map.Height });
             try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); } catch (DbUpdateConcurrencyException) { return Conflict(); }
         }).RequireAuthorization("SuperAdmin");
-        admin.MapPost("/map-image", async (HttpRequest request, IConfiguration config, IWebHostEnvironment environment) => {
-            if (!request.HasFormContentType) return Results.BadRequest();
-            var file = (await request.ReadFormAsync()).Files.GetFile("file");
-            if (file == null || file.Length < 12 || file.Length > 5 * 1024 * 1024) return Results.BadRequest(new { message = "PNG/JPG/WebP, maximum 5 MB." });
-            await using var source = file.OpenReadStream();
-            await using var stream = new MemoryStream();
-            await source.CopyToAsync(stream); stream.Position = 0;
+        admin.MapPost("/maps/{mapId:guid}/image-upload", async (Guid mapId, HttpRequest request, AppDb db, HttpContext ctx, UserManager<PortalUser> users, IConfiguration config, IWebHostEnvironment environment) => {
+            if (!Guid.TryParse(request.Headers["X-Map-Version"], out var version)) return Results.BadRequest(new { message = "Invalid map version. Reload the editor and try again." });
+            var map = await db.ResortMaps.FindAsync(mapId); if (map == null) return Results.NotFound();
+            if (map.Version != version) return Conflict();
             try {
-                var info = MapImageInfo.Read(stream);
-                var extension = info.Extension;
-                if (extension == null || info.Width > 16000 || info.Height > 16000 || (long)info.Width * info.Height > 64000000) return Results.BadRequest();
-                var storage = Path.GetFullPath(config["StoragePath"] ?? Path.Combine(environment.ContentRootPath, "storage"));
-                var name = "map-" + Guid.NewGuid().ToString("N") + extension;
-                stream.Position = 0;
-                await using var output = File.Create(Path.Combine(storage, "media", name)); await stream.CopyToAsync(output);
-                return Results.Ok(new { imageUrl = "/media/" + name, width = info.Width, height = info.Height });
+                var stored=await MapImageStorage.Store(request,config,environment);var info=stored.Info;var path=stored.Path;
+                if (await db.MapFeatures.AnyAsync(f => f.MapId == mapId && !f.Deleted) && (map.Width != info.Width || map.Height != info.Height)) {
+                    File.Delete(path);
+                    return Results.BadRequest(new { message = $"Use the existing {map.Width} × {map.Height}px reference size while map features exist. / არსებული ობიექტების გამო გამოიყენეთ {map.Width} × {map.Height}px ზომა." });
+                }
+                var tiles=await MapImageStorage.Worker(path,"build",config,environment,ctx.RequestAborted);
+                var before = new { map.ImageUrl, map.Width, map.Height };
+                map.ImageUrl = "/media/" + Path.GetFileName(path); map.Width = info.Width; map.Height = info.Height; map.Placeholder = false; map.Version = Guid.NewGuid();map.TilesJson=tiles;
+                Revision(db, mapId, null, "image", await Actor(ctx, users), before, new { map.ImageUrl, map.Width, map.Height });
+                try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); }
+                catch (DbUpdateConcurrencyException) { File.Delete(path); return Conflict(); }
+                catch { File.Delete(path); throw; }
+            } catch (InvalidDataException error) {
+                return Results.BadRequest(new { message = error.Message });
+            }
+        }).RequireAuthorization("SuperAdmin").WithMetadata(new DisableRequestSizeLimitAttribute());
+        admin.MapPost("/map-image", async (HttpRequest request, IConfiguration config, IWebHostEnvironment environment) => {
+            try {
+                var stored=await MapImageStorage.Store(request,config,environment);var info=stored.Info;
+                var tiles=JsonSerializer.Deserialize<JsonElement>(await MapImageStorage.Worker(stored.Path,"build",config,environment,request.HttpContext.RequestAborted));
+                return Results.Ok(new { imageUrl = "/media/" + Path.GetFileName(stored.Path), width = info.Width, height = info.Height,tiles });
             } catch (InvalidDataException) { return Results.BadRequest(); }
-        }).RequireAuthorization("SuperAdmin");
+        }).RequireAuthorization("SuperAdmin").WithMetadata(new DisableRequestSizeLimitAttribute());
         admin.MapPost("/maps/{mapId:guid}/features", (Guid mapId, MapFeatureInput input, AppDb db, HttpContext ctx, UserManager<PortalUser> users) => SaveFeature(mapId, null, input, db, ctx, users));
         admin.MapPut("/maps/{mapId:guid}/features/{id:guid}", (Guid mapId, Guid id, MapFeatureInput input, AppDb db, HttpContext ctx, UserManager<PortalUser> users) => SaveFeature(mapId, id, input, db, ctx, users));
         admin.MapDelete("/maps/{mapId:guid}/features/{id:guid}", async (Guid mapId, Guid id, Guid mapVersion, Guid version, AppDb db, HttpContext ctx, UserManager<PortalUser> users) => {
@@ -85,6 +100,15 @@ public static class MapEditorEndpoints
             var before = Feature(f); var actor = await Actor(ctx, users);
             f.Deleted = true; f.Version = Guid.NewGuid(); f.UpdatedAt = DateTimeOffset.UtcNow; f.UpdatedBy = actor.Id; f.UpdatedByName = actor.Name; map.Version = Guid.NewGuid();
             Revision(db, mapId, id, "delete", actor, before, Feature(f));
+            try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); } catch (DbUpdateConcurrencyException) { return Conflict(); }
+        }).RequireAuthorization("SuperAdmin");
+        admin.MapPost("/maps/{mapId:guid}/features/{id:guid}/restore", async (Guid mapId, Guid id, Guid mapVersion, AppDb db, HttpContext ctx, UserManager<PortalUser> users) => {
+            var map = await db.ResortMaps.FindAsync(mapId); var f = await db.MapFeatures.SingleOrDefaultAsync(f => f.Id == id && f.MapId == mapId && f.Deleted);
+            if (map == null || f == null) return Results.NotFound();
+            if (map.Version != mapVersion) return Conflict();
+            var before = Feature(f); var actor = await Actor(ctx, users);
+            f.Deleted = false; f.Version = Guid.NewGuid(); f.UpdatedAt = DateTimeOffset.UtcNow; f.UpdatedBy = actor.Id; f.UpdatedByName = actor.Name; map.Version = Guid.NewGuid();
+            Revision(db, mapId, id, "restore", actor, before, Feature(f));
             try { await db.SaveChangesAsync(); return Results.Ok(await View(map, db)); } catch (DbUpdateConcurrencyException) { return Conflict(); }
         }).RequireAuthorization("SuperAdmin");
         admin.MapGet("/maps/{mapId:guid}/history", async (Guid mapId, Guid? featureId, AppDb db) =>
@@ -102,9 +126,11 @@ public static class MapEditorEndpoints
             var types = await db.MapFeatureTypes.AsNoTracking().ToListAsync();
             var features = await db.MapFeatures.AsNoTracking().Where(f => f.MapId == map.Id && !f.Deleted).OrderBy(f => f.CreatedAt).ToListAsync();
             return Results.Ok(new { id = slug, mapId = map.Id, image = map.ImageUrl, map.Width, map.Height, map.Version, map.Placeholder, managed = true,
+                tiles=JsonSerializer.Deserialize<JsonElement>(map.TilesJson),
                 coordinateSystem = map.CoordinateSystem, verified = !map.Placeholder, demo = false,
                 types = types.Where(t => features.Any(f => f.TypeKey == t.Key)).Select(t => new { t.Key, name = locale == "en" ? t.NameEn : t.NameKa, t.Icon, t.Color, t.GeometryKind }),
                 features = features.Select(f => new { f.Id, kind = f.TypeKey, f.GeometryKind, points = f.Points,
+                    f.AnchorModes,label=f.Label==null?null:new {f.Label.X,f.Label.Y,text=locale=="en"?f.Label.TextEn:f.Label.TextKa},
                     name = locale == "en" ? f.NameEn : f.NameKa, description = locale == "en" ? f.DescriptionEn : f.DescriptionKa,
                     f.Status, f.Difficulty, f.LiftType, f.Opens, f.Closes, f.DurationMinutes, f.UpdatedAt }) });
         });
@@ -121,10 +147,11 @@ public static class MapEditorEndpoints
         var minimum = type.GeometryKind == "point" ? 1 : type.GeometryKind == "polygon" ? 3 : 2;
         if (input.Points == null || input.Points.Length < minimum || input.Points.Length > 2000 || (type.GeometryKind == "point" && input.Points.Length != 1) ||
             input.Points.Any(p => p == null || (p.Length != 2 && p.Length != 6) || p.Any(v => !double.IsFinite(v)) ||
-                p.Where((_, index) => index % 2 == 0).Any(v => v < 0 || v > map.Width) ||
-                p.Where((_, index) => index % 2 == 1).Any(v => v < 0 || v > map.Height)) ||
+                p[0]<0||p[0]>map.Width||p[1]<0||p[1]>map.Height) ||
             input.Points.Select(p => (p[0], p[1])).Distinct().Count() < minimum)
             return Results.BadRequest(new { message = $"At least {minimum} distinct points within the map are required. / საჭიროა მინიმუმ {minimum} განსხვავებული წერტილი." });
+        if(input.AnchorModes is {Length:>0}&&(input.AnchorModes.Length!=input.Points.Length||input.AnchorModes.Any(mode=>mode is not ("smooth" or "corner"))))return Results.BadRequest(new {message="Invalid anchor modes."});
+        if(input.Label is { } label&&(!double.IsFinite(label.X)||!double.IsFinite(label.Y)||label.X<0||label.X>map.Width||label.Y<0||label.Y>map.Height||label.TextKa==null||label.TextEn==null||label.TextKa.Length>200||label.TextEn.Length>200))return Results.BadRequest(new {message="Invalid map label."});
         if (string.IsNullOrWhiteSpace(input.NameKa) || string.IsNullOrWhiteSpace(input.NameEn) || input.NameKa.Length > 200 || input.NameEn.Length > 200 ||
             input.DescriptionKa == null || input.DescriptionEn == null || input.DescriptionKa.Length > 5000 || input.DescriptionEn.Length > 5000 || !type.Statuses.Contains(input.Status) ||
             (input.TypeKey == "trail" ? !Difficulties.Contains(input.Difficulty) : !string.IsNullOrEmpty(input.Difficulty)) ||
@@ -141,6 +168,7 @@ public static class MapEditorEndpoints
         var actor = await Actor(ctx, users);
         if (!id.HasValue) { f.CreatedBy = actor.Id; f.CreatedByName = actor.Name; db.MapFeatures.Add(f); }
         f.TypeKey = input.TypeKey; f.GeometryKind = type.GeometryKind; f.PointsJson = JsonSerializer.Serialize(input.Points);
+        f.AnchorModesJson=JsonSerializer.Serialize(input.AnchorModes??[]);f.LabelJson=JsonSerializer.Serialize(input.Label,Json);
         f.NameKa = input.NameKa.Trim(); f.NameEn = input.NameEn.Trim(); f.DescriptionKa = input.DescriptionKa.Trim(); f.DescriptionEn = input.DescriptionEn.Trim();
         f.Status = input.Status; f.Difficulty = input.Difficulty; f.LiftType = input.LiftType; f.Opens = input.Opens; f.Closes = input.Closes; f.DurationMinutes = input.DurationMinutes;
         f.UpdatedAt = DateTimeOffset.UtcNow; f.UpdatedBy = actor.Id; f.UpdatedByName = actor.Name; f.Version = Guid.NewGuid(); map.Version = Guid.NewGuid();

@@ -7,6 +7,7 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Tag } from 'primereact/tag';
+import { Dropdown } from 'primereact/dropdown';
 import { api } from './api';
 
 type Faq = {
@@ -70,10 +71,7 @@ export default function Faqs() {
     {notice && <p role="status">{notice}</p>}
     <section className="news-panel">
       <div className="list-toolbar">
-        <label>გვერდი / Page <select value={scope} onChange={e => setScope(e.target.value)}>
-          <option value="all">ყველა / All</option><option value="">FAQ — მთავარი / Main</option>
-          {resorts.map(r => <option key={r.slug} value={r.slug}>{r.slug}</option>)}
-        </select></label>
+        <label htmlFor="faq-scope-filter">გვერდი / Page <Dropdown inputId="faq-scope-filter" value={scope} valueTemplate={option => option?.label ?? (scope || 'FAQ — მთავარი / Main')} options={[{label:'ყველა / All',value:'all'},{label:'FAQ — მთავარი / Main',value:''},...resorts.map(r=>({label:r.slug,value:r.slug}))]} onChange={e => setScope(e.value ?? '')} /></label>
         <InputText aria-label="FAQ ძებნა / Search" placeholder="ძებნა / Search" value={search} onChange={e => setSearch(e.target.value)} />
         <Button text icon="pi pi-refresh" aria-label="განახლება / Refresh" loading={loading} onClick={() => { setError(''); void refresh(); }} />
       </div>
@@ -93,9 +91,7 @@ export default function Faqs() {
       {editing && <form className="stack" onSubmit={save}>
         {error && <p role="alert">{error}</p>}
         <fieldset disabled={busy} className="stack" style={{ border: 0, padding: 0 }}>
-          <label>გვერდი / Page<select value={editing.scope} onChange={e => setEditing({ ...editing, scope: e.target.value })}>
-            <option value="">FAQ — მთავარი / Main</option>{resorts.map(r => <option key={r.slug} value={r.slug}>{r.slug}</option>)}
-          </select></label>
+          <label htmlFor="faq-scope-editor">გვერდი / Page<Dropdown inputId="faq-scope-editor" disabled={busy} value={editing.scope} valueTemplate={option => option?.label ?? (editing.scope || 'FAQ — მთავარი / Main')} options={[{label:'FAQ — მთავარი / Main',value:''},...resorts.map(r=>({label:r.slug,value:r.slug}))]} onChange={e => setEditing({ ...editing, scope: e.value ?? '' })} /></label>
           <label>რიგი / Display order<InputText type="number" required min={0} max={1000000} step={1} value={String(editing.sortOrder)} onChange={e => setEditing({ ...editing, sortOrder: Number(e.target.value) })} /></label>
           {(['Ka', 'En'] as const).map(lang => <section className="stack" key={lang}>
             <h3>{lang === 'Ka' ? 'ქართული' : 'English'}</h3>
@@ -103,7 +99,7 @@ export default function Faqs() {
             <label>კითხვა / Question<InputText required maxLength={500} value={editing[`question${lang}`]} onChange={e => setEditing({ ...editing, [`question${lang}`]: e.target.value })} /></label>
             <label>პასუხი / Answer<InputTextarea required rows={5} maxLength={10000} value={editing[`answer${lang}`]} onChange={e => setEditing({ ...editing, [`answer${lang}`]: e.target.value })} /></label>
           </section>)}
-          <label><input type="checkbox" checked={editing.published} onChange={e => setEditing({ ...editing, published: e.target.checked })} /> გამოქვეყნებული / Published</label>
+          <label><input className="admin-switch" type="checkbox" checked={editing.published} onChange={e => setEditing({ ...editing, published: e.target.checked })} /> გამოქვეყნებული / Published</label>
         </fieldset>
         <div className="row-actions"><Button type="button" text label="გაუქმება / Cancel" disabled={busy} onClick={close} /><Button type="submit" label="შენახვა / Save" loading={busy} /></div>
       </form>}

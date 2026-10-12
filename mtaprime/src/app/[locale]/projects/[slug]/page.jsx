@@ -1,4 +1,7 @@
-import { RecordBody } from "@/components/content/ContentUI";
+import Image from "@/components/media/SiteImage";
+import { RecordBody, ContentFrame } from "@/components/content/ContentUI";
+import EditorialBody from "@/components/content/EditorialBody";
+import MediaGallery from "@/components/media/MediaGallery";
 import PdfUpload from "@/components/content/PdfUpload";
 import { getTranslations } from "next-intl/server";
 import { contentMetadata } from "@/lib/metadata";
@@ -47,6 +50,14 @@ export default async function ProjectPage({ params }) {
   if (!project) {
     notFound();
   }
+  // Legacy projects document a year/season, not an invented publication day.
+  if (project.sourceUrl) return <ContentFrame title={project.title} description={project.description} back="/projects">
+    <p className="mb-6 text-sm font-semibold text-muted">{project.resort} · {project.sourceYear || project.year}</p>
+    <Image src={project.image} alt={project.title} width={1200} height={800} sizes="100vw" className="mb-10 h-auto w-full rounded-3xl" />
+    <div className="mx-auto max-w-3xl"><EditorialBody paragraphs={(project.blocks || []).map(block => block.text)} /></div>
+    {project.gallery?.length > 0 && <MediaGallery images={project.gallery} title={project.title} />}
+    <RecordBody record={{ files: project.files, links: project.links }} />
+  </ContentFrame>;
   const relatedProjects = projects
     .filter(
       (item) => item.slug !== project.slug && item.resort === project.resort,
@@ -61,7 +72,7 @@ export default async function ProjectPage({ params }) {
       {/* HERO */}
       <section className="relative min-h-[720px] overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <img
+          <Image fill quality={75} sizes="100vw" priority
             src={project.image}
             alt={project.title}
             className="h-full w-full scale-105 object-cover opacity-55"
@@ -250,7 +261,7 @@ export default async function ProjectPage({ params }) {
       {/* LARGE IMAGE */}
       <section className="mx-auto max-w-7xl px-6 py-10">
         <div className="group relative h-[450px] overflow-hidden rounded-[32px] md:h-[650px]">
-          <img
+          <Image fill quality={75} sizes="(max-width: 768px) 100vw, 66vw"
             src={project.image}
             alt={project.title}
             className="h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105"
@@ -392,7 +403,7 @@ export default async function ProjectPage({ params }) {
                   className="group overflow-hidden rounded-[28px] border border-border bg-canvas transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
                   <div className="relative h-64 overflow-hidden">
-                    <img
+                    <Image fill quality={75} sizes="(max-width: 768px) 100vw, 66vw"
                       src={relatedProject.image}
                       alt={relatedProject.title}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-110"

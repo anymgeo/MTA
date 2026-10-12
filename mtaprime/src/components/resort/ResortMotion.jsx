@@ -9,12 +9,12 @@ export default function ResortMotion() {
     let disposed = false;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = matchMedia("(min-width: 768px)");
-    const items = [...root.querySelectorAll(".rp-section, .rp-stats > div, .rp-activities li, .rp-tables tbody tr, .rp-mountain-accent")];
+    const items = [...root.querySelectorAll(".rp-section, .rp-about-copy p, .rp-stats > div, .rp-activities li, .rp-tables tbody tr, .rp-mountain-accent")];
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add("rp-visible"); observer.unobserve(entry.target); }
     }), { threshold: 0.06 });
     items.forEach((item, i) => {
-      if (item.getBoundingClientRect().top > innerHeight) {
+      if (!reduced.matches && item.getBoundingClientRect().top > innerHeight) {
         item.classList.add("rp-reveal"); item.style.setProperty("--rp-delay", `${i % 4 * 55}ms`); observer.observe(item);
       }
     });

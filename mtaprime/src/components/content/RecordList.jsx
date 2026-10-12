@@ -1,9 +1,11 @@
 "use client";
+import Image from "@/components/media/SiteImage";
 import RichText from './RichText';
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { filterRecords } from "@/models/portal";
+import { compareResorts } from '@/models/resort-order';
 import { DateTime, EmptyState, PdfFiles } from "./ContentUI";
 export default function RecordList({
   items,
@@ -54,7 +56,7 @@ export default function RecordList({
                       .filter(Boolean),
                   ),
                 ]
-                  .sort()
+                  .sort(key === 'area' ? compareResorts : undefined)
                   .map((value) => (
                     <option key={value} value={value}>
                       {key === "area"
@@ -90,7 +92,7 @@ export default function RecordList({
               className="news-card overflow-hidden rounded-3xl bg-canvas"
             >
               {item.image && (
-                <img
+                <Image width={1200} height={800} quality={75} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   src={item.image}
                   loading="lazy"
                   alt={item.title}

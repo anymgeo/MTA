@@ -1,0 +1,44 @@
+/* Map controls use their own quiet palette, independent of resort-logo colors.
+   Trail difficulty colors are retained: these are safety information, not decoration. */
+.unified-map-pin.pin-label { width:auto; height:auto; border:0; border-radius:4px; background:#ffffffda; color:#17231f; padding:3px 6px; box-shadow:none; white-space:nowrap; }
+.unified-map-reference-label { font-size:10px; font-weight:700; }
+.unified-map-pin.pin-reference:not(.pin-label) { width:16px; height:16px; border-radius:4px; border:1px solid #fff; box-shadow:none; }
+.unified-map-pin.pin-reference svg { width:11px; height:11px; }
+.unified-map-pin.pin-reference.pin-trail,.unified-map-pin.pin-reference.pin-lift { width:9px; height:9px; border-radius:50%; }
+.unified-map-pin.pin-reference.pin-trail svg,.unified-map-pin.pin-reference.pin-lift svg { display:none; }
+.unified-map-pin.pin-reference:focus-visible,.unified-map-pin.pin-reference:hover { outline:2px solid #17231f; outline-offset:3px; z-index:5; }
+.unified-map {
+  --map-navy:#183b37;
+  --map-muted:#586d69;
+  --map-line:#d7e4de;
+  --map-panel:#fbfdfc;
+  --map-soft:#f1f6f3;
+  --map-accent:#287563;
+  --map-warning:#755483;
+  background:#eef4f1;
+  border-color:var(--map-line);
+  box-shadow:0 8px 30px #183b3709;
+}
+.unified-map-sidebar {max-height:none;overflow:visible;background:var(--map-panel);}
+.rp-section .unified-map-brand h2 {margin:0;font-size:22px;line-height:1.15;letter-spacing:-.035em;}
+.rp-section .unified-map-sidebar h3 {font-size:12px;line-height:1.4;letter-spacing:.07em;}
+.unified-map-map-shell {background:linear-gradient(145deg,#e0eae5,#f0f5f2);}
+.unified-map-stage {background:#e0eae5;border-color:var(--map-line);touch-action:pan-y;}
+.unified-map-layer-icon {background:#e7f2ee;color:var(--map-accent);}
+.unified-map-layer-icon.layer-warning {background:#f2ecf5;color:var(--map-warning);}
+.unified-map-legend .legend-warning,.unified-map-pin.pin-warning {background:var(--map-warning);color:#fff;}
+.unified-map-pin[data-status="closed"] {background:#556563;color:#fff;}
+.unified-map-alerts>button {border-color:#dfd1e6;background:#f6f1f8;color:#60426b;}
+.unified-map-alerts small {color:#705b78;}
+.unified-map-alerts h3 span {background:#f2ecf5;color:#60426b;}
+.unified-map-demo {background:#f2ecf5;border-color:#dfd1e6;color:#60426b;}
+.unified-map-feature-meta strong[data-status="limited"] {background:#edf0f7;color:#4d5c7e;}
+.unified-map-feature-meta strong[data-status="closed"],
+.unified-map-feature-meta strong[data-status="active"] {background:#f2ecf5;color:#60426b;}
+.unified-map-controls button {box-shadow:0 3px 12px #183b370a;}
+.unified-map-pin {box-shadow:0 3px 12px #183b3714;}
+.unified-map-feature-card {background:#fffffff7;border-color:var(--map-line);box-shadow:0 6px 22px #183b3710;}
+.unified-map-records ul {max-height:none;overflow:visible;}
+/* Fullscreen is an explicit interaction: retain panning and a usable long sidebar. */
+.unified-map-expanded .unified-map-stage {touch-action:none;}
+.unified-map-expanded .unified-map-sidebar {overflow:auto;min-height:0;}

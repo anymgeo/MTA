@@ -1,0 +1,31 @@
+.admin-navigation { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.admin-navigation .nav-workspace-label { display: flex; align-items: center; gap: 10px; }
+.admin-navigation .nav-workspace-label i { font-size: 13px; }
+.admin-navigation .nav-item { width: 100%; text-align: left; min-height: 44px; }
+.admin-navigation .nav-item > .nav-item-label { margin: 0; padding: 0; background: none; color: inherit; font-size: inherit; border-radius: 0; flex: 1; line-height: 1.5; }
+.admin-navigation .nav-item > .nav-count { margin-left: auto; flex: none; }
+.nav-section-space { height: 10px; }
+.nav-group-toggle { display: flex; align-items: center; gap: 13px; width: 100%; min-height: 44px; padding: 13px 14px; border: 0; border-radius: 12px; background: transparent; color: #495451; font: inherit; font-size: 12px; text-align: left; cursor: pointer; }
+.nav-group-toggle:hover { background: #f0f0ec; }
+.nav-group-toggle.has-active { color: #b92f19; }
+.nav-group-toggle > span { flex: 1; }
+.nav-group-toggle:focus-visible { outline: 2px solid #b92f19; outline-offset: 2px; }
+.nav-group-chevron { font-size: 10px; color: #777c79; transition: transform 180ms ease; }
+.nav-group-chevron.expanded { transform: rotate(180deg); }
+.nav-group-children { margin: 2px 0 8px 21px; padding-left: 11px; border-left: 1px solid #e1e1dd; }
+.nav-group-children[hidden] { display: none; }
+.admin-navigation .nav-subitem { font-size: 11px; padding: 11px 10px; margin: 2px 0; }
+.admin-navigation .nav-subitem i { font-size: 13px; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .workspace > .sidebar { width: 250px; }
+  .workspace > .workspace-main { margin-left: 250px; width: calc(100% - 250px); }
+}
+@media (max-width: 760px) {
+  .workspace { flex-direction: column; }
+  .workspace > .workspace-main { margin-left: 0; width: 100%; }
+  .workspace > .sidebar { display: block; max-height: 48vh; overflow: auto; }
+  .admin-navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-navigation .nav-workspace-label, .nav-group, .nav-section-space { grid-column: 1 / -1; }
+  .admin-navigation .nav-item { padding: 11px 10px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) { .nav-group-chevron { transition: none; } }

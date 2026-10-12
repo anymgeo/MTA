@@ -5,13 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="map-tiles.mjs" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Update="package.json;package-lock.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9" PrivateAssets="all" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     <PackageReference Include="SkiaSharp" Version="4.153.0" />
     <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.153.0" />
   </ItemGroup>
-  <ItemGroup><Content Update="seed-news.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
-  <ItemGroup><Content Update="seed-resorts.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
-  <ItemGroup><Content Update="seed-content.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+  <ItemGroup>
+    <Content Update="seed-news.json;seed-resorts.json;seed-content.json;brand-navigation.json;official-news-2026.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

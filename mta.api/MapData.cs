@@ -10,6 +10,7 @@ public class ResortMap
     public int Height { get; set; } = 1000;
     public string CoordinateSystem { get; set; } = "image-pixels";
     public bool Placeholder { get; set; } = true;
+    public string TilesJson { get; set; } = "null";
     public Guid Version { get; set; } = Guid.NewGuid();
 }
 public class MapArea
@@ -39,6 +40,8 @@ public class MapFeature
     public string TypeKey { get; set; } = "";
     public string GeometryKind { get; set; } = "point";
     public string PointsJson { get; set; } = "[]";
+    public string AnchorModesJson { get; set; } = "[]";
+    public string LabelJson { get; set; } = "null";
     public string NameKa { get; set; } = "";
     public string NameEn { get; set; } = "";
     public string DescriptionKa { get; set; } = "";
@@ -59,6 +62,8 @@ public class MapFeature
     public bool Deleted { get; set; }
     public Guid Version { get; set; } = Guid.NewGuid();
     public double[][] Points => JsonSerializer.Deserialize<double[][]>(PointsJson)!;
+    public string[] AnchorModes => JsonSerializer.Deserialize<string[]>(AnchorModesJson)!;
+    public MapLabelInput? Label => JsonSerializer.Deserialize<MapLabelInput>(LabelJson,new JsonSerializerOptions(JsonSerializerDefaults.Web));
 }
 public class MapFeatureRevision
 {

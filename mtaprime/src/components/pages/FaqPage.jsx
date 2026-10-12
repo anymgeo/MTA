@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "@/components/media/SiteImage";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useId, useMemo, useState } from "react";
@@ -88,7 +89,7 @@ export default function FaqPage({ items }) {
       {/* HERO */}
       <section className="relative min-h-[560px] overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <img
+          <Image fill quality={75} sizes="100vw" priority
             src="/Gudauri.jpg"
             alt=""
             className="h-full w-full object-cover object-center opacity-[0.35]"
