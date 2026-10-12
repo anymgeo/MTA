@@ -4,6 +4,8 @@
 
 Repository root: `D:/OneDrive - Mountain Resorts Georgia/Desktop/MTAPRIMELang`.
 
+The exact 169-file implementation release manifest (including every derived tile filename) is [image-cut-release-files-20261012.txt](./image-cut-release-files-20261012.txt). The source changes are explained below.
+
 - `mta.api/MapEditor.cs`: removes both reference-dimension rejection branches, stages uploads, confirms alignment in one DB transaction, transforms all anchors/handles/labels including deleted features, and preserves native metadata/version/audit records. Adds optional cut-label metadata to the existing JSONB field.
 - `mta.api/MapImageReplacement.cs` (new): private pending-image manifests, user/map/version checks, affine transforms and confirmation contract. Originals are immutable, staged images expire for confirmation after 48 hours; files are not automatically purged.
 - `mta.api/MapImageStorage.cs`, `mta.api/map-tiles.mjs`: correct Deep Zoom output basename/extension, validate emitted tiles before publishing a manifest, and resolve previously generated tile URLs without changing originals or map geometry. The `.dz` basename convention follows [Sharp's output documentation](https://sharp.pixelplumbing.com/api-output/#tile).
@@ -64,6 +66,15 @@ Protected API + PostgreSQL, and the running browser application:
 - Final production-mode snapshot checks passed: all 240 original media hashes, four watermarked downloads with clean sources unchanged, bilingual News/Today routes, responsive image optimization and the contact safeguard. A fresh browser tested 40 page/locale/viewport combinations (1600 px desktop and 390 px mobile); no missing heading, horizontal overflow, undersized visible CTA or console warning/error occurred. Tablet (820 px) season/language switching, Skipass modal and logo-home navigation worked; header CTA at 1440 px remained unclipped and 48 px tall.
 
 QA data used an isolated resort, not real resort drawings. Test media remains in ignored local storage; the QA resort is removed before public snapshot export. Production hosting remains the user-approved public Vercel snapshot, with API/Admin local. Docker/Nginx containers were not executed on this machine (Docker unavailable).
+
+## Production deployment verification
+
+- Public implementation commit: `26adaf259fe59ec1f4304d1bcf000697e5639ca6`, pushed to `codex/content-cms`.
+- Existing Vercel project `mta` / `prj_ZFbXuRjYH6QEe3QQL5IPLP3IbtER`; no new project or domain configuration created.
+- Production build `dpl_BjCFXvMN3mfizwcy4E8EmxGbeMVP` reached READY (52-second build). It was staged, verified, then promoted without rebuilding. `vercel inspect https://mta-five.vercel.app` resolved this exact deployment.
+- Verified live at [mta-five.vercel.app](https://mta-five.vercel.app/ka): 40 desktop/mobile/locale combinations, all four resort maps' native cubic/tick paths matching the public JSON API, homepage, News and Projects list/detail, Today, CTA variants, four watermarked downloads and all 240 media SHA-256 hashes. Console errors/warnings: none in the fresh production test tab. Bounded new-deployment error-log scan: no error entries returned.
+- Local API and Admin were built, restarted and verified. They were deliberately not exposed or deployed to Vercel. Production uses the exported public CMS data; future local CMS changes require a fresh snapshot export/deployment to appear there. No new schema migration was required for this release; the earlier additive vector-label/tile migration was already applied locally. Existing records, source media, secrets and environment configuration were preserved.
+- Incremental semantic code index refreshed successfully (338 files; no full rebuild).
 
 ## Admin usage
 
